@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(tee /tmp/astro-dev.log)",
+      "Bash(curl -s -o /tmp/home.html -w \"HTTP %{http_code} | %{size_download} bytes\\\\n\" http://localhost:4321/)",
+      "Bash(curl -s -o /tmp/and.html -w \"HTTP %{http_code} | %{size_download} bytes\\\\n\" http://localhost:4321/services/multimedia/android-screens)",
+      "Bash(curl -s -o /dev/null -w \"parking-cameras: HTTP %{http_code}\\\\n\" http://localhost:4321/services/multimedia/parking-cameras)",
+      "Bash(curl -s http://localhost:4321/blog/android-screen-cost)",
+      "Bash(disown)",
+      "Bash(ls /Users/adielcohen/Desktop/amir-systems/public/ && find /var/folders -name \"*.png\" -newer /Users/adielcohen/Desktop/amir-systems/package.json 2>/dev/null | head -5 && ls /tmp/*.png 2>/dev/null | head -5)",
+      "Bash(find /Users/adielcohen/Downloads -name \"*.png\" -newer /Users/adielcohen/Desktop/amir-systems/package.json 2>/dev/null | head -5; find /Users/adielcohen/Desktop -name \"*.png\" -newer /Users/adielcohen/Desktop/amir-systems/package.json 2>/dev/null | head -5)",
+      "Bash(cp \"/Users/adielcohen/Desktop/תמונות גוגל אמיר/amir-maarachot-logo-versions/amir-maarachot-logo-header-transparent.png\" /Users/adielcohen/Desktop/amir-systems/public/logo.png)",
+      "Bash(gh auth *)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)"
+    ]
+  }
+}

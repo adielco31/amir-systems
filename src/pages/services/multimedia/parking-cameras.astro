@@ -1,0 +1,287 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro'
+import FAQ from '../../../components/FAQ.astro'
+import CTABanner from '../../../components/CTABanner.astro'
+import business from '../../../data/business.js'
+
+const title = 'התקנת מצלמת רוורס לרכב | מצלמות חנייה ו-360°'
+const description = 'התקנת מצלמות רוורס וחנייה לכל סוגי הרכבים — מצלמה אחורית, קדמית, 360°, חיישני חנייה. התקנה ביום אחד בעפולה והאזור, חיווט מוסתר, אחריות מלאה.'
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'התקנת מצלמת רוורס וחנייה לרכב',
+  provider: {
+    '@id': `${business.url}#business`,
+  },
+  areaServed: [
+    'עפולה', 'מגדל העמק', 'נוף הגליל', 'יקנעם',
+    'טבריה', 'בית שאן', 'מגידו', 'נצרת',
+  ].map(a => ({ '@type': 'City', name: a })),
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'מצלמות רוורס ועזרי חנייה',
+    itemListElement: [
+      { '@type': 'Offer', name: 'מצלמת רוורס אחורית עם קווי הנחיה' },
+      { '@type': 'Offer', name: 'חיישני חנייה אחוריים / קדמיים' },
+      { '@type': 'Offer', name: 'מערכת מצלמות 360° (תצוגת על)' },
+    ],
+  },
+}
+
+const faqs = [
+  {
+    q: 'כמה עולה התקנת מצלמת רוורס לרכב?',
+    a: 'מצלמת רוורס אחורית בסיסית עם התקנה מתחילה ב-350-500 ₪. מצלמה איכותית עם ראייה לילית וקווי הנחיה דינמיים נעה סביב 600-900 ₪. מערכת 360° מלאה (ארבע מצלמות עם תצוגת על) היא פרויקט גדול יותר ונעה בין 2,500 ל-4,500 ₪, תלוי בדגם הרכב. אם מתקינים את המצלמה יחד עם מסך אנדרואיד חדש — חוסכים בעלות החיווט. לקבלת הצעת מחיר מדויקת צרו קשר.',
+  },
+  {
+    q: 'האם אפשר לחבר מצלמת רוורס למסך המקורי של הרכב?',
+    a: 'במקרים רבים כן — תלוי בדגם הרכב ובשנת הייצור. רכבים מ-2015 ומעלה עם מסך מקורי לעיתים קרובות מאפשרים חיבור מצלמה דרך ממשק ייעודי (interface). ברכבים ישנים יותר, או כשהמסך המקורי לא תומך, אנחנו ממליצים לשלב התקנת מסך אנדרואיד שמגיע מוכן לחיבור מצלמה. בכל מקרה — בודקים את הרכב הספציפי לפני שמתחייבים.',
+  },
+  {
+    q: 'מה ההבדל בין מצלמת רוורס לחיישני חנייה?',
+    a: 'חיישני חנייה (סנסורים) מתריעים בצליל כשמתקרבים למכשול, אבל לא מראים אותו. מצלמת רוורס נותנת תמונה ויזואלית מלאה של מה שמאחורי הרכב — כולל מכשולים נמוכים כמו אבני שפה, או ילדים וחיות שחיישנים עלולים לפספס. השילוב של מצלמה + חיישנים הוא הפתרון הבטוח ביותר, ורבים מהלקוחות שלנו בוחרים בו דווקא בגלל הביטחון בחנייה צפופה.',
+  },
+  {
+    q: 'מה זו מערכת מצלמות 360° וכמה היא שווה?',
+    a: 'מערכת 360° (Bird\'s Eye View) משלבת ארבע מצלמות — קדמית, אחורית ושתי צד — ומרכיבה מהן תצוגת על מלמעלה של הרכב והסביבה. זה מקל מאוד על חנייה במקומות צפופים, מניעת שריטות וזיהוי מכשולים נמוכים. המערכת יקרה יותר ודורשת התקנה מדויקת וכיול, אבל ללקוחות שנוהגים ברכב גדול (SUV, מסחרי) או חונים הרבה בעיר — היא שדרוג משמעותי לביטחון.',
+  },
+  {
+    q: 'כמה זמן לוקחת ההתקנה?',
+    a: 'מצלמת רוורס אחורית בודדת מותקנת תוך 1.5-3 שעות, כולל העברת חיווט נקי מהדלת האחורית ועד המסך. חיישני חנייה דורשים קידוח מדויק בפגוש וכיול — בערך 2-3 שעות. מערכת 360° היא הפרויקט הארוך ביותר ויכולה להגיע ל-5-7 שעות בגלל הצורך בכיול כל מצלמה. אנחנו תמיד מבהירים את משך ההתקנה מראש.',
+  },
+  {
+    q: 'האם המצלמה עובדת טוב בחושך?',
+    a: 'מצלמות איכותיות שאנחנו מתקינים כוללות ראייה לילית (Night Vision) באמצעות חיישן רגיש לאור ולעיתים נורות אינפרא-אדום. גם בחנייה חשוכה לחלוטין תקבלו תמונה ברורה. אנחנו לא מתקינים מצלמות זולות עם חיישן באיכות נמוכה — דווקא בלילה ובגשם ההבדל באיכות החיישן הוא קריטי לבטיחות.',
+  },
+  {
+    q: 'האם ההתקנה פוגעת ברכב או בפגוש?',
+    a: 'לא. אנחנו מתקינים בצורה מקצועית עם חיווט מוסתר לחלוטין, בלי חיתוכים מיותרים. מצלמת רוורס אחורית מותקנת לרוב במקום ידית התא המטען או מסגרת הלוחית, בצורה אסתטית ומקורית-נראית. במקרים שדורשים קידוח (חיישנים) — אנחנו משתמשים במקדחים ייעודיים בקוטר מדויק שמשאירים גימור נקי. הכל מבוצע כך שייראה כאילו הגיע מהיצרן.',
+  },
+  {
+    q: 'מה האחריות שאתם נותנים?',
+    a: `אחריות ${business.stats.yearsOfExperience > 0 ? '3 שנים' : '3 שנים'} על העבודה (חיווט והתקנה) ואחריות יצרן מלאה על המצלמה עצמה. אם התמונה מתעמעמת, נכנסת לחות, או החיווט מפסיק לעבוד — מחזירים אלינו והכל מתוקן ללא תשלום. אנחנו לוקחים אחריות מלאה על כל מה שאנחנו מתקינים.`,
+  },
+]
+---
+
+<BaseLayout title={title} description={description} schema={schema}>
+
+  <!-- Breadcrumb -->
+  <nav class="bg-gray-50 border-b border-gray-200 py-3" aria-label="breadcrumb">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-600">
+      <a href="/" class="hover:text-brand-700">בית</a>
+      <span class="mx-2">›</span>
+      <a href="/services/multimedia/" class="hover:text-brand-700">מולטימדיה</a>
+      <span class="mx-2">›</span>
+      <span class="text-gray-900 font-medium">מצלמות רוורס</span>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="bg-gradient-to-bl from-brand-900 to-brand-700 text-white py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-6">
+        התקנת מצלמת רוורס לרכב<br/>
+        <span class="text-accent-500">בעפולה והגלבוע</span>
+      </h1>
+      <p class="text-lg md:text-xl text-blue-100 leading-relaxed">
+        מצלמות רוורס וחנייה לכל סוגי הרכבים — אחורית, קדמית, 360° וחיישני חנייה.
+        התקנה ביום אחד עם חיווט מוסתר, ראייה לילית, ואחריות מלאה.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main content -->
+  <article class="py-12 md:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 prose-content">
+
+      <!-- Intro -->
+      <section class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+          מצלמת רוורס — שדרוג הבטיחות המשתלם ביותר לרכב
+        </h2>
+        <p class="text-gray-700 leading-relaxed text-lg mb-4">
+          חנייה לאחור היא אחד המצבים שבהם מתרחשות הכי הרבה תאונות קלות — שריטות,
+          פגיעות בעמודים, ובמקרים החמורים פגיעה בהולכי רגל וילדים שלא נראים בשטח המת
+          שמאחורי הרכב. מצלמת רוורס מבטלת את השטח המת הזה לחלוטין ונותנת לכם תמונה
+          ברורה של מה שמאחור — בכל פעם שאתם מכניסים הילוך אחורי.
+        </p>
+        <p class="text-gray-700 leading-relaxed text-lg">
+          ב<strong>אמיר מערכות</strong>, אנחנו מתקינים מצלמות רוורס וחנייה כבר {business.stats.yearsOfExperience}+ שנים
+          באזור עפולה, הגלבוע ועמק יזרעאל. אנחנו מכירים את כל סוגי הרכבים — ממכוניות פרטיות
+          ועד רכבים מסחריים גדולים — ויודעים בדיוק איזו מצלמה ואיזה אופן התקנה מתאימים לכל אחד,
+          בלי למכור לכם מערכת מנופחת שאתם לא צריכים.
+        </p>
+      </section>
+
+      <!-- What's in it for you -->
+      <section class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+          מה תקבלו ממצלמת רוורס מקצועית?
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+            <div class="text-2xl mb-2">👁️</div>
+            <h3 class="font-bold text-gray-900 mb-2">ביטול השטח המת מאחורי הרכב</h3>
+            <p class="text-sm text-gray-600">
+              תמונה מלאה של מה שמאחור — כולל אבני שפה נמוכות, מכשולים וילדים.
+            </p>
+          </div>
+          <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+            <div class="text-2xl mb-2">📐</div>
+            <h3 class="font-bold text-gray-900 mb-2">קווי הנחיה דינמיים</h3>
+            <p class="text-sm text-gray-600">
+              קווים שזזים יחד עם ההגה ומראים בדיוק לאן הרכב יגיע — חנייה מדויקת.
+            </p>
+          </div>
+          <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+            <div class="text-2xl mb-2">🌙</div>
+            <h3 class="font-bold text-gray-900 mb-2">ראייה לילית ברורה</h3>
+            <p class="text-sm text-gray-600">
+              חיישן רגיש לאור נמוך — תמונה חדה גם בחנייה חשוכה לגמרי או בגשם.
+            </p>
+          </div>
+          <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+            <div class="text-2xl mb-2">🔔</div>
+            <h3 class="font-bold text-gray-900 mb-2">שילוב עם חיישני חנייה</h3>
+            <p class="text-sm text-gray-600">
+              תמונה + התרעה קולית = הפתרון הבטוח ביותר לחנייה צפופה בעיר.
+            </p>
+          </div>
+          <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+            <div class="text-2xl mb-2">🚙</div>
+            <h3 class="font-bold text-gray-900 mb-2">מערכת 360° לרכבים גדולים</h3>
+            <p class="text-sm text-gray-600">
+              תצוגת על מלמעלה — מושלמת ל-SUV, רכב מסחרי וחנייה במקומות צרים.
+            </p>
+          </div>
+          <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+            <div class="text-2xl mb-2">🔧</div>
+            <h3 class="font-bold text-gray-900 mb-2">התקנה אסתטית ומוסתרת</h3>
+            <p class="text-sm text-gray-600">
+              חיווט נקי לחלוטין, גימור שנראה כאילו הגיע מהיצרן — בלי שריטות.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Types -->
+      <section class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+          סוגי מצלמות חנייה שאנחנו מתקינים
+        </h2>
+        <div class="space-y-4">
+          <div class="p-5 bg-white border border-gray-200 rounded-lg">
+            <h3 class="font-bold text-gray-900 mb-1">מצלמת רוורס אחורית</h3>
+            <p class="text-gray-700">הפתרון הנפוץ והמשתלם ביותר. מצלמה קומפקטית במקום ידית התא המטען או במסגרת הלוחית, שמופעלת אוטומטית בהילוך אחורי. מתאימה כמעט לכל רכב.</p>
+          </div>
+          <div class="p-5 bg-white border border-gray-200 rounded-lg">
+            <h3 class="font-bold text-gray-900 mb-1">חיישני חנייה (סנסורים)</h3>
+            <p class="text-gray-700">התרעה קולית מדורגת ככל שמתקרבים למכשול. ניתן להתקין אחורי, קדמי או משולב. מומלץ בשילוב מצלמה לכיסוי מלא.</p>
+          </div>
+          <div class="p-5 bg-white border border-gray-200 rounded-lg">
+            <h3 class="font-bold text-gray-900 mb-1">מצלמה קדמית</h3>
+            <p class="text-gray-700">עוזרת בחנייה לכיוון מכשול קדמי נמוך ובנהיגה ברכבים גדולים. נפוצה ברכבי שטח ומסחריים.</p>
+          </div>
+          <div class="p-5 bg-white border border-gray-200 rounded-lg">
+            <h3 class="font-bold text-gray-900 mb-1">מערכת 360° (תצוגת על)</h3>
+            <p class="text-gray-700">ארבע מצלמות שמרכיבות תמונה מלמעלה של הרכב והסביבה. השדרוג המתקדם ביותר — דורש כיול מדויק של כל מצלמה.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Process -->
+      <section class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+          תהליך ההתקנה — שלב אחר שלב
+        </h2>
+        <ol class="space-y-4">
+          <li class="flex gap-4">
+            <div class="flex-shrink-0 w-10 h-10 bg-brand-900 text-white rounded-full flex items-center justify-center font-bold">1</div>
+            <div>
+              <h3 class="font-bold text-gray-900 mb-1">בדיקת רכב והתאמת פתרון</h3>
+              <p class="text-gray-700">בודקים את הרכב, את המסך הקיים (אם יש), ומבינים את הצורך — מצלמה בלבד, חיישנים, או מערכת מלאה. שיחת ייעוץ ללא עלות וללא התחייבות.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <div class="flex-shrink-0 w-10 h-10 bg-brand-900 text-white rounded-full flex items-center justify-center font-bold">2</div>
+            <div>
+              <h3 class="font-bold text-gray-900 mb-1">הצעת מחיר ותיאום תור</h3>
+              <p class="text-gray-700">בחירת המצלמה המתאימה והצעת מחיר סופית. תיאום תור בהתאם לזמינות שלכם, בדרך כלל תוך 2-7 ימים.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <div class="flex-shrink-0 w-10 h-10 bg-brand-900 text-white rounded-full flex items-center justify-center font-bold">3</div>
+            <div>
+              <h3 class="font-bold text-gray-900 mb-1">התקנה וחיווט מוסתר</h3>
+              <p class="text-gray-700">התקנת המצלמה במיקום אופטימלי, העברת חיווט נקי דרך גוף הרכב, וחיבור למסך. כל זאת בלי לפגוע בגימור המקורי.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <div class="flex-shrink-0 w-10 h-10 bg-brand-900 text-white rounded-full flex items-center justify-center font-bold">4</div>
+            <div>
+              <h3 class="font-bold text-gray-900 mb-1">כיול ובדיקות</h3>
+              <p class="text-gray-700">כיול קווי ההנחיה והזווית, ובמערכת 360° כיול מלא של כל מצלמה. בדיקה שהמצלמה נדלקת אוטומטית בהילוך אחורי ושהתמונה חדה.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <div class="flex-shrink-0 w-10 h-10 bg-brand-900 text-white rounded-full flex items-center justify-center font-bold">5</div>
+            <div>
+              <h3 class="font-bold text-gray-900 mb-1">אחריות + שירות לטווח ארוך</h3>
+              <p class="text-gray-700">3 שנות אחריות על העבודה. כל בעיה — חוזרים אלינו, פותרים בלי תשלום. וגם תמיכה טלפונית לכל שאלה.</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <!-- Why us -->
+      <section class="mb-12 p-6 bg-gray-50 rounded-xl">
+        <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-4">
+          למה דווקא איכות המצלמה חשובה
+        </h2>
+        <p class="text-gray-700 leading-relaxed mb-4">
+          השוק מוצף במצלמות רוורס זולות, אבל ההבדל מתגלה בדיוק ברגעים החשובים —
+          בלילה, בגשם, ובחנייה צפופה. מצלמה זולה עם חיישן באיכות נמוכה תיתן תמונה
+          מטושטשת או חשוכה בדיוק כשאתם הכי צריכים אותה. אנחנו עובדים רק עם מצלמות שיש
+          להן <strong>חיישן איכותי, ראייה לילית אמיתית, ועמידות למים</strong> בתקן IP67 ומעלה.
+        </p>
+        <p class="text-gray-700 leading-relaxed">
+          בנוסף, איכות ההתקנה קריטית לא פחות מאיכות המצלמה: חיווט לקוי גורם לתמונה
+          מהבהבת, חדירת לחות, וקצרים. אנחנו מבצעים כל חיבור בצורה מקצועית, אטומה ומוסתרת —
+          כך שהמצלמה תעבוד אמין שנים קדימה.
+        </p>
+      </section>
+
+      <!-- Internal links -->
+      <section class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+          שירותים נלווים שאולי יעניינו אתכם
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <a href="/services/multimedia/android-screens/" class="block p-5 bg-white border border-gray-200 rounded-lg hover:border-brand-500 hover:shadow transition">
+            <h3 class="font-bold text-gray-900 mb-2">📱 מסכי אנדרואיד</h3>
+            <p class="text-sm text-gray-600">מסך מולטימדיה חדש שמגיע מוכן לחיבור מצלמה.</p>
+          </a>
+          <a href="/services/multimedia/dashcam/" class="block p-5 bg-white border border-gray-200 rounded-lg hover:border-brand-500 hover:shadow transition">
+            <h3 class="font-bold text-gray-900 mb-2">🎥 דאשקאם</h3>
+            <p class="text-sm text-gray-600">מצלמת דרך שמתעדת נסיעה — משלימה את מצלמת הרוורס.</p>
+          </a>
+          <a href="/services/multimedia/sound-systems/" class="block p-5 bg-white border border-gray-200 rounded-lg hover:border-brand-500 hover:shadow transition">
+            <h3 class="font-bold text-gray-900 mb-2">🔊 מערכות שמע</h3>
+            <p class="text-sm text-gray-600">שדרוג הרמקולים וההגברה — חבילת מולטימדיה מלאה.</p>
+          </a>
+        </div>
+      </section>
+    </div>
+  </article>
+
+  <!-- FAQ -->
+  <FAQ items={faqs} title="שאלות נפוצות על התקנת מצלמות רוורס" />
+
+  <!-- CTA -->
+  <CTABanner
+    title="רוצים לחנות בלי לדאוג?"
+    subtitle="ייעוץ חינמי, הצעת מחיר תוך שעה — בלי התחייבות"
+  />
+</BaseLayout>

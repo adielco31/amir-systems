@@ -1,0 +1,267 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import FAQ from '../../components/FAQ.astro'
+import CTABanner from '../../components/CTABanner.astro'
+import business from '../../data/business.js'
+
+const title = 'חשמלאי רכב בעפולה | דיאגנוסטיקה ותיקון חשמלי'
+const description = 'חשמלאי רכב מקצועי בעפולה והאזור — דיאגנוסטיקה ממוחשבת, תיקון תקלות חשמליות, החלפת מצבר, אלטרנטור ומתנע. אבחון מדויק, שירות אישי, אחריות מלאה.'
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'חשמלאות ודיאגנוסטיקה לרכב',
+  provider: {
+    '@id': `${business.url}#business`,
+  },
+  areaServed: [
+    'עפולה', 'מגדל העמק', 'נוף הגליל', 'יקנעם',
+    'טבריה', 'בית שאן', 'מגידו', 'נצרת',
+  ].map(a => ({ '@type': 'City', name: a })),
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'חשמלאות ודיאגנוסטיקה לרכב',
+    itemListElement: [
+      { '@type': 'Offer', name: 'דיאגנוסטיקה ממוחשבת ומחיקת קודי תקלה' },
+      { '@type': 'Offer', name: 'תיקון תקלות חשמל ואיתור קצרים' },
+      { '@type': 'Offer', name: 'החלפת מצבר, אלטרנטור ומתנע' },
+    ],
+  },
+}
+
+const faqs = [
+  {
+    q: 'מה ההבדל בין חשמלאי רכב למכונאי רכב?',
+    a: 'מכונאי רכב מתמחה במערכות מכניות — מנוע, גיר, בלמים, מתלים. חשמלאי רכב מתמחה במערכות החשמל והאלקטרוניקה — מצבר, אלטרנטור, חיווט, שקעים, חיישנים, יחידות בקרה (ECU). ברכבים מודרניים, רוב התקלות מערבות רכיב חשמלי — חיישן שנכשל, חיווט שהתרופף, ממסר שהישרף. חשמלאי רכב מנוסה עם ציוד דיאגנוסטיקה מקצועי יכול לאתר תקלות שמכונאי ללא הכשרה מתאימה יתקשה לפצח.',
+  },
+  {
+    q: 'נורית המנוע נדלקה — מה לעשות?',
+    a: 'נורית המנוע (Check Engine) היא אחד הסממנים הנפוצים שמביאים לקוחות אלינו. היא יכולה להצביע על מגוון רחב של בעיות — מחיישן חמצן תקול (לרוב לא דחוף) ועד בעיה במערכת ההנעה (דחוף). השלב הראשון הוא קריאת קודי התקלה בציוד OBD2 מקצועי — הכלי קורא מה בדיוק הרכב מדווח. לאחר האבחון נדע אם מדובר בתיקון פשוט, בהחלפת חיישן, או בבעיה משמעותית יותר. חשוב: אל תתעלמו מנורית מנוע שנדלקת ומהבהבת — זה בדרך כלל מצביע על בעיה אקטיבית שדורשת תשומת לב מהירה.',
+  },
+  {
+    q: 'הרכב לא עולה בבוקר — מה הסיבה הנפוצה?',
+    a: 'הסיבות הנפוצות ביותר: מצבר חלש או מת (השכיח ביותר, במיוחד לאחר לילה קר), בעיה במתנע, או פיוז שרוף. בדיקה מהירה עם מולטימטר מגלה אם המצבר מחזיק מתח. בדיקה נוספת בזמן ניסיון הפעלה מראה אם המתנע מקבל זרם. הציוד שלנו מאפשר לאבחן את המקור המדויק בתוך דקות, בלי לבזבז כסף על חלפים שלא נחוצים. אם הרכב אתם ממש לא עולה — אנחנו יכולים לסייע גם בשלט רחוק בתיאום מראש.',
+  },
+  {
+    q: 'כמה עולה דיאגנוסטיקה לרכב?',
+    a: 'בדיקת דיאגנוסטיקה בסיסית (קריאת קודי תקלה) היא שירות מהיר שאנחנו מבצעים עם הרכב. בדיקה מעמיקה יותר — כגון איתור קצר, בדיקת מערכת הטעינה, או דיאגנוסטיקת מערכות ספציפיות (ABS, מיזוג, שקיות אוויר) — לוקחת יותר זמן. המחיר הסופי תלוי בסוג הבדיקה ובמורכבות התקלה. אנחנו מציגים את הממצאים בשקיפות מלאה לפני כל תיקון — כך שתדעו בדיוק מה מתוקן ולמה.',
+  },
+  {
+    q: 'כמה זמן החלפת מצבר לוקחת?',
+    a: 'החלפת מצבר היא עבודה קצרה — בדרך כלל 30-60 דקות, כולל הגעה לרכב, פרוק המצבר הישן, חיבור החדש, ואיפוס פרמטרים אם נדרש (ברכבים מודרניים רבים צריך לרשום את המצבר החדש ב-ECU כדי שמערכת הטעינה תעבוד נכון). אנחנו מוכרים ומחליפים מצברים ממותגים אמינים, ועם אחריות מלאה.',
+  },
+  {
+    q: 'מה זה אלטרנטור ומתי צריך להחליף אותו?',
+    a: 'האלטרנטור הוא הגנרטור של הרכב — הוא טוען את המצבר ומספק חשמל לכל מערכות הרכב בזמן נסיעה. כשהוא מתחיל לכשול, תבחינו בנורית סוללה שנדלקת, בעיות בהפעלת הרכב, אורות שמעמעמים בסרעות, ומערכות חשמל שמתנהגות לא סדירות. אלטרנטור כושל שלא מטפלים בו יוביל בסוף לרכב שנקלט בכביש. אנחנו בודקים את מערכת הטעינה בציוד מקצועי ויודעים לאבחן האם הבעיה באלטרנטור, במצבר, או בחיווט.',
+  },
+  {
+    q: 'האם אפשר לתקן חיווט שרוף או נקרס?',
+    a: 'כן, ולעיתים קרובות זה נחוץ — חיווט פגום הוא אחת הבעיות המסוכנות ביותר ברכב, כי הוא יכול לגרום לקצר ולשריפה. אנחנו מתמחים באיתור נזקי חיווט — בין אם הגיעו מכרסום של מכרסמים, חיכוך ממושך, או נזק ממים. שרטוט מדויק של מערכת החיווט ושימוש בחוטים מתאימים (אותו קוטר, אותה עמידות) הם הכרחיים לתיקון נכון שמחזיק לאורך זמן.',
+  },
+  {
+    q: 'האם כדאי לתקן רכב ישן עם בעיות חשמל, או לוותר עליו?',
+    a: 'שאלה שאנחנו שומעים לעיתים קרובות. התשובה תלויה בשווי הרכב ובעלות התיקון. לרוב, חיישן תקול, פיוז שרוף, או מצבר חלש — הם תיקונים זולים יחסית שמחזירים רכב ישן לחיים. בעיות חשמל מורכבות יותר (כמו ECU שרוף) עשויות לעלות יותר מאחוז משמעותי ממחיר הרכב. אחרי האבחון, אנחנו נגיד לכם בכנות מה שווה לתקן ומה לא — אנחנו לא מרוויחים מלהמליץ על תיקון שלא כלכלי.',
+  },
+]
+---
+
+<BaseLayout title={title} description={description} schema={schema}>
+
+  <!-- Breadcrumb -->
+  <nav class="bg-gray-50 border-b border-gray-200 py-3" aria-label="breadcrumb">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-600">
+      <a href="/" class="hover:text-brand-700">בית</a>
+      <span class="mx-2">›</span>
+      <a href="/services/" class="hover:text-brand-700">שירותים</a>
+      <span class="mx-2">›</span>
+      <span class="text-gray-900 font-medium">חשמלאות ודיאגנוסטיקה</span>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="bg-gradient-to-bl from-brand-900 to-brand-700 text-white py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-6">
+        חשמלאי רכב בעפולה<br/>
+        <span class="text-accent-500">ודיאגנוסטיקה מקצועית</span>
+      </h1>
+      <p class="text-lg md:text-xl text-blue-100 leading-relaxed">
+        אבחון ממוחשב, תיקון תקלות חשמל, החלפת מצבר ואלטרנטור.
+        ציוד מקצועי, ניסיון {business.stats.yearsOfExperience}+ שנים, שקיפות מלאה לפני כל תיקון.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main content -->
+  <article class="py-12 md:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 prose-content">
+
+      <!-- Intro -->
+      <section class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+          חשמלאות רכב — הנסתר שגורם לרוב התקלות
+        </h2>
+        <p class="text-gray-700 leading-relaxed text-lg mb-4">
+          הרכב המודרני הוא בפועל מחשב על גלגלים. מעל 80% מהתקלות ברכבים חדשים קשורות
+          למערכת החשמל, האלקטרוניקה והחיישנים — לא למנוע המכני עצמו. נורית מנוע שנדלקת,
+          רכב שלא עולה בבוקר, פנסים שמתנהגים לא נכון, מיזוג שמפסיק לעבוד — כל אלו הם
+          לרוב תקלות חשמל שניתן לאבחן ולתקן במהירות עם הציוד הנכון.
+        </p>
+        <p class="text-gray-700 leading-relaxed text-lg">
+          ב<strong>אמיר מערכות</strong>, אנחנו מתמחים בחשמלאות ודיאגנוסטיקה לרכב כבר {business.stats.yearsOfExperience}+ שנים
+          באזור עפולה, הגלבוע ועמק יזרעאל. עם ציוד דיאגנוסטיקה מקצועי שקורא את כל מערכות הרכב,
+          אנחנו מאבחנים בדיוק מה שרוף, מה תקול, ומה צריך להחליף — בלי ניחושים ובלי חלפים מיותרים.
+        </p>
+      </section>
+
+      <!-- Services grid -->
+      <section class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+          השירותים החשמליים שאנחנו נותנים
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+            <div class="text-2xl mb-2">🔍</div>
+            <h3 class="font-bold text-gray-900 mb-2">דיאגנוסטיקה ממוחשבת</h3>
+            <p class="text-sm text-gray-600">
+              קריאת קודי תקלה מכל מערכות הרכב — מנוע, ABS, שקיות אוויר, שידור ועוד.
+              אבחון מדויק שחוסך זמן וכסף.
+            </p>
+          </div>
+          <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+            <div class="text-2xl mb-2">⚡</div>
+            <h3 class="font-bold text-gray-900 mb-2">מצבר ומערכת הטעינה</h3>
+            <p class="text-sm text-gray-600">
+              בדיקת מצבר ואלטרנטור, החלפה מקצועית עם רישום ECU ברכבים חדשים.
+              מניעת הפתעות בדרך.
+            </p>
+          </div>
+          <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+            <div class="text-2xl mb-2">🔌</div>
+            <h3 class="font-bold text-gray-900 mb-2">תיקון חיווט ואיתור קצרים</h3>
+            <p class="text-sm text-gray-600">
+              איתור נזקי חיווט — כרסום, חיכוך, נזקי מים. תיקון נכון עם חוטים תואמים
+              שמחזיק לאורך זמן.
+            </p>
+          </div>
+          <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+            <div class="text-2xl mb-2">🔧</div>
+            <h3 class="font-bold text-gray-900 mb-2">מתנע (סטרטר)</h3>
+            <p class="text-sm text-gray-600">
+              בדיקה, ניקוי או החלפת מתנע. רכב שלא מצליח לעלות לא תמיד צריך מצבר חדש.
+            </p>
+          </div>
+          <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+            <div class="text-2xl mb-2">💡</div>
+            <h3 class="font-bold text-gray-900 mb-2">תאורה ופנסים</h3>
+            <p class="text-sm text-gray-600">
+              תיקון פנסים לא-תקינים, החלפת נורות, תיקון מנורת לד ו-HID.
+              כולל בדיקת חיישני פנסים אוטומטיים.
+            </p>
+          </div>
+          <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+            <div class="text-2xl mb-2">🛡️</div>
+            <h3 class="font-bold text-gray-900 mb-2">מערכות בטיחות (ABS, שקיות)</h3>
+            <p class="text-sm text-gray-600">
+              קריאת קודי ABS ו-SRS, בדיקת חיישני תאוצה, ואיתור חיווט פגום במערכות
+              שלא יכול להרשות לעצמו לכשול.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Process -->
+      <section class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+          תהליך האבחון — שקיפות מלאה
+        </h2>
+        <ol class="space-y-4">
+          <li class="flex gap-4">
+            <div class="flex-shrink-0 w-10 h-10 bg-brand-900 text-white rounded-full flex items-center justify-center font-bold">1</div>
+            <div>
+              <h3 class="font-bold text-gray-900 mb-1">שיחת ייעוץ ראשונית</h3>
+              <p class="text-gray-700">מתארים את הסימפטום — מה קורה, מתי זה קורה, ומה הרכב עושה. ניסיון של {business.stats.yearsOfExperience}+ שנים מאפשר לצמצם כיוונים כבר בשיחה הראשונה.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <div class="flex-shrink-0 w-10 h-10 bg-brand-900 text-white rounded-full flex items-center justify-center font-bold">2</div>
+            <div>
+              <h3 class="font-bold text-gray-900 mb-1">דיאגנוסטיקה ממוחשבת מלאה</h3>
+              <p class="text-gray-700">חיבור הרכב לציוד דיאגנוסטיקה מקצועי שקורא את כל המערכות. מקבלים תמונה מלאה — לא רק את הקוד שגרם לנורית, אלא את ההיסטוריה וההקשר.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <div class="flex-shrink-0 w-10 h-10 bg-brand-900 text-white rounded-full flex items-center justify-center font-bold">3</div>
+            <div>
+              <h3 class="font-bold text-gray-900 mb-1">אבחון פיזי ממוקד</h3>
+              <p class="text-gray-700">בדיקה ידנית של הרכיב החשוד — מדידת מתח, בדיקת התנגדות, בחינת חיווט. כך מוודאים שהקוד אכן מצביע על הרכיב ולא על תקלה משנית.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <div class="flex-shrink-0 w-10 h-10 bg-brand-900 text-white rounded-full flex items-center justify-center font-bold">4</div>
+            <div>
+              <h3 class="font-bold text-gray-900 mb-1">הצגת הממצאים והצעת תיקון</h3>
+              <p class="text-gray-700">מסבירים בדיוק מה התקלה, מה צריך להחליף/לתקן, ומה עלות התיקון — לפני שמתחילים בעבודה. אתם מחליטים אם להמשיך.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <div class="flex-shrink-0 w-10 h-10 bg-brand-900 text-white rounded-full flex items-center justify-center font-bold">5</div>
+            <div>
+              <h3 class="font-bold text-gray-900 mb-1">תיקון, בדיקה חוזרת ואחריות</h3>
+              <p class="text-gray-700">ביצוע התיקון, מחיקת קודי התקלה, בדיקת נסיעה לאישור פתרון, ואחריות מלאה על העבודה.</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <!-- Equipment section -->
+      <section class="mb-12 p-6 bg-gray-50 rounded-xl">
+        <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-4">
+          ציוד מקצועי — ההבדל שנמדד בדיוק
+        </h2>
+        <p class="text-gray-700 leading-relaxed mb-4">
+          הדיאגנוסטיקה של הרכב המודרני דורשת ציוד שמתחבר ל-CAN bus ומדבר בשפה של כל
+          יצרן בנפרד. ציוד גנרי זול קורא קודים בסיסיים בלבד ומחמיץ מידע קריטי. אנחנו
+          עובדים עם ציוד מקצועי שמאפשר <strong>קריאה מלאה של כל מערכות הרכב</strong>,
+          כולל מערכות מתקדמות שציוד רגיל כלל לא "רואה".
+        </p>
+        <p class="text-gray-700 leading-relaxed">
+          בנוסף, לאחר החלפת מצבר ברכבים מ-2012 ומעלה (BMW, Mercedes, Audi, וחלק מהיפניות),
+          <strong>חובה לבצע רישום ECU</strong> של המצבר החדש. בלי הרישום, מערכת הטעינה
+          לא תדע שמותקן מצבר חדש ותמשיך לטעון בחסר — מה שיקצר את חיי המצבר החדש.
+          אנחנו מבצעים את הרישום כחלק מהעבודה ברכבים שדורשים זאת.
+        </p>
+      </section>
+
+      <!-- Internal links -->
+      <section class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+          שירותים נלווים שאולי יעניינו אתכם
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <a href="/services/ecu-reset/" class="block p-5 bg-white border border-gray-200 rounded-lg hover:border-brand-500 hover:shadow transition">
+            <h3 class="font-bold text-gray-900 mb-2">🔧 איפוס מחשב מנוע</h3>
+            <p class="text-sm text-gray-600">מחיקת קודי תקלה ואיפוס מלא של ECU.</p>
+          </a>
+          <a href="/services/scr-adblue-consulting/" class="block p-5 bg-white border border-gray-200 rounded-lg hover:border-brand-500 hover:shadow transition">
+            <h3 class="font-bold text-gray-900 mb-2">⚙️ ייעוץ SCR / AdBlue</h3>
+            <p class="text-sm text-gray-600">אבחון תקלות מערכת SCR ו-AdBlue ברכבי דיזל.</p>
+          </a>
+          <a href="/services/multimedia/android-screens/" class="block p-5 bg-white border border-gray-200 rounded-lg hover:border-brand-500 hover:shadow transition">
+            <h3 class="font-bold text-gray-900 mb-2">📱 מסכי אנדרואיד</h3>
+            <p class="text-sm text-gray-600">שדרוג המולטימדיה — לעיתים קרובות נעשה יחד עם חיווט כללי.</p>
+          </a>
+        </div>
+      </section>
+    </div>
+  </article>
+
+  <!-- FAQ -->
+  <FAQ items={faqs} title="שאלות נפוצות על חשמלאות ודיאגנוסטיקה לרכב" />
+
+  <!-- CTA -->
+  <CTABanner
+    title="בעיה חשמלית ברכב? אל תחכו שתגדל"
+    subtitle="ייעוץ חינמי, אבחון מדויק — נגיד לכם בדיוק מה קורה"
+  />
+</BaseLayout>

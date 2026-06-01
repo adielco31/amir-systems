@@ -1,0 +1,136 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import FAQ from '../../components/FAQ.astro'
+import CTABanner from '../../components/CTABanner.astro'
+import business from '../../data/business.js'
+
+const title = 'איפוס תקלות מחשב מנוע | OBD2 ודיאגנוסטיקה'
+const description = 'איפוס נורת מנוע, מחיקת קודי תקלה OBD2, איתחול מחשב רכב. אבחון ממוחשב מקצועי — פתרון לתקלות שחוזרות. בעפולה והאזור.'
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'איפוס תקלות מחשב מנוע',
+  provider: { '@id': `${business.url}#business` },
+  areaServed: ['עפולה','מגדל העמק','נוף הגליל','יקנעם','טבריה','בית שאן','מגידו','נצרת'].map(a => ({ '@type': 'City', name: a })),
+}
+
+const faqs = [
+  {
+    q: 'מה ההבדל בין "איפוס נורת מנוע" לבין "תיקון התקלה"?',
+    a: 'מחיקת קוד תקלה (איפוס הנורה) היא פעולה של 2 דקות שמכבה את הנורה — אבל אם הבעיה שגרמה לה לא תוקנה, הנורה תחזור תוך 1-3 מחזורי נסיעה. תיקון אמיתי פירושו: זיהוי הרכיב הבעייתי (חיישן, ממסר, חיווט, קומפרסור וכו׳), תיקון או החלפתו, ורק אז מחיקת הקוד. אנחנו עושים את שניהם — לא רק מכבים נורה.',
+  },
+  {
+    q: 'כמה עולה דיאגנוסטיקה ואיפוס קוד תקלה?',
+    a: 'קריאת וניתוח קודי תקלה עם ציוד מקצועי היא חלק מתהליך האבחון. המחיר הסופי תלוי בסוג הבדיקה ובמורכבות — מאבחון בסיסי ועד בדיקה מעמיקה של מערכות ספציפיות. אנחנו מציגים את הממצאים בשקיפות לפני כל תיקון.',
+  },
+  {
+    q: 'הנורה חזרה אחרי שכיביתי אותה — מה זה אומר?',
+    a: 'זה אומר שהסיבה לתקלה עדיין קיימת. הרכב מנטר מחזורי נסיעה ולאחר שמזהה שהתנאי לתקלה מתקיים שוב — מדליק את הנורה. זה בדיוק הזמן לאבחון מעמיק ולא לעוד איפוס. תקלות שחוזרות שוב ושוב מצביעות על חיישן, אקטואטור, או חיווט שדורש תיקון אמיתי.',
+  },
+  {
+    q: 'האם ניתן לעבור טסט עם נורת מנוע דולקת?',
+    a: 'לא. נורת Check Engine דולקת היא עילה אוטומטית לפסילה במבחן רישוי בישראל, ללא קשר לחומרת התקלה מאחוריה. לפני מבחן רישוי — חובה לאבחן ולטפל בכל קוד תקלה פעיל.',
+  },
+  {
+    q: 'יש לי נורת "Emission" או "EVAP" — עד כמה זה דחוף?',
+    a: 'קודי פליטה (כמו P0420, P0440, EVAP leaks) הם לרוב לא דחופים לבטיחות מיידית — אבל הם פוסלים במבחן רישוי ועלולים להחמיר. לדוגמה, קוד P0420 (קטליזטור יעילות נמוכה) יגרום לצריכת דלק גבוהה יותר ועם הזמן לנזק נוסף. מומלץ לטפל בהקדם.',
+  },
+  {
+    q: 'מה ההבדל בין OBD2 רגיל לדיאגנוסטיקה מקצועית?',
+    a: 'OBD2 גנרי (הסורק הזול שקונים ב-AliExpress) קורא קודי תקלה כלליים בלבד — אותם קודים שאפשר לראות בכל אפליקציה. דיאגנוסטיקה מקצועית מגיעה לכל מערכת נפרדת ברכב: ABS, SRS (שקיות אוויר), שידור, מיזוג, גוף ועוד — בשפת המותג הספציפי, עם נתונים חיים, גרפים, ואפשרות לבצע פעולות כמו כיול חיישנים ואיפוס מוחלט.',
+  },
+]
+---
+<BaseLayout title={title} description={description} schema={schema}>
+  <nav class="bg-gray-50 border-b border-gray-200 py-3">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-600">
+      <a href="/" class="hover:text-brand-700">בית</a><span class="mx-2">›</span>
+      <a href="/services/" class="hover:text-brand-700">שירותים</a><span class="mx-2">›</span>
+      <span class="text-gray-900 font-medium">איפוס מחשב מנוע</span>
+    </div>
+  </nav>
+
+  <section class="bg-gradient-to-bl from-brand-900 to-brand-700 text-white py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-6">
+        איפוס מחשב מנוע ודיאגנוסטיקה<br/>
+        <span class="text-accent-500">בעפולה והגלבוע</span>
+      </h1>
+      <p class="text-lg md:text-xl text-blue-100 leading-relaxed">
+        קריאת קודי OBD2, ניתוח תקלות, מחיקה ואיפוס. עם ציוד מקצועי שרואה
+        את כל מערכות הרכב — לא רק את הנורה.
+      </p>
+    </div>
+  </section>
+
+  <article class="py-12 md:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 prose-content">
+
+      <section class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">נורת מנוע — לא להתעלם, לא לפחד</h2>
+        <p class="text-gray-700 leading-relaxed text-lg mb-4">
+          נורת ה-Check Engine היא אחת הדברים שהכי מדאיגים נהגים — ואחד הדברים שהכי
+          קל לאבחן נכון עם הציוד הנכון. היא יכולה להצביע על כל דבר, מחיישן חמצן תקול
+          (זול ולא דחוף) ועד בעיה במנוע (דורשת תשומת לב מיידית). ההבדל הוא בוודאות
+          האבחון — ולשם זה צריך ציוד מקצועי.
+        </p>
+        <p class="text-gray-700 leading-relaxed text-lg">
+          ב<strong>אמיר מערכות</strong>, אנחנו מקריאים, מנתחים ומתקנים — לא רק מכבים נורות.
+          ציוד הדיאגנוסטיקה שלנו מדבר בשפת כל יצרן (לא רק קודי generic), קורא נתונים חיים,
+          ומאפשר לבצע פעולות כמו כיול חיישנים ואיפוס מוחלט של מערכות.
+        </p>
+      </section>
+
+      <section class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">מה אנחנו עושים?</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {[
+            { icon: '🔍', t: 'קריאת קודי תקלה מלאה', d: 'כל מערכות הרכב — מנוע, ABS, SRS, שידור, גוף ועוד. לא רק קודים גנריים.' },
+            { icon: '📊', t: 'נתונים חיים (Live Data)', d: 'מעקב בזמן אמת אחרי חיישנים — לזיהוי תקלות שאינן מדליקות נורה.' },
+            { icon: '🗑️', t: 'מחיקת קודים ואיפוס', d: 'לאחר תיקון — מחיקת קודים ואיפוס מוחלט לפי פרוטוקול הרכב.' },
+            { icon: '⚖️', t: 'הכנה למבחן רישוי', d: 'בדיקה שכל הקודים נוקו ושהרכב עבר מספיק מחזורי נסיעה לפני הטסט.' },
+            { icon: '🔧', t: 'כיול חיישנים', d: 'כיול חיישן מצערת, זרימת אוויר, גלגל היגוי — לאחר החלפת רכיב.' },
+            { icon: '🛡️', t: 'איפוס מערכות בטיחות', d: 'איפוס ABS, SRS, TPMS ועוד מערכות לאחר תיקון או שינוי חלפים.' },
+          ].map(s => (
+            <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+              <div class="text-2xl mb-2">{s.icon}</div>
+              <h3 class="font-bold text-gray-900 mb-2">{s.t}</h3>
+              <p class="text-sm text-gray-600">{s.d}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section class="mb-12 p-6 bg-yellow-50 border border-yellow-200 rounded-xl">
+        <h2 class="text-xl font-bold text-gray-900 mb-3">⚠️ נורה מהבהבת = לעצור</h2>
+        <p class="text-gray-700 leading-relaxed">
+          נורת מנוע <strong>מהבהבת</strong> (לא קבועה) מצביעה על בעיה אקטיבית — לרוב misfire
+          (פצצת ניצוץ, מזריק, קוויל). נסיעה ממושכת עם נורה מהבהבת עלולה לגרום לנזק לקטליזטור
+          (החלפה: 3,000-8,000 ₪). עוצרים, מפסיקים לנסוע במהירות גבוהה, ומגיעים לאבחון בהקדם.
+        </p>
+      </section>
+
+      <section class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">שירותים קשורים</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <a href="/services/electrical/" class="block p-5 bg-white border border-gray-200 rounded-lg hover:border-brand-500 hover:shadow transition">
+            <h3 class="font-bold text-gray-900 mb-2">⚡ חשמלאי רכב</h3>
+            <p class="text-sm text-gray-600">תיקון חיישנים, חיווט ורכיבים חשמליים שמעלים קודי תקלה.</p>
+          </a>
+          <a href="/services/scr-adblue-consulting/" class="block p-5 bg-white border border-gray-200 rounded-lg hover:border-brand-500 hover:shadow transition">
+            <h3 class="font-bold text-gray-900 mb-2">⚙️ ייעוץ SCR/AdBlue</h3>
+            <p class="text-sm text-gray-600">קודי תקלה ממערכת SCR/AdBlue ברכבי דיזל.</p>
+          </a>
+          <a href="/services/ac-repair/" class="block p-5 bg-white border border-gray-200 rounded-lg hover:border-brand-500 hover:shadow transition">
+            <h3 class="font-bold text-gray-900 mb-2">❄️ מיזוג רכב</h3>
+            <p class="text-sm text-gray-600">קודי מיזוג — חיישני לחץ, קומפרסור, מצמד.</p>
+          </a>
+        </div>
+      </section>
+    </div>
+  </article>
+
+  <FAQ items={faqs} title="שאלות נפוצות על איפוס מחשב מנוע" />
+  <CTABanner title="נורת מנוע דולקת?" subtitle="אבחון מקצועי — נגיד לכם בדיוק מה קורה לפני כל תיקון" />
+</BaseLayout>

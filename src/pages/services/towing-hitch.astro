@@ -1,0 +1,257 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import FAQ from '../../components/FAQ.astro'
+import CTABanner from '../../components/CTABanner.astro'
+import business from '../../data/business.js'
+
+const title = 'התקנת וו גרירה לרכב | ווי גרירה קבועים, נשלפים וחשמליים'
+const description = 'התקנת ווי גרירה מקצועית לכל סוגי הרכבים — קבוע, נשלף או חשמלי. תקנים מלאים, חיבור חשמל 7/13 פינים, אישור מבחן רישוי. בעפולה והאזור.'
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'התקנת ווי גרירה לרכב',
+  provider: {
+    '@id': `${business.url}#business`,
+  },
+  areaServed: [
+    'עפולה', 'מגדל העמק', 'נוף הגליל', 'יקנעם',
+    'טבריה', 'בית שאן', 'מגידו', 'נצרת',
+  ].map(a => ({ '@type': 'City', name: a })),
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'ווי גרירה לרכב',
+    itemListElement: [
+      { '@type': 'Offer', name: 'וו גרירה קבוע עם חיבור חשמל 7 פינים' },
+      { '@type': 'Offer', name: 'וו גרירה נשלף (Swan Neck)' },
+      { '@type': 'Offer', name: 'וו גרירה חשמלי (Detachable)' },
+    ],
+  },
+}
+
+const faqs = [
+  {
+    q: 'כמה עולה התקנת וו גרירה לרכב?',
+    a: 'וו גרירה קבוע עם חיבור חשמל 7 פינים מתחיל בסביבות 1,200-2,000 ₪ כולל התקנה, תלוי בדגם הרכב ובסוג הוו. וו נשלף (Swan Neck) — פופולרי בין מי שרוצה לשמור על מראה הרכב ולא תמיד גורר — מתחיל ב-1,800 ₪. וו חשמלי (נסתר) הוא האפשרות היקרה ביותר ומתחיל ב-3,000 ₪. לחיבור 13 פינים (לנגרר עם בלמים חשמליים) תיתכן תוספת. לקבלת הצעת מחיר מדויקת לדגם שלכם — צרו קשר.',
+  },
+  {
+    q: 'מה ההבדל בין וו קבוע, נשלף וחשמלי?',
+    a: 'וו קבוע — גלוי תמיד, הכי פשוט ואמין. מתאים לכל מי שגורר באופן קבוע ולא אכפת לו שרואים אותו. וו נשלף (Swan Neck) — עמוד הוו נשלף ידנית תוך שניות, ומאחסן בתא המטען. הרכב נראה רגיל כשלא גוררים. וו חשמלי (Detachable) — נסתר לגמרי מתחת לפגוש האחורי, צץ בלחיצת כפתור. הכי אסתטי, הכי יקר.',
+  },
+  {
+    q: 'האם צריך לדווח ל"רישוי" על וו גרירה?',
+    a: 'כן. וו גרירה הוא שינוי ברכב שחייב רישום ברשיון הרכב. לאחר ההתקנה צריך להגיע למכון רישוי לאישור ולרישום. אנחנו מתקינים לפי תקנים המאושרים למבחן רישוי ומנפיקים את המסמכים הנדרשים כדי שהתהליך יהיה מהיר וחלק. חשוב: וו שלא עבר אישור רישוי עלול לגרור בעיות ביטוחיות בתאונה עם נגרר.',
+  },
+  {
+    q: 'מה זה חיבור 7 פינים לעומת 13 פינים?',
+    a: 'חיבור 7 פינים הוא הסטנדרט הנפוץ ומתאים לרוב הנגררים — קרוואנים, נגרר שטח, נגרר בית. הוא מספק חשמל לפנסי הנגרר, פלאשרים ואורות עצירה. חיבור 13 פינים (המשפחה הגדולה של 7) מוסיף חיבור לבלמים חשמליים ולחשמל פנימי בקרוון (מקרר). אם גוררים קרוון פנימי עם מקרר או עם מערכת בלמים חשמלית — חובה 13 פינים.',
+  },
+  {
+    q: 'כמה משקל אפשר לגרור?',
+    a: 'זה תלוי לחלוטין ברכב, לא בוו הגרירה. לכל דגם רכב יש משקל גרירה מקסימלי שנקבע ע"י היצרן (נמצא ברשיון הרכב ובמדריך הבעלים). הוו שלנו תמיד מותקן לפי התקן המאושר לדגם הרכב הספציפי. אם אתם לא בטוחים מה מותר לרכב שלכם — נבדוק יחד לפני ההתקנה.',
+  },
+  {
+    q: 'האם ההתקנה פוגעת ברכב או בגרנטיה?',
+    a: 'התקנה מקצועית לפי תקן היצרן לא פוגעת ברכב ואינה מבטלת אחריות יצרן. הוו מחובר לנקודות החיזוק המובנות בשילדה — לא "קודחים" סתם בכל מקום. חשוב שהתקנה תיעשה ע"י מתקין מוסמך עם ציוד מקצועי, לא ב-DIY. התקנה לא נכונה מסכנת ביטחון ויכולה להוביל לתאונות חמורות.',
+  },
+  {
+    q: 'כמה זמן ההתקנה לוקחת?',
+    a: 'התקנת וו גרירה קבוע עם חיבור חשמל 7 פינים לוקחת 2-4 שעות, תלוי בדגם הרכב. וו נשלף — בדרך כלל 3-5 שעות. וו חשמלי — 4-6 שעות כי יש יותר חיווט. כשמסיימים, הרכב עובר בדיקה שהכל עובד — פנסי הנגרר, אורות בלם ופלאשרים.',
+  },
+  {
+    q: 'האם אפשר להוסיף וו גרירה לרכב עם פגוש אסתטי מיוחד?',
+    a: 'ברוב הרכבים — כן, עם פגוש ייעודי או עם חיתוך קטן מדויק בפגוש. בחלק מהרכבים הספורטיביים, הלוקסוס והSUV, ההתקנה מורכבת יותר ועשויה לדרוש התאמה מיוחדת. אנחנו בודקים את הרכב הספציפי לפני שמתחייבים לפתרון, ומסבירים מה מצריכה ההתקנה.',
+  },
+]
+---
+
+<BaseLayout title={title} description={description} schema={schema}>
+
+  <!-- Breadcrumb -->
+  <nav class="bg-gray-50 border-b border-gray-200 py-3" aria-label="breadcrumb">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-600">
+      <a href="/" class="hover:text-brand-700">בית</a>
+      <span class="mx-2">›</span>
+      <a href="/services/" class="hover:text-brand-700">שירותים</a>
+      <span class="mx-2">›</span>
+      <span class="text-gray-900 font-medium">התקנת ווי גרירה</span>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="bg-gradient-to-bl from-brand-900 to-brand-700 text-white py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-6">
+        התקנת וו גרירה לרכב<br/>
+        <span class="text-accent-500">בעפולה והגלבוע</span>
+      </h1>
+      <p class="text-lg md:text-xl text-blue-100 leading-relaxed">
+        ווי גרירה קבועים, נשלפים וחשמליים לכל סוגי הרכבים.
+        חיבור חשמל 7/13 פינים, תקנים מלאים לאישור מבחן רישוי, אחריות.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main content -->
+  <article class="py-12 md:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 prose-content">
+
+      <!-- Intro -->
+      <section class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+          וו גרירה — שדרוג שפותח עולמות
+        </h2>
+        <p class="text-gray-700 leading-relaxed text-lg mb-4">
+          קרוון, נגרר שטח, נגרר בית, אופנועים, ציוד חקלאי — וו הגרירה הוא מה שהופך
+          את הרכב שלכם מכלי תחבורה לכלי שירות אמיתי. לתושבי עמק יזרעאל, הגלבוע
+          ואזורי הצפון שאוהבים קרוונים, נסיעות שטח וטיולים ממושכים — וו גרירה
+          מקצועי הוא אחד השדרוגים המשתלמים ביותר שאפשר לעשות לרכב.
+        </p>
+        <p class="text-gray-700 leading-relaxed text-lg">
+          ב<strong>אמיר מערכות</strong>, אנחנו מתקינים ווי גרירה לכל סוגי הרכבים כבר
+          {business.stats.yearsOfExperience}+ שנים. ההתקנה שלנו עומדת בתקנים הנדרשים למבחן
+          רישוי, כוללת חיווט חשמל נקי ומוסתר, ואנחנו מנפיקים את כל המסמכים הנדרשים
+          לרישום ברשיון הרכב.
+        </p>
+      </section>
+
+      <!-- Types -->
+      <section class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+          סוגי ווי גרירה שאנחנו מתקינים
+        </h2>
+        <div class="space-y-4">
+          <div class="p-6 bg-white border border-gray-200 rounded-xl">
+            <h3 class="font-bold text-gray-900 text-lg mb-2">וו גרירה קבוע (Fixed)</h3>
+            <p class="text-gray-700 mb-2">הוו הפשוט, האמין והנגיש ביותר. גלוי תמיד מתחת לפגוש האחורי. מתאים לכל מי שגורר לעיתים קרובות — חקלאים, בעלי קרוונים, חובשי ציוד שטח. אין חלקים נעים, אין תחזוקה מיוחדת.</p>
+            <p class="text-sm text-gray-500">מתאים: לנגרר קבוע | עלות: נמוכה | מראה: גלוי</p>
+          </div>
+          <div class="p-6 bg-white border border-gray-200 rounded-xl">
+            <h3 class="font-bold text-gray-900 text-lg mb-2">וו גרירה נשלף — Swan Neck</h3>
+            <p class="text-gray-700 mb-2">עמוד הוו (ה"צוואר") נשלף ידנית תוך שניות ומאוחסן בתא המטען. הבסיס מוסתר מאחורי פגוש פשוט. כשהוו לא חיבור — הרכב נראה כמו רכב רגיל. פופולרי מאוד בקרב מי שגורר לפי צורך אבל מקפיד על מראה.</p>
+            <p class="text-sm text-gray-500">מתאים: לגרירה לסירוגין | עלות: בינונית | מראה: נקי ללא וו</p>
+          </div>
+          <div class="p-6 bg-white border border-gray-200 rounded-xl">
+            <h3 class="font-bold text-gray-900 text-lg mb-2">וו גרירה חשמלי (Detachable / Retractable)</h3>
+            <p class="text-gray-700 mb-2">הוו נסתר לגמרי מאחורי פגוש חלק — צץ בלחיצת כפתור תוך שניות. הפתרון האסתטי ביותר, נפוץ ב-SUV לוקסוסיים ורכבים שבהם המראה האחורי קריטי. מחייב התקנה מדויקת ויחידת בקרה חשמלית.</p>
+            <p class="text-sm text-gray-500">מתאים: לוקסוס ו-SUV | עלות: גבוהה | מראה: נסתר לחלוטין</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- What's included -->
+      <section class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+          מה כלול בהתקנה?
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+            <div class="text-2xl mb-2">🔗</div>
+            <h3 class="font-bold text-gray-900 mb-2">חיבור מכני לשילדה</h3>
+            <p class="text-sm text-gray-600">הוו מחובר לנקודות הרכבה המובנות בשילדה לפי תקן היצרן — לא "קידוח" אקראי.</p>
+          </div>
+          <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+            <div class="text-2xl mb-2">🔌</div>
+            <h3 class="font-bold text-gray-900 mb-2">חיבור חשמל 7 או 13 פינים</h3>
+            <p class="text-sm text-gray-600">חיווט מוסתר לפנסי הנגרר, בלמים ופלאשרים. בחירת 7/13 לפי סוג הנגרר.</p>
+          </div>
+          <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+            <div class="text-2xl mb-2">📋</div>
+            <h3 class="font-bold text-gray-900 mb-2">מסמכי תקן לרישוי</h3>
+            <p class="text-sm text-gray-600">מנפיקים את הניירת הנדרשת לרישום הוו ברשיון הרכב במכון הרישוי.</p>
+          </div>
+          <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+            <div class="text-2xl mb-2">✅</div>
+            <h3 class="font-bold text-gray-900 mb-2">בדיקת פנסי נגרר</h3>
+            <p class="text-sm text-gray-600">בדיקה שפנסי הנגרר, הפלאשרים ואורות הבלם מקבלים חשמל נכון לפני שיוצאים.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Process -->
+      <section class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+          תהליך ההתקנה
+        </h2>
+        <ol class="space-y-4">
+          <li class="flex gap-4">
+            <div class="flex-shrink-0 w-10 h-10 bg-brand-900 text-white rounded-full flex items-center justify-center font-bold">1</div>
+            <div>
+              <h3 class="font-bold text-gray-900 mb-1">ייעוץ ובחירת סוג וו</h3>
+              <p class="text-gray-700">מה גוררים? כמה פעמים בשנה? קרוון עם מקרר? בודקים את הרכב, ממליצים על הסוג המתאים ומחיר סופי. ייעוץ ללא עלות.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <div class="flex-shrink-0 w-10 h-10 bg-brand-900 text-white rounded-full flex items-center justify-center font-bold">2</div>
+            <div>
+              <h3 class="font-bold text-gray-900 mb-1">הזמנת ערכת התקנה ייעודית</h3>
+              <p class="text-gray-700">לכל דגם רכב יש ערכת וו ייעודית עם הנקודות המדויקות. מזמינים לפי VIN הרכב, כדי שהכל ייכנס מדויק.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <div class="flex-shrink-0 w-10 h-10 bg-brand-900 text-white rounded-full flex items-center justify-center font-bold">3</div>
+            <div>
+              <h3 class="font-bold text-gray-900 mb-1">התקנה מכנית וחיווט חשמל</h3>
+              <p class="text-gray-700">חיבור הוו לשילדה לפי מומנט הידוק מדויק, העברת חיווט מוסתר עד לחיבור 7/13 פינים, ובדיקת כל הפונקציות.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <div class="flex-shrink-0 w-10 h-10 bg-brand-900 text-white rounded-full flex items-center justify-center font-bold">4</div>
+            <div>
+              <h3 class="font-bold text-gray-900 mb-1">מסמכי רישוי ואחריות</h3>
+              <p class="text-gray-700">מנפיקים את הניירת לרשיון הרכב. הסברה לגבי שימוש נכון (משקל גרירה, בדיקות תקופתיות של בורגים) ו-{business.stats.yearsOfExperience > 0 ? '3 שנות' : '3 שנות'} אחריות על ההתקנה.</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <!-- Who needs it -->
+      <section class="mb-12 p-6 bg-gray-50 rounded-xl">
+        <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-4">
+          מי גורר באזור עפולה והגלבוע?
+        </h2>
+        <p class="text-gray-700 leading-relaxed mb-4">
+          אזור עמק יזרעאל, הגלבוע ועמק המעיינות מלא בסיבות לגרור: <strong>חקלאים ומשקי חצר</strong>
+          עם ציוד וטרקטורים קטנים; <strong>אוהבי קרוונים</strong> שמתחברים לכינרת, הצפון וחרמון;
+          <strong>אופנוענים</strong> שמובילים אופנועים לאירועים; ו<strong>בעלי בתים</strong> שגוררים
+          נגרר בית לפינוי גזם ועוד.
+        </p>
+        <p class="text-gray-700 leading-relaxed">
+          בגלל האוכלוסייה הכפרית-חקלאית שאנחנו מכירים טוב, יש לנו ניסיון גדול בהתקנות
+          על פיקאפים, SUV גדולים, רכבים מסחריים ורכבי שטח — לא רק מכוניות פרטיות. אם
+          יש לכם דגם לא שגרתי — ספרו לנו ונברר מה אפשרי.
+        </p>
+      </section>
+
+      <!-- Internal links -->
+      <section class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+          שירותים נלווים שאולי יעניינו אתכם
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <a href="/services/trailer-repair/" class="block p-5 bg-white border border-gray-200 rounded-lg hover:border-brand-500 hover:shadow transition">
+            <h3 class="font-bold text-gray-900 mb-2">🚛 תיקון נגררים</h3>
+            <p class="text-sm text-gray-600">יש לכם נגרר שצריך תיקון? חשמל, פנסים, בלמים — אנחנו עושים גם את זה.</p>
+          </a>
+          <a href="/services/electrical/" class="block p-5 bg-white border border-gray-200 rounded-lg hover:border-brand-500 hover:shadow transition">
+            <h3 class="font-bold text-gray-900 mb-2">⚡ חשמלאי רכב</h3>
+            <p class="text-sm text-gray-600">בעיות חשמל ברכב? דיאגנוסטיקה ותיקון מקצועי.</p>
+          </a>
+          <a href="/services/multimedia/android-screens/" class="block p-5 bg-white border border-gray-200 rounded-lg hover:border-brand-500 hover:shadow transition">
+            <h3 class="font-bold text-gray-900 mb-2">📱 מסכי אנדרואיד</h3>
+            <p class="text-sm text-gray-600">שדרוג המולטימדיה — עסקת חבילה מקורבת עם התקנת ווי גרירה.</p>
+          </a>
+        </div>
+      </section>
+    </div>
+  </article>
+
+  <!-- FAQ -->
+  <FAQ items={faqs} title="שאלות נפוצות על התקנת ווי גרירה" />
+
+  <!-- CTA -->
+  <CTABanner
+    title="רוצים לגרור? נדאג שתהיה מוכנים"
+    subtitle="ייעוץ חינמי, הצעת מחיר תוך שעה — ווי גרירה לפי תקן עם כל הניירת"
+  />
+</BaseLayout>

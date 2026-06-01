@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import FAQ from '../../components/FAQ.astro'
+import CTABanner from '../../components/CTABanner.astro'
+import business from '../../data/business.js'
+import { areas } from '../../data/areas.js'
+
+const area = areas.find(a => a.slug === 'tiberias')
+const title = area.metaTitle
+const description = area.metaDescription
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'מולטימדיה ושירותי רכב בטבריה',
+  provider: { '@id': `${business.url}#business` },
+  areaServed: { '@type': 'City', name: 'טבריה' },
+}
+
+const services = [
+  { icon: '📱', t: 'מסכי אנדרואיד', href: '/services/multimedia/android-screens/', d: 'CarPlay ו-Android Auto על מסך 7-10 אינץ׳.' },
+  { icon: '📹', t: 'מצלמות רוורס', href: '/services/multimedia/parking-cameras/', d: 'מצלמה אחורית, 360° וחיישני חנייה.' },
+  { icon: '🎥', t: 'דאשקאם', href: '/services/multimedia/dashcam/', d: 'הגנה ביטוחית בכל נסיעה.' },
+  { icon: '🔊', t: 'מערכות שמע', href: '/services/multimedia/sound-systems/', d: 'רמקולים ומגברים — צליל קונצרטי.' },
+  { icon: '⚡', t: 'חשמלאי רכב', href: '/services/electrical/', d: 'דיאגנוסטיקה ותיקון — מצבר, אלטרנטור.' },
+  { icon: '🔗', t: 'ווי גרירה', href: '/services/towing-hitch/', d: 'לסירות, קרוואנים ונגררי שטח.' },
+  { icon: '❄️', t: 'מיזוג רכב', href: '/services/ac-repair/', d: 'מילוי גז ותיקון — חשוב בחום הכינרת.' },
+  { icon: '🛠️', t: 'מכונאות', href: '/services/general-mechanics/', d: 'טיפולים תקופתיים ובלמים.' },
+]
+
+const faqs = [
+  { q: 'כמה זמן נסיעה מטבריה אליכם?', a: `טבריה נמצאת ${area.distance} ק"מ מהסדנה שלנו — כ-30-35 דקות דרך כביש 77 או כביש 90 לכיוון עפולה ומשם לגלבוע. רוב לקוחות טבריה מביאים בבוקר ומוצאים את הרכב מוכן אחר הצהריים.` },
+  { q: 'יש לכם הרבה לקוחות מטבריה?', a: `טבריה עם ${area.population.toLocaleString()} תושבים היא עיר גדולה ומשמעותית. לקוחות מגיעים בגלל מומחיות במולטימדיה לרכב — שירות שקשה למצוא בטיב ובמחיר הוגן בטבריה עצמה. גם לקוחות עם סירות ורכבי שטח שדורשים ווי גרירה איכותיים מגיעים מהאזור.` },
+  { q: 'האם שווה לנסוע מטבריה?', a: 'לקוחות טבריה שנסעו אלינו חוזרים — הזמן הנוסף (בסך הכל 30 דקות בכל כיוון) משתלם כשמקבלים עבודה איכותית עם אחריות 3 שנים, שקיפות מחירים, ושירות אישי. עדיף לנסוע פעם אחת ולקבל נכון, מאשר לחזור פעמיים.' },
+]
+---
+<BaseLayout title={title} description={description} schema={schema}>
+  <nav class="bg-gray-50 border-b border-gray-200 py-3">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-600">
+      <a href="/" class="hover:text-brand-700">בית</a><span class="mx-2">›</span>
+      <a href="/areas/" class="hover:text-brand-700">אזורי שירות</a><span class="mx-2">›</span>
+      <span class="text-gray-900 font-medium">טבריה</span>
+    </div>
+  </nav>
+
+  <section class="bg-gradient-to-bl from-brand-900 to-brand-700 text-white py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="inline-block bg-white/10 rounded-full px-4 py-1 text-sm font-medium mb-4">{area.distance} ק"מ מטבריה — כ-35 דקות</div>
+      <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-6">
+        מולטימדיה ושירותי רכב<br/><span class="text-accent-500">לתושבי טבריה והכינרת</span>
+      </h1>
+      <p class="text-lg md:text-xl text-blue-100 leading-relaxed">
+        מסכים, מצלמות, חשמלאות, מיזוג וווי גרירה — שירות מקצועי {area.distance} ק"מ מטבריה.
+      </p>
+    </div>
+  </section>
+
+  <article class="py-12 md:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 prose-content">
+      <section class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">לתושבי טבריה — שירות שמגיע עד הכינרת</h2>
+        <p class="text-gray-700 leading-relaxed text-lg mb-4">
+          טבריה, בירת הכינרת, עם {area.population.toLocaleString()} תושבים ואוכלוסייה מגוונת, היא
+          עיר שמחברת בין טיולים, סירות, דיג לוקאלי ותנועת תיירות ענפה. רכבי התושבים
+          לעיתים קרובות דורשים ווי גרירה לסירות, מיזוג שמתמודד עם חום הבקעה ואגן הכינרת,
+          ומסכי CarPlay שנוחים לנסיעות הארוכות לצפון.
+        </p>
+        <p class="text-gray-700 leading-relaxed text-lg">
+          ב<strong>אמיר מערכות</strong>, {area.distance} ק"מ מטבריה, אנחנו מספקים את כל שירותי הרכב
+          עם {business.stats.yearsOfExperience}+ שנות ניסיון ועם שקיפות מלאה בכל עבודה.
+        </p>
+      </section>
+
+      <section class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">השירותים לתושבי טבריה</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {services.map(s => (
+            <a href={s.href} class="block p-5 bg-white border border-gray-200 rounded-xl hover:border-brand-500 hover:shadow-md transition">
+              <div class="text-2xl mb-2">{s.icon}</div>
+              <h3 class="font-bold text-gray-900 mb-1">{s.t}</h3>
+              <p class="text-sm text-gray-600">{s.d}</p>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section class="mb-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="p-5 bg-brand-900 text-white rounded-xl text-center">
+            <div class="text-3xl font-bold text-accent-500 mb-1">{business.stats.yearsOfExperience}+</div>
+            <div class="text-sm text-blue-200">שנות ניסיון</div>
+          </div>
+          <div class="p-5 bg-brand-900 text-white rounded-xl text-center">
+            <div class="text-3xl font-bold text-accent-500 mb-1">3 שנים</div>
+            <div class="text-sm text-blue-200">אחריות על עבודה</div>
+          </div>
+          <div class="p-5 bg-brand-900 text-white rounded-xl text-center">
+            <div class="text-3xl font-bold text-accent-500 mb-1">{area.distance} ק"מ</div>
+            <div class="text-sm text-blue-200">מטבריה</div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </article>
+
+  <FAQ items={faqs} title="שאלות נפוצות מתושבי טבריה" />
+  <CTABanner title="תושב טבריה? שווה את הנסיעה" subtitle="ייעוץ חינמי, הצעת מחיר תוך שעה — שירות שחוזרים אליו" />
+</BaseLayout>

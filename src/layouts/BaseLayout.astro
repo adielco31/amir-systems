@@ -1,0 +1,120 @@
+---
+import '../styles/global.css'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import WhatsAppButton from '../components/WhatsAppButton.astro'
+import business from '../data/business.js'
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage = '/og-image.jpg',
+  schema = null,
+  noindex = false,
+} = Astro.props
+
+const fullTitle = title.includes('אמיר מערכות') ? title : `${title} | ${business.name}`
+const fullDescription = description || business.description
+const canonicalUrl = canonical || new URL(Astro.url.pathname, business.url).href
+
+// LocalBusiness schema — מופיע בכל עמוד
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'AutoElectricalRepair',
+  '@id': `${business.url}#business`,
+  name: business.name,
+  alternateName: business.nameEn,
+  description: business.description,
+  url: business.url,
+  telephone: business.phone,
+  email: business.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: business.address.street,
+    addressLocality: business.address.city,
+    addressRegion: business.address.region,
+    addressCountry: business.address.country,
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: business.address.geo.latitude,
+    longitude: business.address.geo.longitude,
+  },
+  openingHoursSpecification: business.hours
+    .filter(h => h.open)
+    .map(h => ({
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: h.day,
+      opens: h.open,
+      closes: h.close,
+    })),
+  areaServed: [
+    'עפולה', 'מגידו', 'נצרת', 'בית שאן', 'נוף הגליל',
+    'מגדל העמק', 'יקנעם', 'טבריה',
+  ].map(a => ({ '@type': 'City', name: a })),
+  priceRange: '₪₪',
+  aggregateRating: business.stats.reviewsCount > 0 ? {
+    '@type': 'AggregateRating',
+    ratingValue: business.stats.rating,
+    reviewCount: business.stats.reviewsCount,
+  } : undefined,
+}
+---
+
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Primary Meta Tags -->
+    <title>{fullTitle}</title>
+    <meta name="title" content={fullTitle} />
+    <meta name="description" content={fullDescription} />
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={fullDescription} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="he_IL" />
+    <meta property="og:site_name" content={business.name} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={fullDescription} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- LocalBusiness Schema -->
+    <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+
+    <!-- Page-specific schema (if provided) -->
+    {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
+  </head>
+
+  <body class="bg-white text-gray-900 min-h-screen flex flex-col">
+    <Header />
+
+    <main class="flex-1">
+      <slot />
+    </main>
+
+    <Footer />
+    <WhatsAppButton />
+  </body>
+</html>

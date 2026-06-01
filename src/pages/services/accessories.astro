@@ -1,0 +1,129 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import FAQ from '../../components/FAQ.astro'
+import CTABanner from '../../components/CTABanner.astro'
+import business from '../../data/business.js'
+
+const title = 'אביזרים לרכב | מסכים, רמקולים, מצלמות וחיישנים'
+const description = 'מגוון אביזרים לרכב מתוצרת מותגים מובילים — מסכי מולטימדיה, רמקולים, מצלמות רוורס, חיישני חנייה, דאשקאם. מחירים הוגנים וייעוץ מקצועי. בעפולה והאזור.'
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'מכירת אביזרים לרכב',
+  provider: { '@id': `${business.url}#business` },
+  areaServed: ['עפולה','מגדל העמק','נוף הגליל','יקנעם','טבריה','בית שאן','מגידו','נצרת'].map(a => ({ '@type': 'City', name: a })),
+}
+
+const categories = [
+  { icon: '📱', name: 'מסכי מולטימדיה', items: 'Atoto, Pumpkin, Pioneer, Alpine, Kenwood — 7 עד 10 אינץ׳, CarPlay אלחוטי, Android Auto.' },
+  { icon: '🔊', name: 'רמקולים ומגברים', items: 'Pioneer, JBL, Focal, Hertz, Alpine — קומפוננט, קואקסיאלי, סאבוופרים ומגברים.' },
+  { icon: '📹', name: 'מצלמות רוורס', items: 'מצלמות אחוריות, קדמיות ו-360° — ראייה לילית, IP67, עם ובלי קווי הנחיה.' },
+  { icon: '🔔', name: 'חיישני חנייה', items: 'סנסורים אחוריים וקדמיים — שחור, לבן, כסוף. עם אינדיקטור קולי וחזותי.' },
+  { icon: '🎥', name: 'דאשקאם', items: 'Viofo, 70mai, Nextbase — Full HD ו-4K, עם ובלי GPS, מצב חנייה.' },
+  { icon: '🔗', name: 'ציוד גרירה', items: 'מחברי 7/13 פינים, מתאמים, כבלי חשמל לנגרר.' },
+]
+
+const faqs = [
+  {
+    q: 'האם אפשר לקנות אביזר ולהביא להתקנה בנפרד?',
+    a: 'כן. אנחנו מתקינים גם אביזרים שהלקוח הביא מביתו — עם הסתייגות אחת: על אביזר שלא סיפקנו לא נוכל לתת אחריות על המוצר עצמו. על עבודת ההתקנה — כן. בכל מקרה שווה לשאול אותנו לפני שקונים — לרוב נוכל לספק את אותו מוצר בהפרש קטן עם אחריות מלאה.',
+  },
+  {
+    q: 'האם המחירים שלכם תחרותיים מול קניות אונליין?',
+    a: 'על מסכים ורמקולים — המחירים שלנו קרובים למחיר האונליין מחנויות ישראליות, כולל האחריות ושירות הלקוחות. על מצלמות וחיישנים — לרוב אנחנו מוכרים בפחות ממחיר הרחוב. מה שכן — כשקונים אצלנו מקבלים גם את הבטחון שמתקין מקצועי בחר את המוצר שמתאים לרכב הספציפי שלכם.',
+  },
+  {
+    q: 'האם יש אחריות על האביזרים?',
+    a: 'כן — אחריות יצרן מלאה לפי המותג (רוב המוצרים 1-2 שנים). אנחנו גם נותנים אחריות 3 שנים על עבודת ההתקנה. אם משהו לא עובד — חוזרים אלינו והכל מטופל.',
+  },
+  {
+    q: 'אני לא בטוח מה מתאים לרכב שלי — מה עושים?',
+    a: 'מגיעים אלינו לייעוץ ללא עלות וללא התחייבות. מספרים על הרכב, על הצורך, ועל התקציב — ואנחנו ממליצים על המוצר הנכון. לא דוחפים אתכם לקנות הכי יקר שיש.',
+  },
+]
+---
+<BaseLayout title={title} description={description} schema={schema}>
+  <nav class="bg-gray-50 border-b border-gray-200 py-3">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-600">
+      <a href="/" class="hover:text-brand-700">בית</a><span class="mx-2">›</span>
+      <a href="/services/" class="hover:text-brand-700">שירותים</a><span class="mx-2">›</span>
+      <span class="text-gray-900 font-medium">אביזרים לרכב</span>
+    </div>
+  </nav>
+
+  <section class="bg-gradient-to-bl from-brand-900 to-brand-700 text-white py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-6">
+        אביזרים לרכב<br/>
+        <span class="text-accent-500">מותגים מובילים, ייעוץ מקצועי</span>
+      </h1>
+      <p class="text-lg md:text-xl text-blue-100 leading-relaxed">
+        מסכי מולטימדיה, רמקולים, מצלמות, חיישנים ועוד — בחירה מקצועית,
+        מחירים הוגנים, ואחריות מלאה כולל התקנה.
+      </p>
+    </div>
+  </section>
+
+  <article class="py-12 md:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 prose-content">
+
+      <section class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">האביזר הנכון — לרכב הספציפי שלכם</h2>
+        <p class="text-gray-700 leading-relaxed text-lg mb-4">
+          השוק מוצף באביזרי רכב — מה שמסתיר לעיתים קרובות פער גדול באיכות ובהתאמה.
+          מסך שעובד מצוין ברכב אחד עשוי להיות בעייתי ברכב אחר, ורמקול ש"נשמע חזק"
+          בתצוגה עלול להישמע גרוע כשהוא מותקן. בגלל זה אנחנו בוחרים ביחד אתכם —
+          לא מוכרים מהמדף.
+        </p>
+        <p class="text-gray-700 leading-relaxed text-lg">
+          ב<strong>אמיר מערכות</strong>, אנחנו מוכרים רק מוצרים שאנחנו יודעים שמתאימים לרכב
+          ולשימוש. {business.stats.yearsOfExperience}+ שנות התקנות מלמדות הרבה על מה עובד לאורך זמן —
+          ועל מה שנראה טוב בפרסום אבל לא מחזיק בשטח.
+        </p>
+      </section>
+
+      <section class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">קטגוריות המוצרים</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {categories.map(c => (
+            <div class="p-5 bg-gray-50 rounded-xl border border-gray-200">
+              <div class="text-3xl mb-3">{c.icon}</div>
+              <h3 class="font-bold text-gray-900 mb-2 text-lg">{c.name}</h3>
+              <p class="text-sm text-gray-600">{c.items}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section class="mb-12 p-6 bg-gray-50 rounded-xl">
+        <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-4">הבדל בין קנייה אצלנו לקנייה אונליין</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <h3 class="font-bold text-gray-900 mb-3">✅ קנייה אצלנו</h3>
+            <ul class="space-y-2 text-sm text-gray-700">
+              <li>• ייעוץ מה מתאים לרכב הספציפי</li>
+              <li>• אחריות יצרן + שירות ישיר בארץ</li>
+              <li>• התקנה מקצועית באותו מקום</li>
+              <li>• ידיעה שהמוצר כבר מאושר לדגם</li>
+              <li>• פתרון בעיות ללא בירוקרטיה</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-bold text-gray-900 mb-3">⚠️ קנייה אונליין</h3>
+            <ul class="space-y-2 text-sm text-gray-700">
+              <li>• זמן המתנה לאספקה</li>
+              <li>• לא בטוח שמתאים לרכב הספציפי</li>
+              <li>• אחריות דרך יבואן — לעיתים מסורבלת</li>
+              <li>• עלות התקנה נפרדת בכל מקרה</li>
+              <li>• אין מי שאחראי על כלום</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+  </article>
+
+  <FAQ items={faqs} title="שאלות נפוצות על אביזרי רכב" />
+  <CTABanner title="לא בטוחים מה לקנות?" subtitle="ייעוץ חינמי — נגיד לכם בדיוק מה מתאים לרכב ולתקציב שלכם" />
+</BaseLayout>

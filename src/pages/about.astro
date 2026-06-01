@@ -1,0 +1,153 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import CTABanner from '../components/CTABanner.astro'
+import business from '../data/business.js'
+
+const title = 'אודות | אמיר מערכות — מולטימדיה ושירותי רכב בגלבוע'
+const description = `אמיר כהן — ${business.stats.yearsOfExperience}+ שנות ניסיון במולטימדיה, חשמלאות ושירותי רכב. מושב מלאה, הגלבוע. שקיפות, אחריות, ומחירים ישרים.`
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: 'אודות אמיר מערכות',
+  description: description,
+  url: `${business.url}/about/`,
+  mainEntity: { '@id': `${business.url}#business` },
+}
+
+const values = [
+  {
+    icon: '🔍',
+    title: 'שקיפות מחירים',
+    body: 'לפני כל עבודה — הצעת מחיר מפורטת. אין הפתעות בסוף. אם המחיר השתנה תוך כדי, אנחנו מסבירים למה.',
+  },
+  {
+    icon: '🛡️',
+    title: 'אחריות מלאה',
+    body: 'כל התקנת מולטימדיה — 3 שנות אחריות. כל עבודת חשמל ומכניקה — 12 חודשים. אחריות שאפשר לסמוך עליה.',
+  },
+  {
+    icon: '⚡',
+    title: 'עבודה מהירה',
+    body: 'רוב ההתקנות מתבצעות ביום אחד. מביאים בבוקר, לוקחים אחר הצהריים. אם צריך יותר זמן — אומרים מראש.',
+  },
+  {
+    icon: '🤝',
+    title: 'שירות אישי',
+    body: 'מדברים ישירות עם אמיר — לא עם קבלן שקיבל את המפתחות שלכם. כל לקוח מקבל ייעוץ ממוקד לרכב הספציפי שלו.',
+  },
+]
+
+const stats = [
+  { value: `${business.stats.yearsOfExperience}+`, label: 'שנות ניסיון בתחום' },
+  { value: `${business.stats.installationsCount.toLocaleString()}+`, label: 'התקנות שבוצעו' },
+  { value: `${business.stats.rating}`, label: 'דירוג Google' },
+  { value: '3 שנים', label: 'אחריות על מולטימדיה' },
+]
+---
+<BaseLayout title={title} description={description} schema={schema}>
+  <nav class="bg-gray-50 border-b border-gray-200 py-3">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-600">
+      <a href="/" class="hover:text-brand-700">בית</a><span class="mx-2">›</span>
+      <span class="text-gray-900 font-medium">אודות</span>
+    </div>
+  </nav>
+
+  <section class="bg-gradient-to-bl from-brand-900 to-brand-700 text-white py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-6">
+        אמיר מערכות —<br/><span class="text-accent-500">הסיפור שלנו</span>
+      </h1>
+      <p class="text-lg md:text-xl text-blue-100 leading-relaxed">
+        {business.stats.yearsOfExperience}+ שנים של התקנות, תיקונים, ולקוחות שחוזרים — ממושב מלאה לכל האזור.
+      </p>
+    </div>
+  </section>
+
+  <article class="py-12 md:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <section class="mb-14">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+          {stats.map(s => (
+            <div class="p-5 bg-brand-900 text-white rounded-xl text-center">
+              <div class="text-3xl font-bold text-accent-500 mb-1">{s.value}</div>
+              <div class="text-sm text-blue-200">{s.label}</div>
+            </div>
+          ))}
+        </div>
+
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">הסיפור של אמיר כהן</h2>
+        <div class="prose-content space-y-4">
+          <p class="text-gray-700 leading-relaxed text-lg">
+            אמיר כהן התחיל בעולם הרכב בגיל צעיר — קודם מסקרנות, אחר כך כמקצוע. עם השנים
+            הפך להיות אחד המומחים המוכרים בגליל התחתון בכל הנוגע למולטימדיה לרכב
+            וחשמלאות רכב.
+          </p>
+          <p class="text-gray-700 leading-relaxed text-lg">
+            הסדנה הוקמה במושב מלאה שבגלבוע — מקום שמאפשר להגיע מעפולה, מגדל העמק,
+            נוף הגליל, יקנעם, טבריה, בית שאן ונצרת בנסיעה קצרה יחסית. לא עיר גדולה —
+            אבל שירות שלא כל עיר גדולה יכולה להתאים לו.
+          </p>
+          <p class="text-gray-700 leading-relaxed text-lg">
+            עם {business.stats.yearsOfExperience}+ שנות ניסיון ומעל {business.stats.installationsCount.toLocaleString()} התקנות,
+            הפילוסופיה נשארת פשוטה: לעשות את העבודה נכון בפעם הראשונה, לתת מחיר שקוף,
+            ולעמוד מאחורי כל עבודה עם אחריות אמיתית.
+          </p>
+        </div>
+      </section>
+
+      <section class="mb-14">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">הערכים שלנו</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {values.map(v => (
+            <div class="p-6 bg-gray-50 rounded-xl border border-gray-200">
+              <div class="text-3xl mb-3">{v.icon}</div>
+              <h3 class="text-lg font-bold text-gray-900 mb-2">{v.title}</h3>
+              <p class="text-gray-600 leading-relaxed">{v.body}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section class="mb-14">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">מה אנחנו עושים</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {[
+            { icon: '📱', title: 'מולטימדיה', href: '/services/', desc: 'מסכי אנדרואיד, מצלמות, דאשקאם, מערכות שמע' },
+            { icon: '⚡', title: 'חשמל ודיאגנוסטיקה', href: '/services/electrical/', desc: 'תיקון תקלות, קודי מנוע, מצבר ואלטרנטור' },
+            { icon: '🔗', title: 'שירותי שטח', href: '/services/towing-hitch/', desc: 'ווי גרירה, תיקון נגררים, מיזוג ומכונאות' },
+          ].map(s => (
+            <a href={s.href} class="block p-5 bg-white border border-gray-200 rounded-xl hover:border-brand-500 hover:shadow-md transition text-center">
+              <div class="text-3xl mb-2">{s.icon}</div>
+              <h3 class="font-bold text-gray-900 mb-1">{s.title}</h3>
+              <p class="text-sm text-gray-600">{s.desc}</p>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section class="mb-14">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">איפה אנחנו</h2>
+        <div class="p-6 bg-gray-50 rounded-xl border border-gray-200">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <h3 class="font-bold text-gray-900 mb-3">כתובת</h3>
+              <p class="text-gray-700">{business.address.street}, {business.address.region}</p>
+              <p class="text-gray-500 text-sm mt-1">סמוך לצומת גלבוע, כביש 667</p>
+            </div>
+            <div>
+              <h3 class="font-bold text-gray-900 mb-3">שעות פעילות</h3>
+              <p class="text-gray-700">ראשון–חמישי: 08:00–18:00</p>
+              <p class="text-gray-700">שישי: 08:00–13:00</p>
+              <p class="text-gray-500 text-sm mt-1">שבת: סגור</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </article>
+
+  <CTABanner title="מוכנים להכיר?" subtitle="ייעוץ חינמי — נגידו מה מתאים לרכב שלכם בדיוק" />
+</BaseLayout>

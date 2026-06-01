@@ -1,0 +1,184 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import FAQ from '../../components/FAQ.astro'
+import CTABanner from '../../components/CTABanner.astro'
+import business from '../../data/business.js'
+import { areas } from '../../data/areas.js'
+
+const area = areas.find(a => a.slug === 'nof-hagalil')
+
+const title = area.metaTitle
+const description = area.metaDescription
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'מולטימדיה ושירותי רכב בנוף הגליל',
+  provider: { '@id': `${business.url}#business` },
+  areaServed: { '@type': 'City', name: 'נוף הגליל' },
+}
+
+const services = [
+  { title: 'מסכי אנדרואיד ומולטימדיה', icon: '📱', href: '/services/multimedia/android-screens/', desc: 'Apple CarPlay ו-Android Auto על מסך 7-10 אינץ׳. ההתקנה הפופולרית ביותר.' },
+  { title: 'מצלמות רוורס', icon: '📹', href: '/services/multimedia/parking-cameras/', desc: 'מצלמה אחורית, חיישני חנייה ומערכת 360°. בטיחות בחנייה.' },
+  { title: 'דאשקאם', icon: '🎥', href: '/services/multimedia/dashcam/', desc: 'מצלמת דרך עם מצב חנייה. ראיה לביטוח בכל תאונה.' },
+  { title: 'מערכות שמע', icon: '🔊', href: '/services/multimedia/sound-systems/', desc: 'רמקולים, סאבוופר ומגבר עם כיוונון מקצועי.' },
+  { title: 'חשמלאי רכב ודיאגנוסטיקה', icon: '⚡', href: '/services/electrical/', desc: 'דיאגנוסטיקה ממוחשבת, תיקון תקלות חשמל, מצבר ואלטרנטור.' },
+  { title: 'התקנת ווי גרירה', icon: '🔗', href: '/services/towing-hitch/', desc: 'קבוע, נשלף או חשמלי. תקנים לרישוי, חיבור 7/13 פינים.' },
+  { title: 'מיזוג אוויר לרכב', icon: '❄️', href: '/services/ac-repair/', desc: 'מילוי גז, תיקון קומפרסור ואיתור דליפות.' },
+  { title: 'מכונאות כללית', icon: '🛠️', href: '/services/general-mechanics/', desc: 'טיפולים תקופתיים, בלמים, מתלים — פתרון מקיף.' },
+]
+
+const faqs = [
+  {
+    q: 'כמה זמן נסיעה מנוף הגליל אליכם?',
+    a: `נוף הגליל נמצאת ${area.distance} ק"מ מהסדנה שלנו במושב מלאה — כ-25-30 דקות נסיעה. הדרך עוברת דרך כביש 65 לכיוון עפולה ואז מזרחה לגלבוע, או ישירות דרך כביש 60. רוב לקוחות נוף הגליל מגיעים בבוקר ומוצאים את הרכב מוכן לאחר הצהריים.`,
+  },
+  {
+    q: 'מה השירות הנפוץ ביותר בקרב לקוחות נוף הגליל?',
+    a: 'כמו ברוב הערים בצפון — מסכי אנדרואיד הם הכוכב. תושבי נוף הגליל שרכשו רכב יד שנייה עם מערכת ישנה או בלי CarPlay מגיעים לשדרג ויוצאים עם רכב שנראה ומרגיש חדש. חשמלאות ודיאגנוסטיקה היא המקום השני — לקוחות שמחפשים תשובה על תקלה שחוזרת, ולא רוצים לשלם לדילר על "אבחון" בלי תוצאה.',
+  },
+  {
+    q: 'האם אפשר לקבוע תור ערב יום לפני?',
+    a: 'כן, ברוב המקרים — אם יש פנייה, נאשר אותה. לשירותים מהירים יחסית (החלפת מצבר, דיאגנוסטיקה קצרה) לפעמים יש מקום גם באותו יום. ההמלצה היא לפנות בוואטסאפ עם תיאור קצר של הצורך — כך נדע להקצות את הזמן הנכון.',
+  },
+  {
+    q: 'נוף הגליל היא עיר עם אוכלוסייה מעורבת — האם אתם משרתים את כולם?',
+    a: 'בהחלט. אנחנו עובדים עם לקוחות מכל רקע — ערבים, יהודים, חרדים, חילוניים. השירות הוא מקצועי ושוויוני לכולם. חלק מהלקוחות הקבועים שלנו הם משפחות ערביות מנוף הגליל שמגלות אותנו כמומחים לאזור.',
+  },
+  {
+    q: 'איזה דגמי רכב נפוצים אצלכם מנוף הגליל?',
+    a: 'רוב הרכבים הפופולריים בישראל — טויוטה קורולה, יונדאי i35/Tucson, קיה ספורטג׳, מאזדה 3/6, סוזוקי ג׳ימני לאוהבי שטח. יש לנו ניסיון בכל הדגמים האלו ויודעים איזה ערכת התקנה מתאימה לכל אחד בלי לבדוק כל פעם מחדש.',
+  },
+]
+---
+
+<BaseLayout title={title} description={description} schema={schema}>
+
+  <nav class="bg-gray-50 border-b border-gray-200 py-3" aria-label="breadcrumb">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-600">
+      <a href="/" class="hover:text-brand-700">בית</a>
+      <span class="mx-2">›</span>
+      <a href="/areas/" class="hover:text-brand-700">אזורי שירות</a>
+      <span class="mx-2">›</span>
+      <span class="text-gray-900 font-medium">נוף הגליל</span>
+    </div>
+  </nav>
+
+  <section class="bg-gradient-to-bl from-brand-900 to-brand-700 text-white py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="inline-block bg-white/10 rounded-full px-4 py-1 text-sm font-medium mb-4">
+        {area.distance} ק"מ מנוף הגליל — כ-25 דקות נסיעה
+      </div>
+      <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-6">
+        מולטימדיה ושירותי רכב<br/>
+        <span class="text-accent-500">לתושבי נוף הגליל</span>
+      </h1>
+      <p class="text-lg md:text-xl text-blue-100 leading-relaxed">
+        מסכי אנדרואיד, מצלמות, דאשקאם, חשמלאות, ווי גרירה ועוד.
+        {area.distance} ק"מ מנוף הגליל — שירות מקצועי ואישי עם אחריות מלאה.
+      </p>
+    </div>
+  </section>
+
+  <article class="py-12 md:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 prose-content">
+
+      <section class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+          לתושבי נוף הגליל — כל שירותי הרכב במרחק נסיעה קצר
+        </h2>
+        <p class="text-gray-700 leading-relaxed text-lg mb-4">
+          נוף הגליל, עם למעלה מ-{area.population.toLocaleString()} תושבים ומגוון שכונות —
+          הר יונה, יזרעאל ומרכז העיר — היא אחת הערים הגדולות בגליל התחתון.
+          תושביה, כמו תושבי כל הצפון, מחפשים שירות רכב שמשלב מקצועיות אמיתית
+          עם מחירים ישרים ושירות אישי שמרגישים בו.
+        </p>
+        <p class="text-gray-700 leading-relaxed text-lg mb-4">
+          ב<strong>אמיר מערכות</strong>, הממוקמים במושב מלאה, {area.distance} ק"מ מנוף הגליל,
+          אנחנו מטפלים בכל צרכי הרכב — מהתקנת מסך אנדרואיד עם CarPlay ועד אבחון
+          תקלה חשמלית שחוזרת שנים. כל עבודה עם שקיפות מלאה לפני התחלה, אחריות
+          3 שנים, ושירות מאותה יד בכל ביקור.
+        </p>
+        <p class="text-gray-700 leading-relaxed text-lg">
+          לקוחות מנוף הגליל מגיעים אלינו בדרכים שונות — חיפוש גוגל, המלצת שכן,
+          או אחרי שהדילר נתן הצעה שלא נראתה הגיונית. הם מגיעים פעם אחת ורבים
+          מהם חוזרים שוב ושוב.
+        </p>
+      </section>
+
+      <section class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+          השירותים שאנחנו נותנים לתושבי נוף הגליל
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {services.map(svc => (
+            <a href={svc.href} class="block p-5 bg-white border border-gray-200 rounded-xl hover:border-brand-500 hover:shadow-md transition">
+              <div class="text-2xl mb-2">{svc.icon}</div>
+              <h3 class="font-bold text-gray-900 mb-2">{svc.title}</h3>
+              <p class="text-sm text-gray-600">{svc.desc}</p>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+          למה לקוחות נוף הגליל בוחרים בנו?
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+          <div class="p-5 bg-brand-900 text-white rounded-xl text-center">
+            <div class="text-3xl font-bold text-accent-500 mb-1">{business.stats.yearsOfExperience}+</div>
+            <div class="text-sm text-blue-200">שנות ניסיון</div>
+          </div>
+          <div class="p-5 bg-brand-900 text-white rounded-xl text-center">
+            <div class="text-3xl font-bold text-accent-500 mb-1">{business.stats.installationsCount.toLocaleString()}+</div>
+            <div class="text-sm text-blue-200">התקנות בוצעו</div>
+          </div>
+          <div class="p-5 bg-brand-900 text-white rounded-xl text-center">
+            <div class="text-3xl font-bold text-accent-500 mb-1">{area.distance} ק"מ</div>
+            <div class="text-sm text-blue-200">מנוף הגליל</div>
+          </div>
+        </div>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-3">
+            <span class="text-green-500 font-bold text-lg mt-0.5">✓</span>
+            <p class="text-gray-700"><strong>שקיפות לפני כל עבודה</strong> — מסבירים מה נמצא ומה עלות התיקון לפני שמתחילים.</p>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-green-500 font-bold text-lg mt-0.5">✓</span>
+            <p class="text-gray-700"><strong>אחריות 3 שנים על עבודת ההתקנה</strong> — כל בעיה, חוזרים ומתקנים ללא תשלום.</p>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-green-500 font-bold text-lg mt-0.5">✓</span>
+            <p class="text-gray-700"><strong>מומחיות ספציפית במולטימדיה</strong> — תחום שרוב המוסכים לא מתמחים בו ברמה נדרשת.</p>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-green-500 font-bold text-lg mt-0.5">✓</span>
+            <p class="text-gray-700"><strong>שירות לכל האוכלוסייה</strong> — מקצועי ושוויוני לכולם.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="mb-12 p-6 bg-gray-50 rounded-xl">
+        <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-4">
+          איך מגיעים אלינו מנוף הגליל?
+        </h2>
+        <p class="text-gray-700 leading-relaxed mb-3">
+          אנחנו ממוקמים <strong>במושב מלאה, מועצה אזורית הגלבוע</strong> — {area.distance} ק"מ מנוף הגליל.
+        </p>
+        <p class="text-gray-700 leading-relaxed">
+          מנוף הגליל: כביש <strong>65</strong> דרומה לכיוון עפולה, ומשם מזרחה לכביש 71 לכיוון הגלבוע.
+          Waze לחיפוש "אמיר מערכות, מושב מלאה" יוביל ישירות. מומלץ לקבוע תור לפני ההגעה.
+        </p>
+      </section>
+    </div>
+  </article>
+
+  <FAQ items={faqs} title="שאלות נפוצות מתושבי נוף הגליל" />
+
+  <CTABanner
+    title="תושב נוף הגליל? 25 דקות מפרידות בינכם לבין שירות מקצועי"
+    subtitle="ייעוץ חינמי, הצעת מחיר תוך שעה — בלי התחייבות"
+  />
+</BaseLayout>

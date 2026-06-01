@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import CTABanner from '../../components/CTABanner.astro'
+import business from '../../data/business.js'
+
+const title = 'בלוג | מדריכים ועצות לרכב'
+const description = 'מדריכים מקצועיים על מולטימדיה לרכב, מחירים, טיפים והמלצות מהמומחים של אמיר מערכות. קראו לפני שאתם קונים או מתקינים.'
+
+const posts = [
+  {
+    slug: 'carplay-vs-android-auto',
+    title: 'Apple CarPlay vs Android Auto — מה ההבדל האמיתי? (2026)',
+    excerpt: 'השוואה מלאה: מה עדיף לניווט, מוזיקה ושיחות? אלחוטי או חוטי? איזה מסך לקנות? המדריך של המומחים שמתקינים שניהם כל יום.',
+    date: '2026-06-01',
+    readTime: '8 דקות קריאה',
+    category: 'השוואות',
+    icon: '🆚',
+  },
+  {
+    slug: 'android-screen-cost',
+    title: 'כמה עולה התקנת מסך אנדרואיד לרכב ב-2026? המדריך המלא',
+    excerpt: 'טווחי מחירים מפורטים לפי סוג מסך ומותג, מה משפיע על המחיר, ואיך לא לשלם יותר מדי — כל מה שצריך לדעת לפני שמזמינים.',
+    date: '2026-06-01',
+    readTime: '7 דקות קריאה',
+    category: 'מחירים ומדריכים',
+    icon: '📱',
+  },
+]
+---
+
+<BaseLayout title={title} description={description}>
+
+  <nav class="bg-gray-50 border-b border-gray-200 py-3" aria-label="breadcrumb">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-600">
+      <a href="/" class="hover:text-brand-700">בית</a>
+      <span class="mx-2">›</span>
+      <span class="text-gray-900 font-medium">בלוג</span>
+    </div>
+  </nav>
+
+  <section class="bg-gradient-to-bl from-brand-900 to-brand-700 text-white py-12 md:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-3xl md:text-4xl font-bold mb-4">
+        בלוג אמיר מערכות
+      </h1>
+      <p class="text-lg text-blue-100">
+        מדריכים מקצועיים על מולטימדיה לרכב — מחירים, טיפים, והשוואות שיעזרו לכם לקבל החלטה נכונה.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="space-y-6">
+        {posts.map(post => (
+          <a href={`/blog/${post.slug}/`} class="block bg-white border border-gray-200 rounded-xl p-6 hover:border-brand-500 hover:shadow-md transition">
+            <div class="flex items-start gap-4">
+              <div class="text-4xl flex-shrink-0">{post.icon}</div>
+              <div class="flex-1">
+                <div class="flex flex-wrap gap-2 mb-2">
+                  <span class="text-xs font-medium bg-brand-100 text-brand-900 px-2 py-1 rounded-full">{post.category}</span>
+                  <span class="text-xs text-gray-500">{post.readTime}</span>
+                </div>
+                <h2 class="text-xl font-bold text-gray-900 mb-2 hover:text-brand-700 transition-colors">
+                  {post.title}
+                </h2>
+                <p class="text-gray-600 leading-relaxed">
+                  {post.excerpt}
+                </p>
+                <p class="text-sm text-gray-400 mt-3">
+                  {new Date(post.date).toLocaleDateString('he-IL', { year: 'numeric', month: 'long', day: 'numeric' })}
+                </p>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <div class="mt-12 p-6 bg-gray-50 rounded-xl text-center">
+        <p class="text-gray-600 mb-2">אנחנו מפרסמים מדריכים חדשים באופן קבוע.</p>
+        <p class="text-gray-600">יש שאלה שתרצו שנענה עליה? <a href="/contact/" class="text-brand-700 font-medium hover:underline">כתבו לנו</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    title="יש לכם שאלות? אנחנו כאן"
+    subtitle="ייעוץ חינמי לפני כל רכישה — נגיד לכם בדיוק מה מתאים לרכב שלכם"
+  />
+</BaseLayout>

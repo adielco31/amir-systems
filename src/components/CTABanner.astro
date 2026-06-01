@@ -1,0 +1,69 @@
+---
+import business from '../data/business.js'
+
+const {
+  title    = 'מוכן להזמין שירות?',
+  subtitle = 'ייעוץ חינמי בטלפון או וואטסאפ — עונים תוך שעה',
+  variant  = 'primary',
+} = Astro.props
+---
+
+<section class="relative overflow-hidden bg-[#040912] py-16 md:py-24">
+
+  <!-- Background layers -->
+  <div class="absolute inset-0 tech-grid opacity-60 pointer-events-none" />
+  <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 70% 60% at 50% 100%, rgba(29,78,216,0.2) 0%, transparent 70%);" />
+  <div class="absolute top-0 right-0 w-72 h-72 bg-accent-500 rounded-full opacity-[0.06] blur-3xl pointer-events-none" />
+  <div class="absolute bottom-0 left-0 w-56 h-56 bg-brand-600 rounded-full opacity-[0.08] blur-3xl pointer-events-none" />
+
+  <!-- Accent line at top -->
+  <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-brand-500/50 to-transparent" />
+
+  <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+
+    <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-4 leading-tight">
+      {title}
+    </h2>
+    <p class="text-gray-400 text-lg mb-10">
+      {subtitle}
+    </p>
+
+    <!-- Big phone number -->
+    <div class="inline-flex items-center gap-3 px-8 py-4 bg-white/[0.05] border border-white/[0.1] rounded-2xl mb-8 hover:bg-white/[0.08] transition-colors group cursor-pointer">
+      <a href={`tel:${business.phoneClean}`} class="flex items-center gap-3 w-full">
+        <div class="w-10 h-10 bg-accent-500/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-accent-500/30 transition-colors">
+          <svg class="w-5 h-5 text-accent-400" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+        </div>
+        <span class="text-2xl md:text-3xl font-extrabold text-accent-400 ltr tracking-wider group-hover:text-accent-300 transition-colors">{business.phone}</span>
+      </a>
+    </div>
+
+    <!-- Buttons -->
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a
+        href={`tel:${business.phoneClean}`}
+        class="inline-flex items-center justify-center gap-2.5 px-9 py-4 bg-accent-500 hover:bg-accent-400 text-white font-extrabold text-lg rounded-xl transition-all shadow-[0_0_25px_rgba(249,115,22,0.35)] hover:shadow-[0_0_40px_rgba(249,115,22,0.5)] hover:-translate-y-0.5 btn-shine"
+      >
+        <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+        התקשרו עכשיו
+      </a>
+
+      <a
+        href={`https://wa.me/${business.whatsapp}?text=${encodeURIComponent('שלום, הגעתי מהאתר ואני מעוניין בייעוץ')}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center gap-2.5 px-9 py-4 bg-white/[0.07] hover:bg-green-500 border border-white/[0.15] hover:border-green-500 text-white font-extrabold text-lg rounded-xl transition-all hover:shadow-[0_0_30px_rgba(34,197,94,0.35)] hover:-translate-y-0.5 btn-shine"
+      >
+        <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448L.057 24z"/>
+        </svg>
+        הודעה בוואטסאפ
+      </a>
+    </div>
+
+  </div>
+</section>

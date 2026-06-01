@@ -1,0 +1,294 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import ServiceCard from '../components/ServiceCard.astro'
+import FAQ from '../components/FAQ.astro'
+import CTABanner from '../components/CTABanner.astro'
+import Icon from '../components/Icon.astro'
+import business from '../data/business.js'
+import { featuredServices } from '../data/services.js'
+import { areasSorted } from '../data/areas.js'
+
+const title = 'אמיר מערכות — מולטימדיה ושירותי רכב בעפולה והאזור'
+const description = 'התקנת מערכות מולטימדיה לרכב, חשמלאות, ווי גרירה ותיקון מיזוג. שירות מקצועי בעפולה, הגלבוע ועמק יזרעאל. אחריות מלאה, מחירים הוגנים.'
+
+const faqs = [
+  { q: 'כמה זמן לוקחת התקנת מסך אנדרואיד לרכב?',
+    a: 'התקנה סטנדרטית אורכת 2–4 שעות. אנחנו מקפידים על חיווט נקי ומוסתר לחלוטין — המסך נראה כאילו הוא חלק מקורי של הרכב.' },
+  { q: 'איזה אחריות אתם נותנים על התקנות?',
+    a: '3 שנות אחריות על העבודה + אחריות יצרן על המוצרים. תקלה בתקופת האחריות — שירות חינמי, ללא שאלות.' },
+  { q: 'האם אתם מגיעים עד הבית?',
+    a: 'רוב ההתקנות מתבצעות במוסך שלנו — 15 דקות מעפולה, 20 ממגדל העמק. איסוף והחזרה עם סיכום מראש בעלות נוספת.' },
+  { q: 'אילו מותגי מסכים אתם מתקינים?',
+    a: 'Atoto, Pumpkin, Pioneer, Alpine, Kenwood ו-Sony. הבחירה תלויה בתקציב ובדגם הרכב — CarPlay אלחוטי, Android Auto, ניווט וכו׳.' },
+  { q: 'האם אתם עושים שירות לרכבים ישנים?',
+    a: 'בהחלט — אנחנו מתמחים בשדרוג רכבים מ-2010 ומעלה. גם רכב ישן יכול לקבל מסך מודרני עם Apple CarPlay.' },
+  { q: 'כמה עולה מצלמת רוורס?',
+    a: '400–1,200 ₪ תלוי בסוג המצלמה (HD/360°) ובאם נדרש מסך נפרד. הצעת מחיר מדויקת לאחר בדיקת הרכב.' },
+]
+
+const whyUs = [
+  { icon: 'target',  title: 'התמחות אמיתית',  body: 'מולטימדיה לרכב היא מה שאנחנו עושים כל יום — לא תוספת של מוסך כללי. עומק ידע שמתאים לרכב הספציפי שלכם.',  iconBg: 'bg-brand-500/15',   iconText: 'text-brand-400' },
+  { icon: 'wrench',  title: 'חיווט מקצועי',   body: 'חיווט מוסתר לחלוטין. ההתקנה נראית כאילו יצאה מהמפעל — לא שאריות של כבלים ופלסטיק.',                          iconBg: 'bg-amber-500/15',   iconText: 'text-amber-400' },
+  { icon: 'shield',  title: 'אחריות 3 שנים',  body: '3 שנות אחריות על עבודת ההתקנה + אחריות יצרן מלאה. תקלה? שירות מהיר ללא עלות.',                              iconBg: 'bg-emerald-500/15', iconText: 'text-emerald-400' },
+  { icon: 'users',   title: 'ייעוץ אישי',     body: 'לא נמכור מה שלא צריך. ייעוץ ממוקד לרכב ולתקציב שלכם — לפני כל פרויקט, בחינם.',                              iconBg: 'bg-violet-500/15',  iconText: 'text-violet-400' },
+]
+
+const processSteps = [
+  { n: '1', title: 'ייעוץ חינמי', body: 'בשיחה קצרה בטלפון או וואטסאפ — מגדירים בדיוק מה מתאים לרכב ולתקציב שלכם.', icon: 'message-circle', color: 'text-brand-400', bg: 'bg-brand-500/15' },
+  { n: '2', title: 'מגיעים לסדנה', body: 'ביום שנוח לכם. 15 דקות מעפולה, 20 ממגדל העמק, 25 מנצרת ויקנעם.', icon: 'map-pin', color: 'text-accent-400', bg: 'bg-accent-500/15' },
+  { n: '3', title: 'יוצאים מרוצים', body: 'עבודה מוכנה ביום אחד. אחריות 3 שנים — ושירות אם תצטרכו בעתיד.', icon: 'check-circle', color: 'text-emerald-400', bg: 'bg-emerald-500/15' },
+]
+---
+
+<BaseLayout title={title} description={description}>
+
+<!-- ─── HERO ─────────────────────────────────────────────────────────────── -->
+<section class="relative min-h-[640px] bg-[#040912] text-white overflow-hidden flex items-center">
+
+  <!-- Tech grid -->
+  <div class="absolute inset-0 tech-grid pointer-events-none" />
+
+  <!-- Radial spotlight from top -->
+  <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 80% 55% at 50% -5%, rgba(29,78,216,0.38) 0%, transparent 68%);" />
+
+  <!-- Decorative orbs -->
+  <div class="absolute -top-20 -right-20 w-96 h-96 bg-brand-700 rounded-full opacity-[0.12] blur-3xl pointer-events-none float-slow" />
+  <div class="absolute bottom-0 left-0 w-72 h-72 bg-accent-500 rounded-full opacity-[0.07] blur-3xl pointer-events-none" />
+
+  <div class="relative w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+
+    <!-- Status badge -->
+    <div class="inline-flex items-center gap-2.5 px-4 py-2 bg-white/[0.07] border border-white/[0.12] rounded-full text-sm font-medium mb-8 backdrop-blur-sm">
+      <span class="w-2 h-2 bg-green-400 rounded-full pulse-orange flex-shrink-0" style="animation: glow-pulse 2s ease-in-out infinite; box-shadow: 0 0 0 0 rgba(74,222,128,0.4)" />
+      שירות פעיל — עפולה, הגלבוע, עמק יזרעאל וכל הצפון
+    </div>
+
+    <!-- Headline with gradient text -->
+    <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.12] mb-6 max-w-3xl">
+      <span class="block bg-gradient-to-br from-white via-blue-100 to-brand-400 bg-clip-text text-transparent">
+        מולטימדיה ושירותי רכב
+      </span>
+      <span class="block text-accent-400 mt-1">
+        בעפולה והגלבוע
+      </span>
+    </h1>
+
+    <p class="text-lg md:text-xl text-gray-400 leading-relaxed mb-10 max-w-2xl">
+      התקנת מסכי אנדרואיד, Apple CarPlay, מצלמות רוורס, חשמלאות, ווי גרירה ועוד.
+      <strong class="text-gray-200">{business.stats.yearsOfExperience}+ שנות ניסיון</strong> — אחריות מלאה.
+    </p>
+
+    <!-- CTA buttons -->
+    <div class="flex flex-col sm:flex-row gap-4 mb-10">
+      <a href={`tel:${business.phoneClean}`}
+        class="inline-flex items-center justify-center gap-2.5 px-9 py-4 bg-accent-500 hover:bg-accent-400 text-white font-extrabold text-lg rounded-xl transition-all shadow-[0_0_30px_rgba(249,115,22,0.4)] hover:shadow-[0_0_50px_rgba(249,115,22,0.55)] hover:-translate-y-0.5 btn-shine">
+        <Icon name="phone" class="w-5 h-5 flex-shrink-0" />
+        <span>התקשרו: <span class="ltr">{business.phone}</span></span>
+      </a>
+      <a href={`https://wa.me/${business.whatsapp}?text=${encodeURIComponent('שלום, אני מעוניין במידע')}`}
+        target="_blank" rel="noopener noreferrer"
+        class="inline-flex items-center justify-center gap-2.5 px-9 py-4 bg-white/[0.07] hover:bg-green-600 border border-white/[0.15] hover:border-green-600 text-white font-extrabold text-lg rounded-xl transition-all hover:shadow-[0_0_30px_rgba(34,197,94,0.35)] hover:-translate-y-0.5 btn-shine">
+        <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448L.057 24z"/>
+        </svg>
+        הודעה בוואטסאפ
+      </a>
+    </div>
+
+    <!-- Trust pills -->
+    <div class="flex flex-wrap gap-2.5">
+      {[
+        { icon: 'star',         label: `${business.stats.rating} ★ Google` },
+        { icon: 'award',        label: `${business.stats.yearsOfExperience}+ שנות ניסיון` },
+        { icon: 'shield',       label: 'אחריות 3 שנים' },
+        { icon: 'check-circle', label: `${business.stats.installationsCount.toLocaleString()}+ התקנות` },
+      ].map(pill => (
+        <div class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/[0.06] border border-white/[0.1] rounded-full text-xs text-gray-300 backdrop-blur-sm hover:bg-white/[0.1] transition-colors cursor-default">
+          <Icon name={pill.icon} class="w-3.5 h-3.5 text-accent-400 flex-shrink-0" strokeWidth={2.5} />
+          {pill.label}
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── STATS ──────────────────────────────────────────────────────────────── -->
+<section class="relative bg-[#060d1e] border-y border-white/[0.07]">
+  <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-brand-500/40 to-transparent" />
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-12">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-center">
+      {[
+        { value: `${business.stats.yearsOfExperience}+`, label: 'שנות ניסיון',          icon: 'award' },
+        { value: `${business.stats.installationsCount.toLocaleString()}+`, label: 'התקנות מוצלחות', icon: 'check-circle' },
+        { value: '8',                                    label: 'ערים באזור השירות',     icon: 'map-pin' },
+        { value: '3',                                    label: 'שנות אחריות',            icon: 'shield' },
+      ].map(s => (
+        <div class="group flex flex-col items-center gap-2">
+          <Icon name={s.icon} class="w-5 h-5 text-gray-600 group-hover:text-accent-400 transition-colors duration-300" />
+          <div class="text-3xl md:text-4xl font-extrabold text-accent-400">{s.value}</div>
+          <div class="text-xs md:text-sm text-gray-500">{s.label}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ─── SERVICES ──────────────────────────────────────────────────────────── -->
+<section class="relative py-20 md:py-28 bg-[#040912] overflow-hidden">
+  <div class="absolute inset-0 tech-grid opacity-50 pointer-events-none" />
+  <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.07] to-transparent" />
+
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-brand-500/15 border border-brand-500/25 rounded-full text-sm font-semibold text-brand-400 mb-5">
+        <Icon name="zap" class="w-4 h-4" />
+        השירותים שלנו
+      </div>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">
+        כל מה שהרכב שלכם צריך
+      </h2>
+      <p class="text-gray-500 text-lg">
+        מולטימדיה לרכב היא ההתמחות שלנו — אבל נותנים שירות מקיף לכל הצרכים הטכניים
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+      {featuredServices.map(service => (
+        <ServiceCard service={service} />
+      ))}
+    </div>
+
+    <div class="text-center mt-12">
+      <a href="/services/"
+        class="inline-flex items-center gap-2 px-7 py-3.5 border-2 border-white/[0.15] hover:border-brand-500/60 text-gray-300 hover:text-white font-bold rounded-xl hover:bg-brand-500/10 transition-all duration-200">
+        כל השירותים
+        <Icon name="arrow-left" class="w-4 h-4" />
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WHY US ─────────────────────────────────────────────────────────────── -->
+<section class="relative py-20 md:py-28 bg-[#060d1e] overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(29,78,216,0.07) 0%, transparent 70%);" />
+  <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.07] to-transparent" />
+
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-amber-500/15 border border-amber-500/25 rounded-full text-sm font-semibold text-amber-400 mb-5">
+        <Icon name="star" class="w-4 h-4" />
+        למה אמיר מערכות
+      </div>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">
+        לא רק עוד מתקין
+      </h2>
+      <p class="text-gray-500 text-lg">
+        שותף לאיכות שמלווה אתכם הרבה אחרי שהרכב יוצא מהסדנה
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {whyUs.map(item => (
+        <div class="group flex flex-col items-center text-center p-7 bg-white/[0.04] border border-white/[0.09] rounded-2xl hover:border-white/[0.18] hover:bg-white/[0.07] hover:-translate-y-1 transition-all duration-300 backdrop-blur-sm">
+          <div class={`w-16 h-16 ${item.iconBg} ${item.iconText} rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+            <Icon name={item.icon} class="w-8 h-8" />
+          </div>
+          <h3 class="font-extrabold text-white text-base mb-2">{item.title}</h3>
+          <p class="text-sm text-gray-500 leading-relaxed">{item.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ─── PROCESS ────────────────────────────────────────────────────────────── -->
+<section class="relative py-20 md:py-28 bg-[#040912] overflow-hidden">
+  <div class="absolute inset-0 tech-grid opacity-40 pointer-events-none" />
+  <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.07] to-transparent" />
+
+  <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center max-w-xl mx-auto mb-14">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-500/15 border border-emerald-500/25 rounded-full text-sm font-semibold text-emerald-400 mb-5">
+        <Icon name="check-circle" class="w-4 h-4" />
+        איך זה עובד
+      </div>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-white">
+        פשוט מתחילים
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+
+      <!-- Connecting line (desktop) -->
+      <div class="hidden md:block absolute top-9 right-[22%] left-[22%] h-px bg-gradient-to-l from-transparent via-white/[0.12] to-transparent pointer-events-none" />
+
+      {processSteps.map(step => (
+        <div class="group flex flex-col items-center text-center relative">
+          <div class="relative mb-6">
+            <!-- Step circle -->
+            <div class={`w-20 h-20 ${step.bg} rounded-2xl flex items-center justify-center border border-white/[0.1] group-hover:border-white/[0.25] group-hover:scale-105 transition-all duration-300 shadow-lg`}>
+              <Icon name={step.icon} class={`w-9 h-9 ${step.color}`} />
+            </div>
+            <!-- Number badge -->
+            <div class="absolute -top-2.5 -right-2.5 w-7 h-7 bg-accent-500 text-white rounded-full flex items-center justify-center font-extrabold text-xs shadow-md step-glow">
+              {step.n}
+            </div>
+          </div>
+          <h3 class="font-extrabold text-white text-lg mb-2">{step.title}</h3>
+          <p class="text-sm text-gray-500 leading-relaxed">{step.body}</p>
+        </div>
+      ))}
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── AREAS ──────────────────────────────────────────────────────────────── -->
+<section class="relative py-20 md:py-28 bg-[#060d1e] overflow-hidden">
+  <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.07] to-transparent" />
+
+  <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-cyan-500/15 border border-cyan-500/25 rounded-full text-sm font-semibold text-cyan-400 mb-5">
+        <Icon name="map-pin" class="w-4 h-4" />
+        אזורי שירות
+      </div>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">
+        מגיעים מכל הצפון
+      </h2>
+      <p class="text-gray-500 text-lg">
+        מושב מלאה, הגלבוע — במרכז כל ערי הצפון וכביש 65
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+      {areasSorted.map(area => (
+        <a
+          href={`/areas/${area.slug}/`}
+          class="group flex flex-col items-center gap-2 p-4 bg-white/[0.04] border border-white/[0.08] rounded-2xl hover:border-brand-500/40 hover:bg-brand-500/[0.07] hover:-translate-y-1 transition-all duration-200 text-center glow-card-blue"
+        >
+          <Icon name="map-pin" class="w-5 h-5 text-gray-600 group-hover:text-brand-400 transition-colors" />
+          <span class="font-semibold text-gray-200 group-hover:text-white text-sm leading-tight transition-colors">{area.name}</span>
+          <span class="text-xs text-gray-600 group-hover:text-gray-400 transition-colors">{area.distance} ק"מ</span>
+        </a>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── FAQ ────────────────────────────────────────────────────────────────── -->
+<FAQ items={faqs} title="שאלות נפוצות" />
+
+<!-- ─── CTA ────────────────────────────────────────────────────────────────── -->
+<CTABanner
+  title="מוכן לשדרג את הרכב שלך?"
+  subtitle="ייעוץ חינמי בטלפון או וואטסאפ — עונים תוך שעה"
+/>
+
+</BaseLayout>

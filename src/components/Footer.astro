@@ -1,0 +1,100 @@
+---
+import business from '../data/business.js'
+import { servicesByCategory } from '../data/services.js'
+import { areasSorted } from '../data/areas.js'
+
+const year = new Date().getFullYear()
+---
+
+<footer class="bg-gray-900 text-gray-300 mt-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+
+      <!-- Business info -->
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-10 h-10 rounded-lg bg-white text-brand-900 flex items-center justify-center font-bold text-xl">
+            א
+          </div>
+          <span class="font-bold text-white text-lg">{business.name}</span>
+        </div>
+        <p class="text-sm leading-relaxed mb-4">
+          {business.tagline}
+        </p>
+        <p class="text-sm">
+          <span class="block">{business.address.street}</span>
+          <span class="block">{business.address.region}</span>
+        </p>
+      </div>
+
+      <!-- Services -->
+      <div>
+        <h3 class="font-bold text-white mb-4">שירותים</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/services/multimedia/" class="hover:text-white transition-colors">מולטימדיה לרכב</a></li>
+          {servicesByCategory.multimedia.map(s => (
+            <li><a href={`/services/${s.slug}/`} class="hover:text-white transition-colors">{s.shortTitle}</a></li>
+          ))}
+          {servicesByCategory.electrical.map(s => (
+            <li><a href={`/services/${s.slug}/`} class="hover:text-white transition-colors">{s.shortTitle}</a></li>
+          ))}
+          {servicesByCategory.other.slice(0, 3).map(s => (
+            <li><a href={`/services/${s.slug}/`} class="hover:text-white transition-colors">{s.shortTitle}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Areas -->
+      <div>
+        <h3 class="font-bold text-white mb-4">אזורי שירות</h3>
+        <ul class="space-y-2 text-sm">
+          {areasSorted.map(area => (
+            <li><a href={`/areas/${area.slug}/`} class="hover:text-white transition-colors">{area.name}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h3 class="font-bold text-white mb-4">צור קשר</h3>
+        <ul class="space-y-3 text-sm">
+          <li>
+            <a href={`tel:${business.phoneClean}`} class="flex items-center gap-2 hover:text-white transition-colors">
+              <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20.487 17.14l-4.065-3.696a1.001 1.001 0 0 0-1.391.043l-2.393 2.461c-.576-.11-1.734-.471-2.926-1.66-1.192-1.193-1.553-2.354-1.66-2.926l2.459-2.394a1 1 0 0 0 .043-1.391L6.859 3.513a1 1 0 0 0-1.391-.087l-2.17 1.861a1 1 0 0 0-.29.649c-.015.25-.301 6.172 4.291 10.766C11.305 20.707 16.323 21 17.705 21c.202 0 .326-.006.359-.008a.992.992 0 0 0 .648-.291l1.86-2.171a.997.997 0 0 0-.085-1.39z"/>
+              </svg>
+              <span class="ltr">{business.phone}</span>
+            </a>
+          </li>
+          <li>
+            <a href={`https://wa.me/${business.whatsapp}`} target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-white transition-colors">
+              <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448L.057 24z"/>
+              </svg>
+              <span>וואטסאפ</span>
+            </a>
+          </li>
+          <li>
+            <a href={`mailto:${business.email}`} class="flex items-center gap-2 hover:text-white transition-colors">
+              <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+              <span class="ltr">{business.email}</span>
+            </a>
+          </li>
+        </ul>
+
+        <h4 class="font-semibold text-white mt-6 mb-2 text-sm">שעות פעילות</h4>
+        <ul class="text-xs space-y-1">
+          <li>א׳-ה׳: 08:00-18:00</li>
+          <li>ו׳: 08:00-13:00</li>
+          <li>שבת: סגור</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-12 pt-8 border-t border-gray-800 text-sm text-center text-gray-400">
+      <p>© {year} {business.name}. כל הזכויות שמורות.</p>
+    </div>
+  </div>
+</footer>

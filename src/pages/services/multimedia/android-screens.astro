@@ -1,0 +1,263 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro'
+import FAQ from '../../../components/FAQ.astro'
+import CTABanner from '../../../components/CTABanner.astro'
+import business from '../../../data/business.js'
+
+const title = 'התקנת מסך אנדרואיד לרכב | Apple CarPlay & Android Auto'
+const description = 'מסכי אנדרואיד לרכב 7-10 אינץ\' עם Apple CarPlay ו-Android Auto. התקנה מקצועית בעפולה והאזור, חיווט מוסתר, אחריות 3 שנים. צרו קשר לייעוץ.'
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'התקנת מסך אנדרואיד לרכב',
+  provider: {
+    '@id': `${business.url}#business`,
+  },
+  areaServed: [
+    'עפולה', 'מגדל העמק', 'נוף הגליל', 'יקנעם',
+    'טבריה', 'בית שאן', 'מגידו', 'נצרת',
+  ].map(a => ({ '@type': 'City', name: a })),
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'מסכי אנדרואיד לרכב',
+    itemListElement: [
+      { '@type': 'Offer', name: 'מסך אנדרואיד 7 אינץ׳ עם CarPlay' },
+      { '@type': 'Offer', name: 'מסך אנדרואיד 9-10 אינץ׳ Premium' },
+      { '@type': 'Offer', name: 'מערכת מולטימדיה דגם רכב מותאם' },
+    ],
+  },
+}
+
+const faqs = [
+  {
+    q: 'כמה עולה התקנת מסך אנדרואיד לרכב?',
+    a: 'המחיר נע בין 800 ל-3,500 ₪ כולל התקנה, תלוי בגודל המסך, המותג, והאם נדרשים אביזרים נוספים (מצלמת רוורס, חיבור הגה, חיווט מורכב). מסך 7 אינץ׳ בסיסי עם CarPlay מתחיל ב-800 ₪, מסך 10 אינץ׳ פרימיום עם Android Auto, GPS ו-DVR נע סביב 2,500-3,500 ₪. לקבלת הצעת מחיר מדויקת לרכב הספציפי שלכם — צרו קשר.',
+  },
+  {
+    q: 'איזה גודל מסך הכי מתאים לרכב?',
+    a: 'תלוי בדגם הרכב ובהעדפה האישית. רוב המכוניות הפרטיות (טויוטה, מאזדה, יונדאי, קיה) מקבלות מסך 9 אינץ׳ נטיב — זה הגודל הנפוץ ביותר ב-2026. מסך 10 אינץ׳ הוא חלופה יוקרתית יותר אבל דורש לעיתים שינוי בקיט המסך. מסך 7 אינץ׳ מתאים לרכבים ישנים יותר או למשתמשים שמעדיפים מסך קומפקטי.',
+  },
+  {
+    q: 'מה ההבדל בין Apple CarPlay לבין Android Auto?',
+    a: 'Apple CarPlay מיועד למשתמשי iPhone, Android Auto למשתמשי אנדרואיד. שניהם מאפשרים לראות אפליקציות הניווט (Waze, Google Maps), הוואטסאפ, הספוטיפי וכו׳ על מסך הרכב במקום על הטלפון. רוב המסכים שאנחנו מתקינים תומכים בשני הסטנדרטים במקביל — אז כל אחד ברכב יכול להתחבר ללא בעיה. אנחנו ממליצים תמיד על מסכים שתומכים בשני הפרוטוקולים בחיבור אלחוטי (Wireless CarPlay).',
+  },
+  {
+    q: 'איזה מותגי מסכים אתם מתקינים?',
+    a: 'אנחנו עובדים עם המותגים המובילים בשוק: Atoto, Pumpkin, Pioneer, Alpine, Kenwood ו-Sony. הבחירה תלויה בתקציב, בדגם הרכב ובדרישות הספציפיות. Atoto ו-Pumpkin נותנים יחס מחיר/ביצועים מצוין, Pioneer ו-Alpine הם המותגים הפרימיום עם איכות צליל מובילה.',
+  },
+  {
+    q: 'כמה זמן ההתקנה לוקחת?',
+    a: 'התקנה סטנדרטית של מסך אנדרואיד אורכת 2-4 שעות. במקרים מורכבים יותר (רכב נדיר, חיבור למצלמת רוורס, מערכת שמע מקורית מורכבת) יכול להגיע ל-5-6 שעות. אנחנו תמיד מבהירים את משך ההתקנה מראש כך שתוכלו לתכנן בהתאם. רוב הלקוחות מביאים את הרכב בבוקר וחוזרים אחר הצהריים.',
+  },
+  {
+    q: 'האם המערכת תעבוד גם ברכב יד שנייה או ישן?',
+    a: 'בהחלט. אנחנו מתמחים בשדרוג רכבים מ-2008 ומעלה — והאמת היא שדווקא ברכבים האלו השדרוג נראה הכי מרשים, כי המסך המקורי מיושן או לא קיים. רכבי יד שנייה אפילו מקבלים יתרון: ערכת התקנה מותאמת לרוב הדגמים הפופולריים בישראל, כולל מאזדה, יונדאי, קיה, פורד, פיג׳ו ועוד.',
+  },
+  {
+    q: 'האם אפשר להוסיף מצלמת רוורס לאחר ההתקנה?',
+    a: 'כן, וזה אפילו מומלץ — רוב המסכים שלנו מגיעים מוכנים לחיבור מצלמת רוורס (יש פין מיוחד למצלמה אחורית). אם תרצו, אפשר להתקין את שניהם יחד באותו יום (חוסך זמן וכסף) או להוסיף את המצלמה בהמשך.',
+  },
+  {
+    q: 'מה האחריות שאתם נותנים?',
+    a: 'אחריות 3 שנים על העבודה (חיווט, התקנה) ואחריות יצרן מלאה על המוצר (תלוי במותג, בדרך כלל 1-2 שנים). אם משהו לא עובד או נראה לא תקין — מחזירים אותו אלינו והכל מתוקן ללא תשלום. אנחנו לוקחים את האחריות ברצינות — זה ההבדל בין מתקין מקצועי לבין מתקין שמהר.',
+  },
+]
+---
+
+<BaseLayout title={title} description={description} schema={schema}>
+
+  <!-- Breadcrumb -->
+  <nav class="bg-gray-50 border-b border-gray-200 py-3" aria-label="breadcrumb">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-600">
+      <a href="/" class="hover:text-brand-700">בית</a>
+      <span class="mx-2">›</span>
+      <a href="/services/multimedia/" class="hover:text-brand-700">מולטימדיה</a>
+      <span class="mx-2">›</span>
+      <span class="text-gray-900 font-medium">מסכי אנדרואיד</span>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="bg-gradient-to-bl from-brand-900 to-brand-700 text-white py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-6">
+        התקנת מסך אנדרואיד לרכב<br/>
+        <span class="text-accent-500">בעפולה והגלבוע</span>
+      </h1>
+      <p class="text-lg md:text-xl text-blue-100 leading-relaxed">
+        מסכי מולטימדיה אנדרואיד 7-10 אינץ׳, עם Apple CarPlay ו-Android Auto.
+        התקנה מקצועית עם חיווט מוסתר, אחריות 3 שנים, ושירות אישי לכל לקוח.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main content -->
+  <article class="py-12 md:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 prose-content">
+
+      <!-- Intro -->
+      <section class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+          מסך אנדרואיד לרכב — לא רק אבזור, שדרוג אמיתי לנהיגה
+        </h2>
+        <p class="text-gray-700 leading-relaxed text-lg mb-4">
+          רוב הרכבים בישראל מ-2010 ומעלה מגיעים עם מערכת מולטימדיה מקורית שכבר לא תואמת
+          את הסטנדרטים של 2026 — אין Apple CarPlay, אין Android Auto, אין ניווט Waze מובנה,
+          ומסך הנגיעה מיושן. השדרוג למסך אנדרואיד מודרני הוא אחד השדרוגים החשובים והשימושיים
+          ביותר שתוכלו לעשות לרכב.
+        </p>
+        <p class="text-gray-700 leading-relaxed text-lg">
+          ב<strong>אמיר מערכות</strong>, אנחנו מתמחים בהתקנת מסכי אנדרואיד לרכב כבר {business.stats.yearsOfExperience}+ שנים.
+          ביצענו מעל {business.stats.installationsCount.toLocaleString()} התקנות באזור עפולה, הגלבוע ועמק יזרעאל,
+          ואנחנו יודעים בדיוק איזה מסך מתאים לכל דגם רכב — בלי לזרוק לכם את "המוצר היקר ביותר" כדי להגדיל
+          את החשבונית.
+        </p>
+      </section>
+
+      <!-- What's in it for you -->
+      <section class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+          מה תקבלו ממסך אנדרואיד חדש?
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+            <div class="text-2xl mb-2">🗺️</div>
+            <h3 class="font-bold text-gray-900 mb-2">ניווט Waze / Google Maps על מסך גדול</h3>
+            <p class="text-sm text-gray-600">
+              בלי לסכן את הראייה בטלפון. ניווט מלא במסך 9-10 אינץ׳ בקטע ראייה ישיר של הנהג.
+            </p>
+          </div>
+          <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+            <div class="text-2xl mb-2">📞</div>
+            <h3 class="font-bold text-gray-900 mb-2">שיחות הנדס-פרי איכותיות</h3>
+            <p class="text-sm text-gray-600">
+              חיבור Bluetooth אוטומטי. שיחות נשמעות דרך הרמקולים, מיקרופון מובנה, ללא תקלות.
+            </p>
+          </div>
+          <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+            <div class="text-2xl mb-2">🎵</div>
+            <h3 class="font-bold text-gray-900 mb-2">מוזיקה מ-Spotify ו-Apple Music</h3>
+            <p class="text-sm text-gray-600">
+              שליטה מלאה על המוזיקה דרך המסך, או דרך הטלפון, או דרך כפתורי ההגה.
+            </p>
+          </div>
+          <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+            <div class="text-2xl mb-2">📹</div>
+            <h3 class="font-bold text-gray-900 mb-2">מצלמת רוורס משולבת</h3>
+            <p class="text-sm text-gray-600">
+              חיבור למצלמת רוורס מותקנת (קיימת או חדשה). תמונה אוטומטית בעת הילוך אחורי.
+            </p>
+          </div>
+          <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+            <div class="text-2xl mb-2">🎮</div>
+            <h3 class="font-bold text-gray-900 mb-2">כפתורי ההגה ממשיכים לעבוד</h3>
+            <p class="text-sm text-gray-600">
+              במהלך ההתקנה אנחנו מתאימים את כפתורי ההגה המקוריים לעבוד עם המסך החדש.
+            </p>
+          </div>
+          <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+            <div class="text-2xl mb-2">📺</div>
+            <h3 class="font-bold text-gray-900 mb-2">סטרימינג של YouTube ו-Netflix</h3>
+            <p class="text-sm text-gray-600">
+              בעצירות בלבד. במהלך נסיעה, השמע ממשיך אבל המסך אוטומטית כבה לבטיחות.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Process -->
+      <section class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+          תהליך ההתקנה — שלב אחר שלב
+        </h2>
+        <ol class="space-y-4">
+          <li class="flex gap-4">
+            <div class="flex-shrink-0 w-10 h-10 bg-brand-900 text-white rounded-full flex items-center justify-center font-bold">1</div>
+            <div>
+              <h3 class="font-bold text-gray-900 mb-1">שיחת ייעוץ ובדיקת רכב</h3>
+              <p class="text-gray-700">בודקים את הרכב, מבינים את הצרכים, ומציעים את האפשרויות המתאימות. שיחה זו ללא עלות וללא התחייבות.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <div class="flex-shrink-0 w-10 h-10 bg-brand-900 text-white rounded-full flex items-center justify-center font-bold">2</div>
+            <div>
+              <h3 class="font-bold text-gray-900 mb-1">הצעת מחיר ותיאום תור</h3>
+              <p class="text-gray-700">לאחר בחירת המסך, נותנים הצעת מחיר סופית. תיאום התור בהתאם לזמינות שלכם — בדרך כלל תוך 2-7 ימים.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <div class="flex-shrink-0 w-10 h-10 bg-brand-900 text-white rounded-full flex items-center justify-center font-bold">3</div>
+            <div>
+              <h3 class="font-bold text-gray-900 mb-1">פירוק והתקנה מקצועית</h3>
+              <p class="text-gray-700">פירוק זהיר של הלוח המקורי, התקנת המסך החדש, חיווט נקי ומוסתר, וחיבור לכל מערכות הרכב הרלוונטיות (רדיו, רמקולים, מצלמה, כפתורי הגה).</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <div class="flex-shrink-0 w-10 h-10 bg-brand-900 text-white rounded-full flex items-center justify-center font-bold">4</div>
+            <div>
+              <h3 class="font-bold text-gray-900 mb-1">בדיקות ושיוך לטלפון</h3>
+              <p class="text-gray-700">בדיקות מקיפות של כל הפונקציות. שיוך הטלפון של הלקוח באמצעות Bluetooth ו-CarPlay/Android Auto. הדגמה של כל הפיצ׳רים.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <div class="flex-shrink-0 w-10 h-10 bg-brand-900 text-white rounded-full flex items-center justify-center font-bold">5</div>
+            <div>
+              <h3 class="font-bold text-gray-900 mb-1">אחריות + שירות לטווח ארוך</h3>
+              <p class="text-gray-700">3 שנות אחריות על העבודה. כל בעיה — חוזרים אלינו, פותרים בלי תשלום. וגם תמיכה טלפונית לכל שאלה.</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <!-- Brands -->
+      <section class="mb-12 p-6 bg-gray-50 rounded-xl">
+        <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-4">
+          המותגים שאנחנו מתקינים
+        </h2>
+        <p class="text-gray-700 leading-relaxed mb-4">
+          אנחנו עובדים אך ורק עם מותגים מוכרים ואיכותיים. אנו מתקינים מסכי
+          <strong> Atoto, Pumpkin, Pioneer, Alpine, Kenwood</strong> ו-<strong>Sony</strong>.
+          לכל מותג היתרונות שלו, ואנחנו ממליצים על המתאים ביותר לפי דגם הרכב, התקציב,
+          וההעדפות האישיות שלכם.
+        </p>
+        <p class="text-gray-700 leading-relaxed">
+          <strong>Atoto ו-Pumpkin</strong> הם הבחירה הפופולרית ביותר בשנה האחרונה —
+          יחס מחיר/ביצועים מצוין, תמיכה רחבה בדגמי רכב, ועדכוני תוכנה רגילים.
+          <strong>Pioneer ו-Alpine</strong> הם המותגים הפרימיום — מתאימים ללקוחות שלא
+          מתפשרים על איכות צליל ועיבוד תמונה.
+        </p>
+      </section>
+
+      <!-- Internal links -->
+      <section class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+          שירותים נלווים שאולי יעניינו אתכם
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <a href="/services/multimedia/parking-cameras/" class="block p-5 bg-white border border-gray-200 rounded-lg hover:border-brand-500 hover:shadow transition">
+            <h3 class="font-bold text-gray-900 mb-2">📹 מצלמות רוורס</h3>
+            <p class="text-sm text-gray-600">חיבור מצלמת רוורס למסך החדש — תוספת מומלצת.</p>
+          </a>
+          <a href="/services/multimedia/sound-systems/" class="block p-5 bg-white border border-gray-200 rounded-lg hover:border-brand-500 hover:shadow transition">
+            <h3 class="font-bold text-gray-900 mb-2">🔊 מערכות שמע</h3>
+            <p class="text-sm text-gray-600">שדרוג הרמקולים והגברה — שלימות צליל מלאה.</p>
+          </a>
+          <a href="/services/multimedia/dashcam/" class="block p-5 bg-white border border-gray-200 rounded-lg hover:border-brand-500 hover:shadow transition">
+            <h3 class="font-bold text-gray-900 mb-2">🎥 דאשקאם</h3>
+            <p class="text-sm text-gray-600">מצלמת רכב עם הקלטה — שילוב מצוין עם המסך.</p>
+          </a>
+        </div>
+      </section>
+    </div>
+  </article>
+
+  <!-- FAQ -->
+  <FAQ items={faqs} title="שאלות נפוצות על התקנת מסכי אנדרואיד" />
+
+  <!-- CTA -->
+  <CTABanner
+    title="מוכן לשדרג למסך אנדרואיד?"
+    subtitle="ייעוץ חינמי, הצעת מחיר תוך שעה — בלי התחייבות"
+  />
+</BaseLayout>

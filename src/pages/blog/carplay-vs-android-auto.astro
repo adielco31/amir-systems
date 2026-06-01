@@ -1,0 +1,259 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import FAQ from '../../components/FAQ.astro'
+import CTABanner from '../../components/CTABanner.astro'
+import business from '../../data/business.js'
+
+const title = 'Apple CarPlay vs Android Auto — מה ההבדל האמיתי? (2026)'
+const description = 'השוואה מלאה: CarPlay מול Android Auto — מה עדיף לניווט, מוזיקה ושיחות? איזה מסך לקנות? המדריך של המומחים שמתקינים שניהם כל יום.'
+const datePublished = '2026-06-01'
+const dateModified = '2026-06-01'
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description: description,
+  datePublished: datePublished,
+  dateModified: dateModified,
+  author: {
+    '@type': 'Person',
+    name: business.ownerName,
+    jobTitle: 'מומחה מולטימדיה לרכב',
+  },
+  publisher: { '@id': `${business.url}#business` },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': `${business.url}/blog/carplay-vs-android-auto/` },
+  image: `${business.url}/images/blog/carplay-vs-android-auto.jpg`,
+}
+
+const faqs = [
+  {
+    q: 'CarPlay או Android Auto — מה עדיף לניווט?',
+    a: 'שניהם מעולים — Waze ו-Google Maps עובדים על שניהם. ההבדל: CarPlay מציג את Waze בצורה יותר נוחה על מסכים גדולים, בעוד Android Auto מציג ניווט קצת פחות "חלק" ב-Waze אך טוב יותר ב-Google Maps. לניווט טהור, ההבדל קטן.',
+  },
+  {
+    q: 'האם CarPlay אלחוטי שווה את התוספת במחיר?',
+    a: 'כן — בהפרש של 200-400 ₪ לעומת חוטי, CarPlay אלחוטי מסיר את הבלגן בכבל ומחבר אוטומטית כשנכנסים לרכב. אחרי שבוע של שימוש, רוב לקוחות שלנו אומרים שלא היו חוזרים לחוטי.',
+  },
+  {
+    q: 'יש מסך שתומך בשניהם — CarPlay וגם Android Auto?',
+    a: 'כן — כמעט כל המסכים שאנחנו מתקינים תומכים בשניהם. המשפחה תוכל להשתמש בשניהם, כל אחד עם הטלפון שלו. זה אחד היתרונות של מסך אנדרואיד גנרי על פני מסך יצרן.',
+  },
+  {
+    q: 'על איזה טלפונים CarPlay עובד?',
+    a: 'CarPlay עובד עם iPhone 5 ומעלה — iOS 7.1+. ב-2026 כמעט כל אייפון בשימוש יתמוך בו. Android Auto עובד עם אנדרואיד 6.0 ומעלה — כמעט כל טלפון אנדרואיד מהשנים האחרונות.',
+  },
+  {
+    q: 'האם Google Maps ב-CarPlay כמו Android Auto?',
+    a: 'כמעט זהה מבחינת פונקציות. ב-CarPlay, Apple Maps מוגדר כברירת מחדל ואפשר לשנות ל-Google Maps / Waze. ב-Android Auto, Google Maps הוא ברירת המחדל. שניהם מקבלים עדכוני תנועה בזמן אמת.',
+  },
+]
+---
+<BaseLayout title={title} description={description} schema={schema}>
+  <nav class="bg-gray-50 border-b border-gray-200 py-3">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-600">
+      <a href="/" class="hover:text-brand-700">בית</a><span class="mx-2">›</span>
+      <a href="/blog/" class="hover:text-brand-700">בלוג</a><span class="mx-2">›</span>
+      <span class="text-gray-900 font-medium">CarPlay vs Android Auto</span>
+    </div>
+  </nav>
+
+  <article class="py-12 md:py-16">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Header -->
+      <header class="mb-10">
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="text-xs font-medium bg-brand-100 text-brand-900 px-2 py-1 rounded-full">השוואות</span>
+          <span class="text-xs text-gray-500">8 דקות קריאה</span>
+          <time datetime={datePublished} class="text-xs text-gray-500">
+            {new Date(datePublished).toLocaleDateString('he-IL', { year: 'numeric', month: 'long', day: 'numeric' })}
+          </time>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-900 leading-tight mb-4">
+          Apple CarPlay vs Android Auto — מה ההבדל האמיתי?
+        </h1>
+        <p class="text-xl text-gray-600 leading-relaxed">
+          שאלה שאנחנו שומעים כל שבוע — "אני צריך CarPlay או Android Auto?" התשובה תלויה
+          בטלפון שלכם, אבל יש פרטים שכדאי לדעת לפני שמתקינים.
+        </p>
+      </header>
+
+      <!-- TL;DR -->
+      <div class="bg-brand-50 border border-brand-200 rounded-xl p-5 mb-10">
+        <h2 class="font-bold text-brand-900 mb-2">קצר ולעניין</h2>
+        <ul class="space-y-1 text-gray-800 text-sm">
+          <li>• <strong>iPhone?</strong> תרצו CarPlay — החיבור חלק יותר, הממשק אינטואיטיבי</li>
+          <li>• <strong>אנדרואיד?</strong> Android Auto — Google Maps ו-Waze בשיא הביצועים</li>
+          <li>• <strong>ברכב עם משפחה?</strong> קנו מסך שתומך בשניהם (כמעט כולם תומכים)</li>
+          <li>• <strong>אלחוטי vs חוטי?</strong> אלחוטי שווה את התוספת — נוח פי עשר</li>
+        </ul>
+      </div>
+
+      <div class="prose-content space-y-8">
+
+        <section>
+          <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">מה הם בכלל?</h2>
+          <p class="text-gray-700 leading-relaxed text-lg">
+            CarPlay הוא ממשק מיני של iPhone שמוצג על מסך הרכב — ניווט, מוזיקה, שיחות
+            ואפליקציות נתמכות. Android Auto הוא המקבילה של גוגל לאנדרואיד.
+            שניהם עושים את אותו הדבר הבסיסי: מציגים על מסך גדול את מה שהטלפון יודע לעשות,
+            בצורה בטוחה לנהיגה — בלי לגעת בטלפון.
+          </p>
+          <p class="text-gray-700 leading-relaxed text-lg">
+            ההבדל המהותי: <strong>CarPlay הוא סגור</strong> — Apple שולטת על הממשק ועל האפליקציות
+            שנכנסות. <strong>Android Auto גמיש יותר</strong> — יש ממשק מוכר (Material Design) אבל
+            התמיכה באפליקציות רחבה יותר.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">טבלת השוואה: CarPlay מול Android Auto</h2>
+          <div class="overflow-x-auto">
+            <table class="w-full border-collapse text-sm">
+              <thead>
+                <tr class="bg-gray-100">
+                  <th class="text-right p-3 border border-gray-200 font-bold text-gray-900">קריטריון</th>
+                  <th class="text-center p-3 border border-gray-200 font-bold text-gray-900">Apple CarPlay</th>
+                  <th class="text-center p-3 border border-gray-200 font-bold text-gray-900">Android Auto</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  ['טלפון נדרש', 'iPhone 5+', 'אנדרואיד 6.0+'],
+                  ['ניווט מובנה', 'Apple Maps (ברירת מחדל)', 'Google Maps (ברירת מחדל)'],
+                  ['Waze', 'כן ✓', 'כן ✓'],
+                  ['Spotify / Podcast', 'כן ✓', 'כן ✓'],
+                  ['חיבור אלחוטי', 'כן (iPhone 5+, iOS 9+)', 'כן (אנדרואיד 11+)'],
+                  ['יציבות חיבור', 'מצוין', 'טוב'],
+                  ['גמישות אפליקציות', 'מוגבלת', 'רחבה יותר'],
+                  ['ממשק', 'iOS מוכר — פשוט', 'Material Design — מוכר'],
+                  ['מחיר מסך התומך', 'זהה — כמעט כולם תומכים בשניהם', ''],
+                ].map((row, i) => (
+                  <tr class={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                    <td class="p-3 border border-gray-200 font-medium text-gray-900">{row[0]}</td>
+                    <td class="p-3 border border-gray-200 text-center text-gray-700">{row[1]}</td>
+                    <td class="p-3 border border-gray-200 text-center text-gray-700">{row[2] || row[1]}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">ניווט: מה עובד טוב יותר?</h2>
+          <p class="text-gray-700 leading-relaxed text-lg mb-4">
+            זהו הקריטריון שכולם שואלים עליו. התשובה הכנה: <strong>ב-2026, Waze עובד מצוין על שניהם.</strong>
+            Google Maps גם כן. ההבדל הוא ב"חלקות":
+          </p>
+          <ul class="space-y-3 text-gray-700 leading-relaxed">
+            <li class="flex gap-3">
+              <span class="text-accent-500 font-bold flex-shrink-0">CarPlay:</span>
+              <span>Waze על CarPlay מציג ממשק נקי, כפתורים גדולים, ומידע תנועה ברור. Apple Maps אמין לניווט בישראל ב-2026 (שיפור גדול משנים קודמות).</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-brand-700 font-bold flex-shrink-0">Android Auto:</span>
+              <span>Google Maps הוא ברירת המחדל וממש מצוין. Waze עובד אבל הממשק מקוצץ מעט יותר. עבור משתמשי Google Maps כבדים — Android Auto מנצח.</span>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">חיבור אלחוטי: שווה את זה?</h2>
+          <p class="text-gray-700 leading-relaxed text-lg mb-4">
+            כן — בלי ספק. הנה למה לקוחות שלנו שדרגו לאלחוטי אומרים שלא יחזרו:
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {[
+              { icon: '✅', title: 'נוחות', body: 'נכנסים לרכב, הטלפון מתחבר אוטומטית — אין כבל, אין חיפוש, אין בלגן.' },
+              { icon: '✅', title: 'טעינה בו זמנית', body: 'ניתן לטעון את הטלפון דרך USB בנפרד תוך כדי שימוש בחיבור אלחוטי.' },
+              { icon: '⚠️', title: 'דרישה', body: 'CarPlay אלחוטי דורש iPhone עם iOS 9+ (כמעט כל אייפון). Android Auto אלחוטי — אנדרואיד 11+.' },
+              { icon: '💰', title: 'עלות', body: 'מסכים עם אלחוטי עולים 200-400 ₪ יותר. אחרי שבוע — רוב הלקוחות אומרים שהיה שווה.' },
+            ].map(item => (
+              <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                <div class="text-2xl mb-2">{item.icon}</div>
+                <h3 class="font-bold text-gray-900 mb-1">{item.title}</h3>
+                <p class="text-sm text-gray-600">{item.body}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">מה המסך שנקנה — משנה?</h2>
+          <p class="text-gray-700 leading-relaxed text-lg mb-4">
+            כן, משנה — אבל פחות ממה שחושבים. כמעט כל מסך אנדרואיד לרכב שנמכר בשוק
+            תומך בשניהם, CarPlay וגם Android Auto. ההבדל הוא ב:
+          </p>
+          <ul class="space-y-2 text-gray-700 leading-relaxed list-disc list-inside">
+            <li><strong>איכות מסך</strong> — רזולוציה, בהירות בשמש, זווית צפייה</li>
+            <li><strong>ביצועי מעבד</strong> — כמה מהר הממשק מגיב, כמה נמצא lag</li>
+            <li><strong>אלחוטי מובנה</strong> — לא כולם כוללים אלחוטי, יש לבדוק</li>
+            <li><strong>התאמה לרכב</strong> — כמה קל ההתקנה, האם מתחבר למערכות המקוריות</li>
+          </ul>
+          <p class="text-gray-700 leading-relaxed text-lg mt-4">
+            מותגים כמו Pioneer, Kenwood ו-JVC עושים מסכים קרוסאובר עם התמיכה בשניהם. מסכים
+            גנריים (סינים) לרוב זולים יותר אך דורשים בדיקה של האיכות. אנחנו מתקינים שניהם
+            ויכולים להמליץ לפי הרכב והתקציב.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">ההמלצה שלנו</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="p-5 bg-gray-800 text-white rounded-xl">
+              <div class="text-2xl mb-2">🍎</div>
+              <h3 class="font-bold text-lg mb-2">iPhone? בחרו CarPlay אלחוטי</h3>
+              <p class="text-gray-300 text-sm">
+                חוויה חלקה, חיבור אוטומטי, ממשק מוכר. CarPlay אלחוטי + מסך טוב = שיפור משמעותי לכל נסיעה.
+              </p>
+            </div>
+            <div class="p-5 bg-brand-700 text-white rounded-xl">
+              <div class="text-2xl mb-2">🤖</div>
+              <h3 class="font-bold text-lg mb-2">אנדרואיד? Android Auto אלחוטי</h3>
+              <p class="text-blue-100 text-sm">
+                Google Maps, Waze, Spotify — כולם בשיא הביצועים. אלחוטי שתומך באנדרואיד 11+ שווה כל שקל.
+              </p>
+            </div>
+          </div>
+          <p class="text-gray-700 leading-relaxed text-lg mt-4">
+            ב<strong>אמיר מערכות</strong>, לפני כל התקנה, אנחנו שואלים מה הטלפון של הלקוח,
+            כיצד הוא משתמש ברכב (נסיעות ארוכות? עם ילדים? גרירה?), ומה התקציב — ורק אז
+            ממליצים. אם אתם לא בטוחים, וואטסאפ תוך שעה.
+          </p>
+        </section>
+
+      </div>
+
+      <!-- Author -->
+      <div class="mt-12 p-5 bg-gray-50 rounded-xl border border-gray-200 flex items-start gap-4">
+        <div class="w-12 h-12 bg-brand-700 rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">א</div>
+        <div>
+          <div class="font-bold text-gray-900">{business.ownerName}</div>
+          <div class="text-sm text-gray-500 mb-1">מומחה מולטימדיה לרכב | {business.stats.yearsOfExperience}+ שנות ניסיון</div>
+          <p class="text-sm text-gray-600">
+            מתקין CarPlay ו-Android Auto מאז שהן קיימות. יודע מה עובד בשטח — לא רק על הנייר.
+          </p>
+        </div>
+      </div>
+
+      <!-- Related posts -->
+      <div class="mt-10">
+        <h2 class="text-xl font-bold text-gray-900 mb-4">מאמרים קשורים</h2>
+        <a href="/blog/android-screen-cost/" class="block p-5 bg-white border border-gray-200 rounded-xl hover:border-brand-500 hover:shadow-md transition">
+          <div class="text-2xl mb-2">📱</div>
+          <h3 class="font-bold text-gray-900 mb-1">כמה עולה התקנת מסך אנדרואיד לרכב ב-2026?</h3>
+          <p class="text-sm text-gray-600">טווחי מחירים מפורטים, מה משפיע על המחיר, ואיך לא לשלם יותר מדי.</p>
+        </a>
+      </div>
+
+    </div>
+  </article>
+
+  <FAQ items={faqs} title="שאלות נפוצות: CarPlay מול Android Auto" />
+  <CTABanner
+    title="מוכנים להתקין? נעזור לבחור נכון"
+    subtitle="ייעוץ חינמי — נגיד בדיוק איזה מסך מתאים לרכב ולטלפון שלכם"
+  />
+</BaseLayout>

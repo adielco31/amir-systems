@@ -1,0 +1,64 @@
+---
+import Icon from './Icon.astro'
+
+const { service } = Astro.props
+
+const iconMap: Record<string, string> = {
+  'multimedia':                  'volume-2',
+  'multimedia/android-screens':  'smartphone',
+  'multimedia/parking-cameras':  'camera',
+  'multimedia/dashcam':          'video',
+  'multimedia/sound-systems':    'volume-2',
+  'electrical':                  'zap',
+  'ecu-reset':                   'cpu',
+  'scr-adblue-consulting':       'settings',
+  'towing-hitch':                'link',
+  'ac-repair':                   'snowflake',
+  'trailer-repair':              'truck',
+  'accessories':                 'shopping-bag',
+  'general-mechanics':           'wrench',
+}
+
+const themeMap: Record<string, { iconBg: string; iconText: string; hoverBorder: string; glow: string }> = {
+  'multimedia/android-screens':  { iconBg: 'bg-blue-500/15',    iconText: 'text-blue-400',    hoverBorder: 'hover:border-blue-500/40',    glow: 'glow-card-blue' },
+  'multimedia/parking-cameras':  { iconBg: 'bg-violet-500/15',  iconText: 'text-violet-400',  hoverBorder: 'hover:border-violet-500/40',  glow: 'glow-card-violet' },
+  'multimedia/dashcam':          { iconBg: 'bg-indigo-500/15',  iconText: 'text-indigo-400',  hoverBorder: 'hover:border-indigo-500/40',  glow: 'glow-card-indigo' },
+  'multimedia/sound-systems':    { iconBg: 'bg-rose-500/15',    iconText: 'text-rose-400',    hoverBorder: 'hover:border-rose-500/40',    glow: 'glow-card-rose' },
+  'electrical':                  { iconBg: 'bg-amber-500/15',   iconText: 'text-amber-400',   hoverBorder: 'hover:border-amber-500/40',   glow: 'glow-card-amber' },
+  'ecu-reset':                   { iconBg: 'bg-slate-500/15',   iconText: 'text-slate-400',   hoverBorder: 'hover:border-slate-500/40',   glow: 'glow-card-blue' },
+  'scr-adblue-consulting':       { iconBg: 'bg-orange-500/15',  iconText: 'text-orange-400',  hoverBorder: 'hover:border-orange-500/40',  glow: 'glow-card-amber' },
+  'towing-hitch':                { iconBg: 'bg-emerald-500/15', iconText: 'text-emerald-400', hoverBorder: 'hover:border-emerald-500/40', glow: 'glow-card-emerald' },
+  'ac-repair':                   { iconBg: 'bg-cyan-500/15',    iconText: 'text-cyan-400',    hoverBorder: 'hover:border-cyan-500/40',    glow: 'glow-card-cyan' },
+  'trailer-repair':              { iconBg: 'bg-stone-500/15',   iconText: 'text-stone-400',   hoverBorder: 'hover:border-stone-500/40',   glow: 'glow-card-blue' },
+  'accessories':                 { iconBg: 'bg-pink-500/15',    iconText: 'text-pink-400',    hoverBorder: 'hover:border-pink-500/40',    glow: 'glow-card-pink' },
+  'general-mechanics':           { iconBg: 'bg-yellow-500/15',  iconText: 'text-yellow-400',  hoverBorder: 'hover:border-yellow-500/40',  glow: 'glow-card-amber' },
+}
+
+const iconName = iconMap[service.slug] ?? 'settings'
+const theme = themeMap[service.slug] ?? { iconBg: 'bg-brand-500/15', iconText: 'text-brand-400', hoverBorder: 'hover:border-brand-500/40', glow: 'glow-card-blue' }
+---
+<a
+  href={`/services/${service.slug}/`}
+  class={`group flex flex-col bg-white/[0.04] border border-white/[0.09] rounded-2xl p-6 backdrop-blur-sm ${theme.hoverBorder} ${theme.glow} hover:-translate-y-1.5 transition-all duration-300 cursor-pointer`}
+>
+  <!-- Icon circle -->
+  <div class={`w-12 h-12 ${theme.iconBg} ${theme.iconText} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 flex-shrink-0`}>
+    <Icon name={iconName} class="w-6 h-6" />
+  </div>
+
+  <!-- Title -->
+  <h3 class="font-bold text-lg text-white group-hover:text-white transition-colors mb-2 leading-snug">
+    {service.shortTitle || service.title}
+  </h3>
+
+  <!-- Description -->
+  <p class="text-sm text-gray-500 leading-relaxed line-clamp-3 flex-1">
+    {service.metaDescription}
+  </p>
+
+  <!-- CTA -->
+  <span class={`inline-flex items-center gap-1.5 mt-4 ${theme.iconText} font-semibold text-sm`}>
+    ראה עוד
+    <Icon name="arrow-left" class="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
+  </span>
+</a>

@@ -1,0 +1,182 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import FAQ from '../../components/FAQ.astro'
+import CTABanner from '../../components/CTABanner.astro'
+import business from '../../data/business.js'
+import { areas } from '../../data/areas.js'
+
+const area = areas.find(a => a.slug === 'migdal-haemek')
+
+const title = area.metaTitle
+const description = area.metaDescription
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'מולטימדיה ושירותי רכב במגדל העמק',
+  provider: { '@id': `${business.url}#business` },
+  areaServed: { '@type': 'City', name: 'מגדל העמק' },
+}
+
+const services = [
+  { title: 'מסכי אנדרואיד ומולטימדיה', icon: '📱', href: '/services/multimedia/android-screens/', desc: 'Apple CarPlay ו-Android Auto על מסך 7-10 אינץ׳. ההתקנה הפופולרית ביותר.' },
+  { title: 'מצלמות רוורס', icon: '📹', href: '/services/multimedia/parking-cameras/', desc: 'מצלמה אחורית, חיישני חנייה ומערכת 360°. בטיחות בחנייה.' },
+  { title: 'דאשקאם', icon: '🎥', href: '/services/multimedia/dashcam/', desc: 'מצלמת דרך עם מצב חנייה. ראיה לביטוח בכל תאונה.' },
+  { title: 'מערכות שמע', icon: '🔊', href: '/services/multimedia/sound-systems/', desc: 'רמקולים, סאבוופר ומגבר עם כיוונון מקצועי.' },
+  { title: 'חשמלאי רכב ודיאגנוסטיקה', icon: '⚡', href: '/services/electrical/', desc: 'דיאגנוסטיקה ממוחשבת, תיקון תקלות חשמל, מצבר ואלטרנטור.' },
+  { title: 'התקנת ווי גרירה', icon: '🔗', href: '/services/towing-hitch/', desc: 'קבוע, נשלף או חשמלי. תקנים לרישוי, חיבור 7/13 פינים.' },
+  { title: 'מיזוג אוויר לרכב', icon: '❄️', href: '/services/ac-repair/', desc: 'מילוי גז, תיקון קומפרסור ואיתור דליפות.' },
+  { title: 'מכונאות כללית', icon: '🛠️', href: '/services/general-mechanics/', desc: 'טיפולים תקופתיים, בלמים, מתלים — פתרון מקיף.' },
+]
+
+const faqs = [
+  {
+    q: 'כמה זמן נסיעה ממגדל העמק אליכם?',
+    a: `מגדל העמק נמצאת ${area.distance} ק"מ מהסדנה שלנו במושב מלאה — כ-20-25 דקות בנסיעה רגועה. הדרך עוברת דרך כביש 65 או 675 לכיוון הגלבוע. רוב הלקוחות שלנו ממגדל העמק מגיעים בבוקר, משאירים את הרכב ועוסקים בעניינים — ומוצאים את הרכב מוכן לאחר הצהריים.`,
+  },
+  {
+    q: 'מה השירות הנפוץ ביותר בקרב לקוחות מגדל העמק?',
+    a: 'התקנת מסכי אנדרואיד בראש — תושבי מגדל העמק מגלים אותנו דרך חיפוש גוגל או המלצה של שכן, ויוצאים עם מסך שמשנה את חוויית הנהיגה. מקום שני חם הוא חשמלאות ודיאגנוסטיקה — לקוחות שקיבלו הצעת מחיר גבוהה מהדילר ומחפשים חלופה מקצועית ישירה יותר.',
+  },
+  {
+    q: 'האם יש צורך לקבוע תור מראש?',
+    a: 'מומלץ מאוד — כדי שתהיה מוכנים לקבל אתכם ברגע שתגיעו. ברוב המקרים יש תור תוך 2-5 ימי עסקים. לתקלות דחופות (רכב שלא עולה, בעיה לפני נסיעה ארוכה) נעשה מאמץ להכניס מוקדם יותר. קביעת תור בוואטסאפ היא הדרך המהירה ביותר.',
+  },
+  {
+    q: 'האם המחירים שלכם תחרותיים לעומת סדנאות במגדל העמק?',
+    a: 'המחירים שלנו תחרותיים, ולרוב יוצאים שווים או טובים יותר — בלי הפתעות. מה שמבדיל אותנו הוא שקיפות מלאה לפני כל עבודה, אחריות מלאה, ושירות אישי מאמיר. לקוחות ממגדל העמק חוזרים — ולרוב גם ממליצים לחברים.',
+  },
+  {
+    q: 'מגדל העמק היא עיר גדולה יחסית — למה לנסוע אליכם?',
+    a: `נכון שיש ${area.population.toLocaleString()} תושבים ויש אפשרויות בעיר עצמה. הסיבה שלקוחות ממגדל העמק מגיעים: מוניטין אישי, אחריות שניתן לסמוך עליה, ומומחיות ספציפית — במיוחד במולטימדיה לרכב, שזה תחום שלא כל מוסך מתמחה בו ברמה הנדרשת. לנסיעה של 20 דקות מקבלים הבדל משמעותי באיכות.`,
+  },
+]
+---
+
+<BaseLayout title={title} description={description} schema={schema}>
+
+  <nav class="bg-gray-50 border-b border-gray-200 py-3" aria-label="breadcrumb">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-600">
+      <a href="/" class="hover:text-brand-700">בית</a>
+      <span class="mx-2">›</span>
+      <a href="/areas/" class="hover:text-brand-700">אזורי שירות</a>
+      <span class="mx-2">›</span>
+      <span class="text-gray-900 font-medium">מגדל העמק</span>
+    </div>
+  </nav>
+
+  <section class="bg-gradient-to-bl from-brand-900 to-brand-700 text-white py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="inline-block bg-white/10 rounded-full px-4 py-1 text-sm font-medium mb-4">
+        {area.distance} ק"מ ממגדל העמק — כ-20 דקות נסיעה
+      </div>
+      <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-6">
+        מולטימדיה ושירותי רכב<br/>
+        <span class="text-accent-500">לתושבי מגדל העמק</span>
+      </h1>
+      <p class="text-lg md:text-xl text-blue-100 leading-relaxed">
+        מסכי אנדרואיד, מצלמות, דאשקאם, חשמלאות, ווי גרירה ועוד.
+        {area.distance} ק"מ מהעיר — שירות מקצועי ואישי עם אחריות מלאה.
+      </p>
+    </div>
+  </section>
+
+  <article class="py-12 md:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 prose-content">
+
+      <section class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+          לתושבי מגדל העמק — פתרון רכב מלא ב-20 דקות מהבית
+        </h2>
+        <p class="text-gray-700 leading-relaxed text-lg mb-4">
+          מגדל העמק, עם למעלה מ-{area.population.toLocaleString()} תושבים, היא אחת הערים הצעירות
+          והצומחות בצפון — ורבים מתושביה מחפשים שירות רכב מקצועי שהוא גם אישי ולא
+          עוד דילר גדול שמרגיש כמו מפעל.
+        </p>
+        <p class="text-gray-700 leading-relaxed text-lg mb-4">
+          ב<strong>אמיר מערכות</strong>, הממוקמים במושב מלאה, {area.distance} ק"מ ממגדל העמק,
+          אנחנו מטפלים בכל צרכי הרכב שלכם: מהתקנת מסך אנדרואיד שיהפוך כל נסיעה לנעימה יותר,
+          ועד אבחון תקלה חשמלית שמסדנאות אחרות לא הצליחו לפצח. שירות אישי, שקיפות מלאה,
+          ואחריות שאפשר לסמוך עליה.
+        </p>
+        <p class="text-gray-700 leading-relaxed text-lg">
+          אנחנו מכירים את שכונות מגדל העמק — רמת יזהר, הוותיקים, הגליל ועוד —
+          וכבר שנים שלקוחות מהעיר מגיעים אלינו, ממליצים לשכנים, ומגיעים שוב.
+        </p>
+      </section>
+
+      <section class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+          השירותים שאנחנו נותנים לתושבי מגדל העמק
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {services.map(svc => (
+            <a href={svc.href} class="block p-5 bg-white border border-gray-200 rounded-xl hover:border-brand-500 hover:shadow-md transition">
+              <div class="text-2xl mb-2">{svc.icon}</div>
+              <h3 class="font-bold text-gray-900 mb-2">{svc.title}</h3>
+              <p class="text-sm text-gray-600">{svc.desc}</p>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+          למה לקוחות מגדל העמק בוחרים בנו?
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+          <div class="p-5 bg-brand-900 text-white rounded-xl text-center">
+            <div class="text-3xl font-bold text-accent-500 mb-1">{business.stats.yearsOfExperience}+</div>
+            <div class="text-sm text-blue-200">שנות ניסיון</div>
+          </div>
+          <div class="p-5 bg-brand-900 text-white rounded-xl text-center">
+            <div class="text-3xl font-bold text-accent-500 mb-1">{business.stats.installationsCount.toLocaleString()}+</div>
+            <div class="text-sm text-blue-200">התקנות בוצעו</div>
+          </div>
+          <div class="p-5 bg-brand-900 text-white rounded-xl text-center">
+            <div class="text-3xl font-bold text-accent-500 mb-1">{area.distance} ק"מ</div>
+            <div class="text-sm text-blue-200">ממגדל העמק</div>
+          </div>
+        </div>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-3">
+            <span class="text-green-500 font-bold text-lg mt-0.5">✓</span>
+            <p class="text-gray-700"><strong>שקיפות לפני כל עבודה</strong> — הצעת מחיר מלאה לפני שמתחילים.</p>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-green-500 font-bold text-lg mt-0.5">✓</span>
+            <p class="text-gray-700"><strong>אחריות 3 שנים על עבודת ההתקנה</strong> — כל בעיה, חוזרים ומתקנים.</p>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-green-500 font-bold text-lg mt-0.5">✓</span>
+            <p class="text-gray-700"><strong>שירות אישי</strong> — אותה יד, אותה אחריות בכל ביקור.</p>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-green-500 font-bold text-lg mt-0.5">✓</span>
+            <p class="text-gray-700"><strong>תיאום תור גמיש</strong> — בדרך כלל תוך 2-5 ימים.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="mb-12 p-6 bg-gray-50 rounded-xl">
+        <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-4">
+          איך מגיעים אלינו ממגדל העמק?
+        </h2>
+        <p class="text-gray-700 leading-relaxed mb-3">
+          אנחנו ממוקמים <strong>במושב מלאה, מועצה אזורית הגלבוע</strong> — {area.distance} ק"מ ממגדל העמק.
+        </p>
+        <p class="text-gray-700 leading-relaxed">
+          ממגדל העמק: כביש <strong>675</strong> מזרחה, ממשיכים לכיוון הגלבוע ומגיעים למושב מלאה.
+          לחלופין דרך עפולה וכביש <strong>71</strong>. Waze לחיפוש "אמיר מערכות, מושב מלאה" יוביל ישירות.
+        </p>
+      </section>
+    </div>
+  </article>
+
+  <FAQ items={faqs} title="שאלות נפוצות מתושבי מגדל העמק" />
+
+  <CTABanner
+    title="תושב מגדל העמק? 20 דקות מפרידות בינכם לבין שירות מקצועי"
+    subtitle="ייעוץ חינמי, הצעת מחיר תוך שעה — בלי התחייבות"
+  />
+</BaseLayout>

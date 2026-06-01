@@ -1,0 +1,325 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import FAQ from '../../components/FAQ.astro'
+import CTABanner from '../../components/CTABanner.astro'
+import business from '../../data/business.js'
+
+const title = 'כמה עולה התקנת מסך אנדרואיד לרכב ב-2026? המדריך המלא למחירים'
+const description = 'טווחי מחירים מפורטים לפי גודל מסך ומותג, מה משפיע על העלות, ואיך לא לשלם יותר מדי — המדריך של אמיר מערכות לפני שמתקינים מסך אנדרואיד לרכב.'
+
+const publishDate = '2026-06-01'
+const modifiedDate = '2026-06-01'
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description: description,
+  datePublished: publishDate,
+  dateModified: modifiedDate,
+  author: {
+    '@type': 'Person',
+    name: business.ownerName,
+    jobTitle: 'מומחה מולטימדיה לרכב',
+    worksFor: { '@id': `${business.url}#business` },
+  },
+  publisher: {
+    '@id': `${business.url}#business`,
+  },
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': `${business.url}/blog/android-screen-cost/`,
+  },
+}
+
+const faqs = [
+  {
+    q: 'האם כדאי לחסוך ולקנות מסך זול?',
+    a: 'מסכים זולים מאוד (מתחת ל-300 ₪) עלולים להיות בעיה: מעבד איטי שגורם לתקיעות, מסך נגיעה שלא מגיב, ו-CarPlay שמקפיא. מסך אנדרואיד הוא רכיב שאתם נוגעים בו 10 פעמים ביום — כדאי לקנות מותג מוכר ולא לחסוך 200 ₪ שיגרמו לצרות. Atoto ו-Pumpkin הם נקודת כניסה טובה ומהימנה.',
+  },
+  {
+    q: 'מה כלול בהצעת המחיר?',
+    a: 'אצלנו, המחיר כולל את המסך עצמו, ערכת ההתקנה הייעודית לדגם הרכב, חיווט מוסתר, חיבור הגה, שיוך מצלמת רוורס קיימת (אם יש), ובדיקות סופיות. אין תוספות מפתיעות בסוף. לפני שאתם מקבלים הצעה ממקום אחר — בדקו בדיוק מה כלול.',
+  },
+  {
+    q: 'האם אפשר לקנות מסך בעצמי ולהביא להתקנה?',
+    a: 'כן, ואנחנו מתקינים מסכים שלקוחות מביאים — אך עם הסתייגות: אנחנו לא יכולים לתת אחריות על המוצר עצמו אם קנינו אותו ממקום אחר. על העבודה עצמה — כן, ניתנת אחריות מלאה. מה שכן: לפני שקונים, שווה לשאול אותנו — לפעמים נוכל להשיג לכם את אותו מסך במחיר דומה עם אחריות מלאה.',
+  },
+  {
+    q: 'כמה זמן ההתקנה לוקחת?',
+    a: 'התקנה סטנדרטית אורכת 2-4 שעות. ברכבים מורכבים (עם מערכת שמע מקורית מיוחדת, CAN Bus מורכב, או רכב נדיר) — עד 6 שעות. אנחנו מבהירים את משך ההתקנה מראש, ורוב הלקוחות מביאים בבוקר וחוזרים אחר הצהריים.',
+  },
+  {
+    q: 'איזה מסך הכי מומלץ לרכב יד שנייה ישן?',
+    a: 'לרכבים מ-2008-2015 ללא מסך מקורי — Atoto S8 Gen 3 או Pumpkin PA03 הם אפשרויות מצוינות. הם תומכים ב-Wireless CarPlay/Android Auto, GPS מובנה, ומגיעים עם ערכות לדגמים פופולריים בישראל. לרכב עם מסך מקורי שרוצים להחליף — בודקים ספציפית לפי הדגם.',
+  },
+]
+
+const priceTable = [
+  { type: 'מסך 7 אינץ׳ בסיסי עם CarPlay', brand: 'Atoto / Pumpkin בסיסי', price: '800–1,200 ₪', notes: 'כולל התקנה, מתאים לרכבים ישנים' },
+  { type: 'מסך 9 אינץ׳ סטנדרטי', brand: 'Atoto S8 / Pumpkin PA03', price: '1,200–1,800 ₪', notes: 'הפופולרי ביותר — יחס מחיר/ביצועים מצוין' },
+  { type: 'מסך 10 אינץ׳ פרימיום', brand: 'Pioneer / Alpine / Kenwood', price: '2,000–3,500 ₪', notes: 'צליל ועיבוד תמונה מובילים' },
+  { type: 'מסך נטיב (OEM-style)', brand: 'תלוי ביצרן הרכב', price: '2,500–4,500 ₪', notes: 'מתאים בדיוק ל-slot המקורי, מראה מקורי' },
+  { type: 'מסך 4K עם DSP ו-GPS', brand: 'Atoto F7 / Alpine Halo', price: '3,000–5,000 ₪', notes: 'Top tier — לשוחרי איכות' },
+]
+---
+
+<BaseLayout title={title} description={description} schema={schema}>
+
+  <!-- Breadcrumb -->
+  <nav class="bg-gray-50 border-b border-gray-200 py-3" aria-label="breadcrumb">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-600">
+      <a href="/" class="hover:text-brand-700">בית</a>
+      <span class="mx-2">›</span>
+      <a href="/blog/" class="hover:text-brand-700">בלוג</a>
+      <span class="mx-2">›</span>
+      <span class="text-gray-900 font-medium">כמה עולה מסך אנדרואיד לרכב</span>
+    </div>
+  </nav>
+
+  <!-- Article hero -->
+  <section class="py-10 md:py-14 border-b border-gray-100">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="text-xs font-medium bg-brand-100 text-brand-900 px-2 py-1 rounded-full">מחירים ומדריכים</span>
+        <span class="text-xs text-gray-500">7 דקות קריאה</span>
+        <span class="text-xs text-gray-500">
+          {new Date(publishDate).toLocaleDateString('he-IL', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </span>
+      </div>
+      <h1 class="text-3xl md:text-4xl font-bold text-gray-900 leading-tight mb-4">
+        כמה עולה התקנת מסך אנדרואיד לרכב ב-2026?<br/>
+        <span class="text-brand-700">המדריך המלא למחירים</span>
+      </h1>
+      <p class="text-lg text-gray-600 leading-relaxed">
+        אם חיפשתם "כמה עולה מסך אנדרואיד לרכב" וקיבלתם תשובות כלליות שלא עוזרות — הגעתם למקום הנכון.
+        מ-{business.stats.yearsOfExperience}+ שנות התקנות, הנה פירוט מלא של המחירים, הגורמים שמשפיעים עליהם, ואיך לא לשלם יותר מדי.
+      </p>
+    </div>
+  </section>
+
+  <!-- Article body -->
+  <article class="py-10 md:py-14">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- TL;DR box -->
+      <div class="bg-brand-50 border border-brand-200 rounded-xl p-6 mb-10">
+        <h2 class="font-bold text-brand-900 text-lg mb-3">תשובה קצרה (TL;DR)</h2>
+        <ul class="space-y-2 text-brand-800">
+          <li>💰 <strong>מסך בסיסי 7 אינץ׳ עם CarPlay:</strong> 800–1,200 ₪ כולל התקנה</li>
+          <li>💰 <strong>מסך 9 אינץ׳ פופולרי:</strong> 1,200–1,800 ₪ כולל התקנה</li>
+          <li>💰 <strong>מסך פרימיום 10 אינץ׳:</strong> 2,000–3,500 ₪ כולל התקנה</li>
+          <li>💰 <strong>מסך נטיב (OEM-look):</strong> 2,500–4,500 ₪ כולל התקנה</li>
+          <li>📍 מחירים ניתנים לאישור לפי דגם הרכב — <a href="/contact/" class="font-medium underline">צרו קשר</a> לציטוט מדויק</li>
+        </ul>
+      </div>
+
+      <!-- Section 1 -->
+      <section class="mb-10">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          מה בדיוק כלול ב"מחיר ההתקנה"?
+        </h2>
+        <p class="text-gray-700 leading-relaxed mb-4">
+          הטעות הנפוצה ביותר בהשוואת מחירים היא להשוות "מחיר מסך בלבד" מול "מחיר כולל הכל".
+          מתקין מקצועי ייתן לכם מחיר שכולל:
+        </p>
+        <ul class="space-y-3 mb-4">
+          <li class="flex items-start gap-3">
+            <span class="text-brand-700 font-bold mt-0.5">✓</span>
+            <div>
+              <strong class="text-gray-900">המסך עצמו</strong>
+              <p class="text-gray-600 text-sm">הרכיב הגדול ביותר בעלות — תלוי במותג, גודל ורמת הפיצ׳רים.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-brand-700 font-bold mt-0.5">✓</span>
+            <div>
+              <strong class="text-gray-900">ערכת מתאם (OEM Kit)</strong>
+              <p class="text-gray-600 text-sm">מסגרת ומתאם חשמלי ייעודיים לדגם הרכב — בלי הערכה הזו, התקנה נקייה בלתי אפשרית. עולה 100–350 ₪ לפי הדגם.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-brand-700 font-bold mt-0.5">✓</span>
+            <div>
+              <strong class="text-gray-900">מתאם כפתורי הגה</strong>
+              <p class="text-gray-600 text-sm">מאפשר לכפתורי ההגה המקוריים לשלוט במסך החדש. הכרחי ברכבים עם כפתורים בהגה.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-brand-700 font-bold mt-0.5">✓</span>
+            <div>
+              <strong class="text-gray-900">עבודת ההתקנה</strong>
+              <p class="text-gray-600 text-sm">2–4 שעות עבודה מקצועית — פירוק, חיווט, חיבור, כיול, בדיקות.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-brand-700 font-bold mt-0.5">✓</span>
+            <div>
+              <strong class="text-gray-900">שיוך לטלפון</strong>
+              <p class="text-gray-600 text-sm">הגדרת CarPlay/Android Auto, Bluetooth, ואפליקציות — כך שיוצאים עם הכל עובד.</p>
+            </div>
+          </li>
+        </ul>
+        <p class="text-gray-700 leading-relaxed text-sm bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          💡 <strong>טיפ:</strong> כשמקבלים הצעת מחיר, שאלו בדיוק מה כלול. "מחיר מסך בלבד 600 ₪" יכול להפוך ל-1,400 ₪ אחרי שמוסיפים ערכת מתאם, מתאם הגה ועבודה.
+        </p>
+      </section>
+
+      <!-- Price table -->
+      <section class="mb-10">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          טבלת מחירים — לפי סוג מסך (2026)
+        </h2>
+        <div class="overflow-x-auto rounded-xl border border-gray-200">
+          <table class="w-full text-sm">
+            <thead class="bg-brand-900 text-white">
+              <tr>
+                <th class="p-3 text-right font-semibold">סוג מסך</th>
+                <th class="p-3 text-right font-semibold">מותגים לדוגמה</th>
+                <th class="p-3 text-right font-semibold ltr">מחיר כולל התקנה</th>
+                <th class="p-3 text-right font-semibold">הערות</th>
+              </tr>
+            </thead>
+            <tbody>
+              {priceTable.map((row, i) => (
+                <tr class={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                  <td class="p-3 font-medium text-gray-900">{row.type}</td>
+                  <td class="p-3 text-gray-600 ltr">{row.brand}</td>
+                  <td class="p-3 font-bold text-brand-900">{row.price}</td>
+                  <td class="p-3 text-gray-500 text-xs">{row.notes}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-500 mt-2">* מחירים לדוגמה מינואר–יוני 2026 בשוק הישראלי. תלויים בדגם הרכב הספציפי.</p>
+      </section>
+
+      <!-- Section 2 -->
+      <section class="mb-10">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          5 גורמים שמשפיעים הכי הרבה על המחיר
+        </h2>
+
+        <div class="space-y-6">
+          <div>
+            <h3 class="font-bold text-gray-900 mb-2">1. גודל ורזולוציית המסך</h3>
+            <p class="text-gray-700 leading-relaxed">
+              מסך 7 אינץ׳ הוא הבסיסי ביותר ומתאים לרכבים עם slot צר. מסך 9 אינץ׳ הוא הסטנדרט
+              הנפוץ ב-2026 — מציע שטח תצוגה נוח בלי לשבש את לוח המחוונים. מסך 10 אינץ׳ נותן
+              חוויה גדולה יותר אבל לפעמים דורש שינוי קיט. המחיר עולה עם הגודל, אבל לא תמיד
+              גדול יותר = טוב יותר — תלוי בפרופורציות הרכב.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="font-bold text-gray-900 mb-2">2. מותג המסך</h3>
+            <p class="text-gray-700 leading-relaxed">
+              <strong>Atoto ו-Pumpkin</strong> הם המותגים הפופולריים בטווח הבינוני —
+              חיבור אלחוטי לCarPlay, מעבד מהיר, ותמיכה ב-DSP מובנה. <strong>Pioneer ו-Alpine</strong>
+              הם פרימיום — איכות צליל מובילה, build quality גבוה, אבל מחיר גבוה בהתאם.
+              <strong>Kenwood ו-Sony</strong> נמצאים באמצע — אמינים ומכובדים בשוק.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="font-bold text-gray-900 mb-2">3. CarPlay אלחוטי לעומת קווי</h3>
+            <p class="text-gray-700 leading-relaxed">
+              CarPlay קווי (USB) הוא הסטנדרט הבסיסי — חיבור מהיר ויציב. CarPlay <em>אלחוטי</em>
+              (Wireless) נוח יותר כי לא צריך לחבר כבל, אבל מוסיף לרוב 200–500 ₪ למחיר.
+              ב-2026 רוב המסכים האיכותיים כבר מגיעים עם אלחוטי כברירת מחדל — אם אתם
+              רואים הצעה של מסך ב-2026 שתומך רק ב-CarPlay קווי בטווח הבינוני-גבוה, בדקו מחדש.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="font-bold text-gray-900 mb-2">4. מורכבות הרכב</h3>
+            <p class="text-gray-700 leading-relaxed">
+              לרכבים נפוצים (טויוטה קורולה, יונדאי i35, קיה ספורטג׳, מאזדה 3) יש ערכות
+              התקנה זמינות ומוכנות — העבודה פשוטה ומהירה. לרכבים נדירים, אירופאיים מורכבים
+              (BMW, Mercedes, Audi), או לרכבים עם מערכת שמע מקורית פרימיום (Bose, Harman) —
+              נדרשים מתאמים נוספים ועבודה מורכבת יותר, מה שמוסיף לעלות.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="font-bold text-gray-900 mb-2">5. תוספות נלוות</h3>
+            <p class="text-gray-700 leading-relaxed">
+              מצלמת רוורס (אם אין) — מוסיפה 400–900 ₪. DSP חיצוני לכיוון שמע — 300–800 ₪.
+              מתאם אנטנה לרדיו — 80–150 ₪. בדרך כלל כדאי לעשות הכל בביקור אחד — חוסך
+              עלויות עבודה חוזרת.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3 -->
+      <section class="mb-10">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          האם כדאי לקנות מסך מ-AliExpress ולהביא להתקנה?
+        </h2>
+        <p class="text-gray-700 leading-relaxed mb-4">
+          שאלה שעולה הרבה. התשובה היא: <strong>אפשרי, אבל עם סיכון</strong>.
+        </p>
+        <p class="text-gray-700 leading-relaxed mb-4">
+          יתרון: חוסכים 200–600 ₪ על מחיר המסך. חסרון: אם המסך מגיע פגום, עם firmware
+          ישן שלא תומך ב-CarPlay כנדרש, או עם בעיה שמתגלה רק אחרי ההתקנה — אחריות
+          היצרן ל-AliExpress היא בירוקרטיה מכאיבה, ואנחנו לא יכולים לתת אחריות
+          על רכיב שלא סיפקנו.
+        </p>
+        <p class="text-gray-700 leading-relaxed">
+          ההמלצה שלנו: לפני שקונים מ-AliExpress — <a href="/contact/" class="text-brand-700 font-medium hover:underline">שאלו אותנו</a>.
+          לרוב נוכל לספק את אותו מסך בהפרש קטן, עם אחריות מלאה ובידיעה שמגיע מהארץ ולא
+          מחכה שבועות בדרך.
+        </p>
+      </section>
+
+      <!-- Section 4 — local angle -->
+      <section class="mb-10">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          מחירי התקנה בעפולה ואזור הגלבוע — מה מצפה לכם אצלנו
+        </h2>
+        <p class="text-gray-700 leading-relaxed mb-4">
+          ב<strong>אמיר מערכות</strong>, הממוקמים במושב מלאה (כ-15 דקות מעפולה), המחירים שלנו
+          שקופים ומכוונים ליחס מחיר/ביצועים המיטבי — לא לדחוף את המסך היקר ביותר.
+        </p>
+        <p class="text-gray-700 leading-relaxed mb-4">
+          לאחר {business.stats.yearsOfExperience}+ שנות עבודה ומעל {business.stats.installationsCount.toLocaleString()} התקנות, אנחנו יודעים
+          בדיוק איזה מסך מתאים לאיזה רכב ולאיזה תקציב. כשלקוח מגיע עם תקציב של 1,200 ₪
+          לרכב משפחתי — לא נמכור לו מסך פרימיום שלא יגיד לו יותר. כשלקוח רוצה את הכי
+          טוב — נסביר לו בדיוק מה ההבדל ששווה את ההשקעה.
+        </p>
+        <div class="bg-gray-50 rounded-xl p-5 border border-gray-200">
+          <h3 class="font-bold text-gray-900 mb-3">הצעת מחיר ב-3 שלבים פשוטים:</h3>
+          <ol class="space-y-2 text-gray-700">
+            <li class="flex gap-3"><span class="font-bold text-brand-700">1.</span> <span>שלחו וואטסאפ עם שם הרכב, שנה, ומה אתם צריכים (CarPlay בלבד? עם מצלמה? עם שמע?)</span></li>
+            <li class="flex gap-3"><span class="font-bold text-brand-700">2.</span> <span>תקבלו הצעת מחיר מפורטת תוך שעה</span></li>
+            <li class="flex gap-3"><span class="font-bold text-brand-700">3.</span> <span>מתאמים תור — ויוצאים עם מסך שמשנה את חוויית הנהיגה</span></li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Author bio -->
+      <div class="mt-12 p-5 bg-gray-50 rounded-xl border border-gray-200 flex gap-4 items-start">
+        <div class="text-4xl flex-shrink-0">🔧</div>
+        <div>
+          <p class="font-bold text-gray-900">{business.ownerName} — אמיר מערכות</p>
+          <p class="text-sm text-gray-600 leading-relaxed">
+            מומחה מולטימדיה לרכב עם {business.stats.yearsOfExperience}+ שנות ניסיון ומעל {business.stats.installationsCount.toLocaleString()} התקנות באזור
+            עפולה, הגלבוע ועמק יזרעאל. הכותב של כל המדריכים באתר זה.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </article>
+
+  <!-- FAQ -->
+  <FAQ items={faqs} title="שאלות שעולות לפני ההתקנה" />
+
+  <!-- CTA -->
+  <CTABanner
+    title="מוכנים לקבל הצעת מחיר מדויקת?"
+    subtitle="שלחו שם רכב + שנה — נחזור עם מחיר תוך שעה"
+  />
+</BaseLayout>

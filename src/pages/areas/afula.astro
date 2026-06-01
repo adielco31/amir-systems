@@ -1,0 +1,276 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import FAQ from '../../components/FAQ.astro'
+import CTABanner from '../../components/CTABanner.astro'
+import business from '../../data/business.js'
+import { areas } from '../../data/areas.js'
+
+const area = areas.find(a => a.slug === 'afula')
+
+const title = area.metaTitle
+const description = area.metaDescription
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'מולטימדיה ושירותי רכב בעפולה',
+  provider: {
+    '@id': `${business.url}#business`,
+  },
+  areaServed: {
+    '@type': 'City',
+    name: 'עפולה',
+    containedInPlace: {
+      '@type': 'State',
+      name: 'מחוז הצפון',
+    },
+  },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'שירותי רכב לעפולה',
+    itemListElement: [
+      { '@type': 'Offer', name: 'התקנת מסך אנדרואיד לרכב לתושבי עפולה' },
+      { '@type': 'Offer', name: 'חשמלאי רכב לתושבי עפולה' },
+      { '@type': 'Offer', name: 'התקנת ווי גרירה בעפולה' },
+    ],
+  },
+}
+
+const services = [
+  {
+    title: 'מסכי אנדרואיד ומולטימדיה',
+    icon: '📱',
+    href: '/services/multimedia/android-screens/',
+    desc: 'מסכי 7-10 אינץ׳ עם Apple CarPlay ו-Android Auto. ההתקנה הפופולרית ביותר בקרב לקוחות עפולה.',
+  },
+  {
+    title: 'מצלמות רוורס',
+    icon: '📹',
+    href: '/services/multimedia/parking-cameras/',
+    desc: 'מצלמת רוורס אחורית, חיישני חנייה ומערכת 360°. שדרוג הבטיחות הנגיש ביותר.',
+  },
+  {
+    title: 'דאשקאם',
+    icon: '🎥',
+    href: '/services/multimedia/dashcam/',
+    desc: 'מצלמת דרך עם מצב חנייה ותיעוד 24/7. ראיה ביטוחית בכל נסיעה.',
+  },
+  {
+    title: 'מערכות שמע',
+    icon: '🔊',
+    href: '/services/multimedia/sound-systems/',
+    desc: 'רמקולים איכותיים, סאבוופרים ומגברים עם כיוונון מקצועי.',
+  },
+  {
+    title: 'חשמלאי רכב ודיאגנוסטיקה',
+    icon: '⚡',
+    href: '/services/electrical/',
+    desc: 'אבחון ממוחשב, תיקון תקלות חשמל, מצבר ואלטרנטור. ניסיון {business.stats.yearsOfExperience}+ שנים.',
+  },
+  {
+    title: 'התקנת ווי גרירה',
+    icon: '🔗',
+    href: '/services/towing-hitch/',
+    desc: 'ווי גרירה קבועים, נשלפים וחשמליים לכל סוגי הרכבים. עם אישור מבחן רישוי.',
+  },
+  {
+    title: 'מיזוג אוויר לרכב',
+    icon: '❄️',
+    href: '/services/ac-repair/',
+    desc: 'מילוי גז, תיקון קומפרסור ואיתור דליפות. שירות מהיר לקיץ הישראלי.',
+  },
+  {
+    title: 'מכונאות כללית',
+    icon: '🛠️',
+    href: '/services/general-mechanics/',
+    desc: 'טיפולים תקופתיים, בלמים, מתלים — בשילוב חשמלאות לפתרון מקיף.',
+  },
+]
+
+const faqs = [
+  {
+    q: 'מאיפה אתם ביחס לעפולה?',
+    a: `אנחנו ממוקמים במושב מלאה, ${area.distance} ק"מ בלבד מעפולה — כ-15 דקות נסיעה. המיקום במועצה אזורית הגלבוע נותן יתרון לתושבי עפולה: לא צריך להתמודד עם פקקים עירוניים, ויש לנו חניה נוחה ומרווחת. רוב לקוחות עפולה אצלנו מגיעים דרך כביש 71 או 65.`,
+  },
+  {
+    q: 'האם אתם מגיעים לעפולה עצמה לשירות?',
+    a: 'לעיתים, בהתאם לסוג השירות ולתיאום מראש — במיוחד לגבי דיאגנוסטיקה דחופה ורכב שלא יכול לנסוע. שירותי התקנה (מסכים, מצלמות, ווי גרירה) מחייבים הגעה לסדנה שלנו כי נדרש ציוד מקצועי. ניסיון גבי הנסיעה אלינו — כ-15 דקות על כביש פנוי, וחוזרים עם שדרוג שנמשך שנים.',
+  },
+  {
+    q: 'כמה לקוחות מעפולה יש לכם?',
+    a: `עפולה היא אחת הערים הגדולות שאנחנו משרתים עם ${area.population.toLocaleString()} תושבים ואחת הערים עם הכי הרבה לקוחות חוזרים. הרבה מהלקוחות הגיעו לראשונה בגלל מסך אנדרואיד וחזרו אחר כך לווי גרירה, דאשקאם, או בעיה חשמלית. אנחנו גאים בקשרים ארוכי הטווח שבנינו עם לקוחות מהאזור.`,
+  },
+  {
+    q: 'מה שירות הדגל שלכם ללקוחות עפולה?',
+    a: 'התקנת מסכי אנדרואיד היא הפופולרית ביותר — זה השדרוג שהכי הרבה לקוחות מגיעים אליו ויוצאים ממש מרוצים. שירות נוסף שגדל מאוד בביקוש הוא חשמלאי רכב ודיאגנוסטיקה — תושבי עפולה שמחפשים חלופה מהימנה לדילרים היקרים מגלים אותנו ונשארים. ווי גרירה הוא גם ביקוש גבוה, במיוחד בקרב בעלי קרוונים ודגים בכנרת.',
+  },
+  {
+    q: 'האם תושבי עפולה צריכים לקבוע תור מראש?',
+    a: 'מומלץ מאוד. בשגרה אנחנו מקצים תורים לפי סוג ומורכבות השירות. ברוב המקרים יש תור זמין תוך 2-5 ימי עסקים. לתקלות דחופות (רכב שלא עולה, בעיה חשמלית בטרם נסיעה ארוכה) נעשה מאמץ להכניס בהקדם — צרו קשר ישירות.',
+  },
+  {
+    q: 'האם המחירים שלכם שונים ממוסכים בעפולה עצמה?',
+    a: 'המחירים שלנו תחרותיים ולעיתים טובים יותר — ובלי הסתרות. המיקום מחוץ לעיר אומר פחות עלויות תפעוליות. מה שחשוב יותר: אנחנו לא לוחצים לשדרג כאשר לא נחוץ, ומציגים את הממצאים בשקיפות לפני כל תיקון. לקוחות עפולה חוזרים — ואנחנו מאמינים שזה בזכות שקיפות, לא רק מחיר.',
+  },
+]
+---
+
+<BaseLayout title={title} description={description} schema={schema}>
+
+  <!-- Breadcrumb -->
+  <nav class="bg-gray-50 border-b border-gray-200 py-3" aria-label="breadcrumb">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-600">
+      <a href="/" class="hover:text-brand-700">בית</a>
+      <span class="mx-2">›</span>
+      <a href="/areas/" class="hover:text-brand-700">אזורי שירות</a>
+      <span class="mx-2">›</span>
+      <span class="text-gray-900 font-medium">עפולה</span>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="bg-gradient-to-bl from-brand-900 to-brand-700 text-white py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="inline-block bg-white/10 rounded-full px-4 py-1 text-sm font-medium mb-4">
+        {area.distance} ק"מ מעפולה — כ-15 דקות נסיעה
+      </div>
+      <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-6">
+        מולטימדיה ושירותי רכב<br/>
+        <span class="text-accent-500">לתושבי עפולה והאזור</span>
+      </h1>
+      <p class="text-lg md:text-xl text-blue-100 leading-relaxed">
+        מסכי אנדרואיד, מצלמות, דאשקאם, חשמלאות, ווי גרירה ועוד.
+        שירות אישי, אחריות מלאה, מחירים הוגנים — {area.distance} ק"מ מעפולה.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main content -->
+  <article class="py-12 md:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 prose-content">
+
+      <!-- Intro -->
+      <section class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+          עפולה — הלקוחות שלנו, השכנים שלנו
+        </h2>
+        <p class="text-gray-700 leading-relaxed text-lg mb-4">
+          עפולה, עם למעלה מ-{area.population.toLocaleString()} תושבים, היא בירת עמק יזרעאל
+          ואחת הערים הגדולות בצפון. תושבי עפולה וסביבתה — גבעת המורה, יזרעאל, נווה רמז
+          ועמקים נוספים — הם חלק גדול ומשמעותי מבסיס הלקוחות שלנו כבר שנים.
+        </p>
+        <p class="text-gray-700 leading-relaxed text-lg mb-4">
+          ב<strong>אמיר מערכות</strong>, הממוקמים במושב מלאה, {area.distance} ק"מ בלבד מעפולה,
+          אנחנו מכירים את הרחוב ואת הדרישות של הנהג המקומי — בין אם זה שדרוג מסך
+          במכונית יד שנייה שנרכשה, תיקון בעיה חשמלית שהמוסך הישן לא הצליח לפצח, או
+          התקנת ווי גרירה לפני טיול בצפון.
+        </p>
+        <p class="text-gray-700 leading-relaxed text-lg">
+          הגעה אלינו לוקחת כ-15 דקות מרכז עפולה — ויוצאים עם עבודה מקצועית, אחריות מלאה,
+          ושירות שמתייחס אליכם כאנשים, לא כמספרים בתור.
+        </p>
+      </section>
+
+      <!-- Services grid -->
+      <section class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+          השירותים שאנחנו נותנים לתושבי עפולה
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {services.map(svc => (
+            <a href={svc.href} class="block p-5 bg-white border border-gray-200 rounded-xl hover:border-brand-500 hover:shadow-md transition">
+              <div class="text-2xl mb-2">{svc.icon}</div>
+              <h3 class="font-bold text-gray-900 mb-2">{svc.title}</h3>
+              <p class="text-sm text-gray-600">{svc.desc}</p>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <!-- Local stats / trust -->
+      <section class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+          למה לקוחות עפולה בוחרים בנו?
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+          <div class="p-5 bg-brand-900 text-white rounded-xl text-center">
+            <div class="text-3xl font-bold text-accent-500 mb-1">{business.stats.yearsOfExperience}+</div>
+            <div class="text-sm text-blue-200">שנות ניסיון</div>
+          </div>
+          <div class="p-5 bg-brand-900 text-white rounded-xl text-center">
+            <div class="text-3xl font-bold text-accent-500 mb-1">{business.stats.installationsCount.toLocaleString()}+</div>
+            <div class="text-sm text-blue-200">התקנות בוצעו</div>
+          </div>
+          <div class="p-5 bg-brand-900 text-white rounded-xl text-center">
+            <div class="text-3xl font-bold text-accent-500 mb-1">{area.distance} ק"מ</div>
+            <div class="text-sm text-blue-200">ממרכז עפולה</div>
+          </div>
+        </div>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-3">
+            <span class="text-green-500 font-bold text-lg mt-0.5">✓</span>
+            <p class="text-gray-700"><strong>שקיפות לפני כל עבודה</strong> — מסבירים מה נמצא ומה עלות התיקון לפני שמתחילים.</p>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-green-500 font-bold text-lg mt-0.5">✓</span>
+            <p class="text-gray-700"><strong>אחריות 3 שנים על עבודת ההתקנה</strong> — כל בעיה, מחזירים ומתקנים ללא תשלום.</p>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-green-500 font-bold text-lg mt-0.5">✓</span>
+            <p class="text-gray-700"><strong>שירות אישי מאמיר עצמו</strong> — לא עובד חדש בכל פעם. אותה יד, אותה אחריות.</p>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-green-500 font-bold text-lg mt-0.5">✓</span>
+            <p class="text-gray-700"><strong>תיאום תור גמיש</strong> — בדרך כלל תוך 2-5 ימים, לתקלות דחופות נעשה מאמץ מיוחד.</p>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-green-500 font-bold text-lg mt-0.5">✓</span>
+            <p class="text-gray-700"><strong>מחירים הוגנים</strong> — בלי תוספות מפתיעות, בלי לחץ לשדרג כשלא צריך.</p>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Location / how to get here -->
+      <section class="mb-12 p-6 bg-gray-50 rounded-xl">
+        <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-4">
+          איך מגיעים אלינו מעפולה?
+        </h2>
+        <p class="text-gray-700 leading-relaxed mb-3">
+          אנחנו ממוקמים <strong>במושב מלאה, מועצה אזורית הגלבוע</strong> — {area.distance} ק"מ מעפולה.
+        </p>
+        <p class="text-gray-700 leading-relaxed mb-3">
+          מעפולה: צאו מזרחה על <strong>כביש 71</strong> לכיוון בית שאן, ופנו שמאלה לכיוון מושב מלאה.
+          לחלופין דרך <strong>כביש 65</strong> צפונה לכיוון הגלבוע. הניווט ב-Waze לחיפוש "אמיר מערכות, מושב מלאה" יוביל אתכם ישירות.
+        </p>
+        <p class="text-gray-700 leading-relaxed text-sm text-gray-500">
+          ניתן לקבוע תור בטלפון / וואטסאפ לפני ההגעה.
+        </p>
+      </section>
+
+      <!-- Neighborhoods -->
+      <section class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+          משרתים את כל שכונות עפולה
+        </h2>
+        <p class="text-gray-700 leading-relaxed mb-4">
+          אנחנו מקבלים לקוחות מכל רחבי עפולה והסביבה — מרכז העיר, גבעת המורה, שכונת יזרעאל,
+          נווה רמז, ומיישובים הסמוכים כמו מגדל העמק, נוף הגליל, גבעת אלונים, בית השיטה,
+          ועמקים נוספים בסביבה.
+        </p>
+        <p class="text-gray-700 leading-relaxed">
+          אם אתם לא בטוחים האם כדאי להגיע — צרו קשר בוואטסאפ עם תיאור הצורך, ונגיד לכם
+          מה אנחנו ממליצים לפני שאתם נוסעים לשום מקום.
+        </p>
+      </section>
+    </div>
+  </article>
+
+  <!-- FAQ -->
+  <FAQ items={faqs} title="שאלות נפוצות מתושבי עפולה" />
+
+  <!-- CTA -->
+  <CTABanner
+    title="תושב עפולה? 15 דקות נסיעה מפרידות בינכם לבין שירות מקצועי"
+    subtitle="ייעוץ חינמי, הצעת מחיר תוך שעה — בלי התחייבות"
+  />
+</BaseLayout>
