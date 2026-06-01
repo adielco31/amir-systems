@@ -55,18 +55,20 @@ const faqs = [
 
 <BaseLayout title={title} description={description} schema={schema}>
 
-  <nav class="bg-gray-50 border-b border-gray-200 py-3" aria-label="breadcrumb">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-600">
-      <a href="/" class="hover:text-brand-700">בית</a>
+  <nav class="bg-[#040912] border-b border-white/[0.07] py-3" aria-label="breadcrumb">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-400">
+      <a href="/" class="hover:text-white">בית</a>
       <span class="mx-2">›</span>
-      <a href="/areas/" class="hover:text-brand-700">אזורי שירות</a>
+      <a href="/areas/" class="hover:text-white">אזורי שירות</a>
       <span class="mx-2">›</span>
-      <span class="text-gray-900 font-medium">מגדל העמק</span>
+      <span class="text-white font-medium">מגדל העמק</span>
     </div>
   </nav>
 
-  <section class="bg-gradient-to-bl from-brand-900 to-brand-700 text-white py-16 md:py-20">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section class="relative bg-[#040912] text-white py-16 md:py-20 overflow-hidden">
+    <div class="absolute inset-0 tech-grid opacity-30 pointer-events-none" />
+    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(29,78,216,0.4) 0%, transparent 65%);" />
+    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="inline-block bg-white/10 rounded-full px-4 py-1 text-sm font-medium mb-4">
         {area.distance} ק"מ ממגדל העמק — כ-20 דקות נסיעה
       </div>
@@ -81,59 +83,59 @@ const faqs = [
     </div>
   </section>
 
-  <article class="py-12 md:py-16">
+  <article class="py-12 md:py-16 bg-[#060d1e]">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 prose-content">
 
       <section class="mb-12">
-        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
           לתושבי מגדל העמק — פתרון רכב מלא ב-20 דקות מהבית
         </h2>
-        <p class="text-gray-700 leading-relaxed text-lg mb-4">
+        <p class="text-gray-300 leading-relaxed text-lg mb-4">
           מגדל העמק, עם למעלה מ-{area.population.toLocaleString()} תושבים, היא אחת הערים הצעירות
           והצומחות בצפון — ורבים מתושביה מחפשים שירות רכב מקצועי שהוא גם אישי ולא
           עוד דילר גדול שמרגיש כמו מפעל.
         </p>
-        <p class="text-gray-700 leading-relaxed text-lg mb-4">
+        <p class="text-gray-300 leading-relaxed text-lg mb-4">
           ב<strong>אמיר מערכות</strong>, הממוקמים במושב מלאה, {area.distance} ק"מ ממגדל העמק,
           אנחנו מטפלים בכל צרכי הרכב שלכם: מהתקנת מסך אנדרואיד שיהפוך כל נסיעה לנעימה יותר,
           ועד אבחון תקלה חשמלית שמסדנאות אחרות לא הצליחו לפצח. שירות אישי, שקיפות מלאה,
           ואחריות שאפשר לסמוך עליה.
         </p>
-        <p class="text-gray-700 leading-relaxed text-lg">
+        <p class="text-gray-300 leading-relaxed text-lg">
           אנחנו מכירים את שכונות מגדל העמק — רמת יזהר, הוותיקים, הגליל ועוד —
           וכבר שנים שלקוחות מהעיר מגיעים אלינו, ממליצים לשכנים, ומגיעים שוב.
         </p>
       </section>
 
       <section class="mb-12">
-        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">
           השירותים שאנחנו נותנים לתושבי מגדל העמק
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           {services.map(svc => (
-            <a href={svc.href} class="block p-5 bg-white border border-gray-200 rounded-xl hover:border-brand-500 hover:shadow-md transition">
+            <a href={svc.href} class="block p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl hover:border-brand-500/40 hover:bg-white/[0.07] transition-all backdrop-blur-sm">
               <div class="text-2xl mb-2">{svc.icon}</div>
-              <h3 class="font-bold text-gray-900 mb-2">{svc.title}</h3>
-              <p class="text-sm text-gray-600">{svc.desc}</p>
+              <h3 class="font-bold text-white mb-2">{svc.title}</h3>
+              <p class="text-sm text-gray-400">{svc.desc}</p>
             </a>
           ))}
         </div>
       </section>
 
       <section class="mb-12">
-        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">
           למה לקוחות מגדל העמק בוחרים בנו?
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          <div class="p-5 bg-brand-900 text-white rounded-xl text-center">
+          <div class="p-5 bg-white/[0.05] border border-white/[0.09] rounded-xl text-center">
             <div class="text-3xl font-bold text-accent-500 mb-1">{business.stats.yearsOfExperience}+</div>
             <div class="text-sm text-blue-200">שנות ניסיון</div>
           </div>
-          <div class="p-5 bg-brand-900 text-white rounded-xl text-center">
+          <div class="p-5 bg-white/[0.05] border border-white/[0.09] rounded-xl text-center">
             <div class="text-3xl font-bold text-accent-500 mb-1">{business.stats.installationsCount.toLocaleString()}+</div>
             <div class="text-sm text-blue-200">התקנות בוצעו</div>
           </div>
-          <div class="p-5 bg-brand-900 text-white rounded-xl text-center">
+          <div class="p-5 bg-white/[0.05] border border-white/[0.09] rounded-xl text-center">
             <div class="text-3xl font-bold text-accent-500 mb-1">{area.distance} ק"מ</div>
             <div class="text-sm text-blue-200">ממגדל העמק</div>
           </div>
@@ -141,31 +143,31 @@ const faqs = [
         <ul class="space-y-3">
           <li class="flex items-start gap-3">
             <span class="text-green-500 font-bold text-lg mt-0.5">✓</span>
-            <p class="text-gray-700"><strong>שקיפות לפני כל עבודה</strong> — הצעת מחיר מלאה לפני שמתחילים.</p>
+            <p class="text-gray-300"><strong>שקיפות לפני כל עבודה</strong> — הצעת מחיר מלאה לפני שמתחילים.</p>
           </li>
           <li class="flex items-start gap-3">
             <span class="text-green-500 font-bold text-lg mt-0.5">✓</span>
-            <p class="text-gray-700"><strong>אחריות 3 שנים על עבודת ההתקנה</strong> — כל בעיה, חוזרים ומתקנים.</p>
+            <p class="text-gray-300"><strong>אחריות 3 שנים על עבודת ההתקנה</strong> — כל בעיה, חוזרים ומתקנים.</p>
           </li>
           <li class="flex items-start gap-3">
             <span class="text-green-500 font-bold text-lg mt-0.5">✓</span>
-            <p class="text-gray-700"><strong>שירות אישי</strong> — אותה יד, אותה אחריות בכל ביקור.</p>
+            <p class="text-gray-300"><strong>שירות אישי</strong> — אותה יד, אותה אחריות בכל ביקור.</p>
           </li>
           <li class="flex items-start gap-3">
             <span class="text-green-500 font-bold text-lg mt-0.5">✓</span>
-            <p class="text-gray-700"><strong>תיאום תור גמיש</strong> — בדרך כלל תוך 2-5 ימים.</p>
+            <p class="text-gray-300"><strong>תיאום תור גמיש</strong> — בדרך כלל תוך 2-5 ימים.</p>
           </li>
         </ul>
       </section>
 
       <section class="mb-12 p-6 bg-gray-50 rounded-xl">
-        <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-4">
+        <h2 class="text-xl md:text-2xl font-bold text-white mb-4">
           איך מגיעים אלינו ממגדל העמק?
         </h2>
-        <p class="text-gray-700 leading-relaxed mb-3">
+        <p class="text-gray-300 leading-relaxed mb-3">
           אנחנו ממוקמים <strong>במושב מלאה, מועצה אזורית הגלבוע</strong> — {area.distance} ק"מ ממגדל העמק.
         </p>
-        <p class="text-gray-700 leading-relaxed">
+        <p class="text-gray-300 leading-relaxed">
           ממגדל העמק: כביש <strong>675</strong> מזרחה, ממשיכים לכיוון הגלבוע ומגיעים למושב מלאה.
           לחלופין דרך עפולה וכביש <strong>71</strong>. Waze לחיפוש "אמיר מערכות, מושב מלאה" יוביל ישירות.
         </p>

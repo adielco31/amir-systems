@@ -44,16 +44,18 @@ const faqs = [
 ]
 ---
 <BaseLayout title={title} description={description} schema={schema}>
-  <nav class="bg-gray-50 border-b border-gray-200 py-3">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-600">
-      <a href="/" class="hover:text-brand-700">בית</a><span class="mx-2">›</span>
-      <a href="/services/" class="hover:text-brand-700">שירותים</a><span class="mx-2">›</span>
-      <span class="text-gray-900 font-medium">אביזרים לרכב</span>
+  <nav class="bg-[#040912] border-b border-white/[0.07] py-3">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-400">
+      <a href="/" class="hover:text-white">בית</a><span class="mx-2">›</span>
+      <a href="/services/" class="hover:text-white">שירותים</a><span class="mx-2">›</span>
+      <span class="text-white font-medium">אביזרים לרכב</span>
     </div>
   </nav>
 
-  <section class="bg-gradient-to-bl from-brand-900 to-brand-700 text-white py-16 md:py-20">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section class="relative bg-[#040912] text-white py-16 md:py-20 overflow-hidden">
+    <div class="absolute inset-0 tech-grid opacity-30 pointer-events-none" />
+    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(29,78,216,0.4) 0%, transparent 65%);" />
+    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-6">
         אביזרים לרכב<br/>
         <span class="text-accent-500">מותגים מובילים, ייעוץ מקצועי</span>
@@ -65,18 +67,18 @@ const faqs = [
     </div>
   </section>
 
-  <article class="py-12 md:py-16">
+  <article class="py-12 md:py-16 bg-[#060d1e]">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 prose-content">
 
       <section class="mb-12">
-        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">האביזר הנכון — לרכב הספציפי שלכם</h2>
-        <p class="text-gray-700 leading-relaxed text-lg mb-4">
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">האביזר הנכון — לרכב הספציפי שלכם</h2>
+        <p class="text-gray-300 leading-relaxed text-lg mb-4">
           השוק מוצף באביזרי רכב — מה שמסתיר לעיתים קרובות פער גדול באיכות ובהתאמה.
           מסך שעובד מצוין ברכב אחד עשוי להיות בעייתי ברכב אחר, ורמקול ש"נשמע חזק"
           בתצוגה עלול להישמע גרוע כשהוא מותקן. בגלל זה אנחנו בוחרים ביחד אתכם —
           לא מוכרים מהמדף.
         </p>
-        <p class="text-gray-700 leading-relaxed text-lg">
+        <p class="text-gray-300 leading-relaxed text-lg">
           ב<strong>אמיר מערכות</strong>, אנחנו מוכרים רק מוצרים שאנחנו יודעים שמתאימים לרכב
           ולשימוש. {business.stats.yearsOfExperience}+ שנות התקנות מלמדות הרבה על מה עובד לאורך זמן —
           ועל מה שנראה טוב בפרסום אבל לא מחזיק בשטח.
@@ -84,24 +86,24 @@ const faqs = [
       </section>
 
       <section class="mb-12">
-        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">קטגוריות המוצרים</h2>
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">קטגוריות המוצרים</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           {categories.map(c => (
             <div class="p-5 bg-gray-50 rounded-xl border border-gray-200">
               <div class="text-3xl mb-3">{c.icon}</div>
-              <h3 class="font-bold text-gray-900 mb-2 text-lg">{c.name}</h3>
-              <p class="text-sm text-gray-600">{c.items}</p>
+              <h3 class="font-bold text-white mb-2 text-lg">{c.name}</h3>
+              <p class="text-sm text-gray-400">{c.items}</p>
             </div>
           ))}
         </div>
       </section>
 
       <section class="mb-12 p-6 bg-gray-50 rounded-xl">
-        <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-4">הבדל בין קנייה אצלנו לקנייה אונליין</h2>
+        <h2 class="text-xl md:text-2xl font-bold text-white mb-4">הבדל בין קנייה אצלנו לקנייה אונליין</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h3 class="font-bold text-gray-900 mb-3">✅ קנייה אצלנו</h3>
-            <ul class="space-y-2 text-sm text-gray-700">
+            <h3 class="font-bold text-white mb-3">✅ קנייה אצלנו</h3>
+            <ul class="space-y-2 text-sm text-gray-300">
               <li>• ייעוץ מה מתאים לרכב הספציפי</li>
               <li>• אחריות יצרן + שירות ישיר בארץ</li>
               <li>• התקנה מקצועית באותו מקום</li>
@@ -110,8 +112,8 @@ const faqs = [
             </ul>
           </div>
           <div>
-            <h3 class="font-bold text-gray-900 mb-3">⚠️ קנייה אונליין</h3>
-            <ul class="space-y-2 text-sm text-gray-700">
+            <h3 class="font-bold text-white mb-3">⚠️ קנייה אונליין</h3>
+            <ul class="space-y-2 text-sm text-gray-300">
               <li>• זמן המתנה לאספקה</li>
               <li>• לא בטוח שמתאים לרכב הספציפי</li>
               <li>• אחריות דרך יבואן — לעיתים מסורבלת</li>

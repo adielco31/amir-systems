@@ -12,11 +12,10 @@ const year = new Date().getFullYear()
 
       <!-- Business info -->
       <div>
-        <div class="flex items-center gap-2 mb-4">
-          <div class="w-10 h-10 rounded-lg bg-white text-brand-900 flex items-center justify-center font-bold text-xl">
-            א
-          </div>
-          <span class="font-bold text-white text-lg">{business.name}</span>
+        <div class="mb-4">
+          <a href="/">
+            <img src="/logo.png" alt={business.name} class="h-14 w-auto object-contain" />
+          </a>
         </div>
         <p class="text-sm leading-relaxed mb-4">
           {business.tagline}

@@ -30,11 +30,11 @@ const posts = [
 
 <BaseLayout title={title} description={description}>
 
-  <nav class="bg-gray-50 border-b border-gray-200 py-3" aria-label="breadcrumb">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-600">
-      <a href="/" class="hover:text-brand-700">בית</a>
+  <nav class="bg-[#040912] border-b border-white/[0.07] py-3" aria-label="breadcrumb">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-400">
+      <a href="/" class="hover:text-white">בית</a>
       <span class="mx-2">›</span>
-      <span class="text-gray-900 font-medium">בלוג</span>
+      <span class="text-white font-medium">בלוג</span>
     </div>
   </nav>
 
@@ -49,7 +49,7 @@ const posts = [
     </div>
   </section>
 
-  <section class="py-12 md:py-16">
+  <section class="py-12 md:py-16 bg-[#060d1e]">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="space-y-6">
         {posts.map(post => (
@@ -58,13 +58,13 @@ const posts = [
               <div class="text-4xl flex-shrink-0">{post.icon}</div>
               <div class="flex-1">
                 <div class="flex flex-wrap gap-2 mb-2">
-                  <span class="text-xs font-medium bg-brand-100 text-brand-900 px-2 py-1 rounded-full">{post.category}</span>
+                  <span class="text-xs font-medium bg-brand-100 text-brand-300 px-2 py-1 rounded-full">{post.category}</span>
                   <span class="text-xs text-gray-500">{post.readTime}</span>
                 </div>
-                <h2 class="text-xl font-bold text-gray-900 mb-2 hover:text-brand-700 transition-colors">
+                <h2 class="text-xl font-bold text-white mb-2 hover:text-white transition-colors">
                   {post.title}
                 </h2>
-                <p class="text-gray-600 leading-relaxed">
+                <p class="text-gray-400 leading-relaxed">
                   {post.excerpt}
                 </p>
                 <p class="text-sm text-gray-400 mt-3">
@@ -77,8 +77,8 @@ const posts = [
       </div>
 
       <div class="mt-12 p-6 bg-gray-50 rounded-xl text-center">
-        <p class="text-gray-600 mb-2">אנחנו מפרסמים מדריכים חדשים באופן קבוע.</p>
-        <p class="text-gray-600">יש שאלה שתרצו שנענה עליה? <a href="/contact/" class="text-brand-700 font-medium hover:underline">כתבו לנו</a>.</p>
+        <p class="text-gray-400 mb-2">אנחנו מפרסמים מדריכים חדשים באופן קבוע.</p>
+        <p class="text-gray-400">יש שאלה שתרצו שנענה עליה? <a href="/contact/" class="text-brand-400 font-medium hover:underline">כתבו לנו</a>.</p>
       </div>
     </div>
   </section>

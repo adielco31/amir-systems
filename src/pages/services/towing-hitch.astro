@@ -68,19 +68,21 @@ const faqs = [
 <BaseLayout title={title} description={description} schema={schema}>
 
   <!-- Breadcrumb -->
-  <nav class="bg-gray-50 border-b border-gray-200 py-3" aria-label="breadcrumb">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-600">
-      <a href="/" class="hover:text-brand-700">בית</a>
+  <nav class="bg-[#040912] border-b border-white/[0.07] py-3" aria-label="breadcrumb">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-400">
+      <a href="/" class="hover:text-white">בית</a>
       <span class="mx-2">›</span>
-      <a href="/services/" class="hover:text-brand-700">שירותים</a>
+      <a href="/services/" class="hover:text-white">שירותים</a>
       <span class="mx-2">›</span>
-      <span class="text-gray-900 font-medium">התקנת ווי גרירה</span>
+      <span class="text-white font-medium">התקנת ווי גרירה</span>
     </div>
   </nav>
 
   <!-- Hero -->
-  <section class="bg-gradient-to-bl from-brand-900 to-brand-700 text-white py-16 md:py-20">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section class="relative bg-[#040912] text-white py-16 md:py-20 overflow-hidden">
+    <div class="absolute inset-0 tech-grid opacity-30 pointer-events-none" />
+    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(29,78,216,0.4) 0%, transparent 65%);" />
+    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-6">
         התקנת וו גרירה לרכב<br/>
         <span class="text-accent-500">בעפולה והגלבוע</span>
@@ -93,21 +95,21 @@ const faqs = [
   </section>
 
   <!-- Main content -->
-  <article class="py-12 md:py-16">
+  <article class="py-12 md:py-16 bg-[#060d1e]">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 prose-content">
 
       <!-- Intro -->
       <section class="mb-12">
-        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
           וו גרירה — שדרוג שפותח עולמות
         </h2>
-        <p class="text-gray-700 leading-relaxed text-lg mb-4">
+        <p class="text-gray-300 leading-relaxed text-lg mb-4">
           קרוון, נגרר שטח, נגרר בית, אופנועים, ציוד חקלאי — וו הגרירה הוא מה שהופך
           את הרכב שלכם מכלי תחבורה לכלי שירות אמיתי. לתושבי עמק יזרעאל, הגלבוע
           ואזורי הצפון שאוהבים קרוונים, נסיעות שטח וטיולים ממושכים — וו גרירה
           מקצועי הוא אחד השדרוגים המשתלמים ביותר שאפשר לעשות לרכב.
         </p>
-        <p class="text-gray-700 leading-relaxed text-lg">
+        <p class="text-gray-300 leading-relaxed text-lg">
           ב<strong>אמיר מערכות</strong>, אנחנו מתקינים ווי גרירה לכל סוגי הרכבים כבר
           {business.stats.yearsOfExperience}+ שנים. ההתקנה שלנו עומדת בתקנים הנדרשים למבחן
           רישוי, כוללת חיווט חשמל נקי ומוסתר, ואנחנו מנפיקים את כל המסמכים הנדרשים
@@ -117,23 +119,23 @@ const faqs = [
 
       <!-- Types -->
       <section class="mb-12">
-        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">
           סוגי ווי גרירה שאנחנו מתקינים
         </h2>
         <div class="space-y-4">
           <div class="p-6 bg-white border border-gray-200 rounded-xl">
-            <h3 class="font-bold text-gray-900 text-lg mb-2">וו גרירה קבוע (Fixed)</h3>
-            <p class="text-gray-700 mb-2">הוו הפשוט, האמין והנגיש ביותר. גלוי תמיד מתחת לפגוש האחורי. מתאים לכל מי שגורר לעיתים קרובות — חקלאים, בעלי קרוונים, חובשי ציוד שטח. אין חלקים נעים, אין תחזוקה מיוחדת.</p>
+            <h3 class="font-bold text-white text-lg mb-2">וו גרירה קבוע (Fixed)</h3>
+            <p class="text-gray-300 mb-2">הוו הפשוט, האמין והנגיש ביותר. גלוי תמיד מתחת לפגוש האחורי. מתאים לכל מי שגורר לעיתים קרובות — חקלאים, בעלי קרוונים, חובשי ציוד שטח. אין חלקים נעים, אין תחזוקה מיוחדת.</p>
             <p class="text-sm text-gray-500">מתאים: לנגרר קבוע | עלות: נמוכה | מראה: גלוי</p>
           </div>
           <div class="p-6 bg-white border border-gray-200 rounded-xl">
-            <h3 class="font-bold text-gray-900 text-lg mb-2">וו גרירה נשלף — Swan Neck</h3>
-            <p class="text-gray-700 mb-2">עמוד הוו (ה"צוואר") נשלף ידנית תוך שניות ומאוחסן בתא המטען. הבסיס מוסתר מאחורי פגוש פשוט. כשהוו לא חיבור — הרכב נראה כמו רכב רגיל. פופולרי מאוד בקרב מי שגורר לפי צורך אבל מקפיד על מראה.</p>
+            <h3 class="font-bold text-white text-lg mb-2">וו גרירה נשלף — Swan Neck</h3>
+            <p class="text-gray-300 mb-2">עמוד הוו (ה"צוואר") נשלף ידנית תוך שניות ומאוחסן בתא המטען. הבסיס מוסתר מאחורי פגוש פשוט. כשהוו לא חיבור — הרכב נראה כמו רכב רגיל. פופולרי מאוד בקרב מי שגורר לפי צורך אבל מקפיד על מראה.</p>
             <p class="text-sm text-gray-500">מתאים: לגרירה לסירוגין | עלות: בינונית | מראה: נקי ללא וו</p>
           </div>
           <div class="p-6 bg-white border border-gray-200 rounded-xl">
-            <h3 class="font-bold text-gray-900 text-lg mb-2">וו גרירה חשמלי (Detachable / Retractable)</h3>
-            <p class="text-gray-700 mb-2">הוו נסתר לגמרי מאחורי פגוש חלק — צץ בלחיצת כפתור תוך שניות. הפתרון האסתטי ביותר, נפוץ ב-SUV לוקסוסיים ורכבים שבהם המראה האחורי קריטי. מחייב התקנה מדויקת ויחידת בקרה חשמלית.</p>
+            <h3 class="font-bold text-white text-lg mb-2">וו גרירה חשמלי (Detachable / Retractable)</h3>
+            <p class="text-gray-300 mb-2">הוו נסתר לגמרי מאחורי פגוש חלק — צץ בלחיצת כפתור תוך שניות. הפתרון האסתטי ביותר, נפוץ ב-SUV לוקסוסיים ורכבים שבהם המראה האחורי קריטי. מחייב התקנה מדויקת ויחידת בקרה חשמלית.</p>
             <p class="text-sm text-gray-500">מתאים: לוקסוס ו-SUV | עלות: גבוהה | מראה: נסתר לחלוטין</p>
           </div>
         </div>
@@ -141,65 +143,65 @@ const faqs = [
 
       <!-- What's included -->
       <section class="mb-12">
-        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">
           מה כלול בהתקנה?
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+          <div class="p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl backdrop-blur-sm">
             <div class="text-2xl mb-2">🔗</div>
-            <h3 class="font-bold text-gray-900 mb-2">חיבור מכני לשילדה</h3>
-            <p class="text-sm text-gray-600">הוו מחובר לנקודות הרכבה המובנות בשילדה לפי תקן היצרן — לא "קידוח" אקראי.</p>
+            <h3 class="font-bold text-white mb-2">חיבור מכני לשילדה</h3>
+            <p class="text-sm text-gray-400">הוו מחובר לנקודות הרכבה המובנות בשילדה לפי תקן היצרן — לא "קידוח" אקראי.</p>
           </div>
-          <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+          <div class="p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl backdrop-blur-sm">
             <div class="text-2xl mb-2">🔌</div>
-            <h3 class="font-bold text-gray-900 mb-2">חיבור חשמל 7 או 13 פינים</h3>
-            <p class="text-sm text-gray-600">חיווט מוסתר לפנסי הנגרר, בלמים ופלאשרים. בחירת 7/13 לפי סוג הנגרר.</p>
+            <h3 class="font-bold text-white mb-2">חיבור חשמל 7 או 13 פינים</h3>
+            <p class="text-sm text-gray-400">חיווט מוסתר לפנסי הנגרר, בלמים ופלאשרים. בחירת 7/13 לפי סוג הנגרר.</p>
           </div>
-          <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+          <div class="p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl backdrop-blur-sm">
             <div class="text-2xl mb-2">📋</div>
-            <h3 class="font-bold text-gray-900 mb-2">מסמכי תקן לרישוי</h3>
-            <p class="text-sm text-gray-600">מנפיקים את הניירת הנדרשת לרישום הוו ברשיון הרכב במכון הרישוי.</p>
+            <h3 class="font-bold text-white mb-2">מסמכי תקן לרישוי</h3>
+            <p class="text-sm text-gray-400">מנפיקים את הניירת הנדרשת לרישום הוו ברשיון הרכב במכון הרישוי.</p>
           </div>
-          <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+          <div class="p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl backdrop-blur-sm">
             <div class="text-2xl mb-2">✅</div>
-            <h3 class="font-bold text-gray-900 mb-2">בדיקת פנסי נגרר</h3>
-            <p class="text-sm text-gray-600">בדיקה שפנסי הנגרר, הפלאשרים ואורות הבלם מקבלים חשמל נכון לפני שיוצאים.</p>
+            <h3 class="font-bold text-white mb-2">בדיקת פנסי נגרר</h3>
+            <p class="text-sm text-gray-400">בדיקה שפנסי הנגרר, הפלאשרים ואורות הבלם מקבלים חשמל נכון לפני שיוצאים.</p>
           </div>
         </div>
       </section>
 
       <!-- Process -->
       <section class="mb-12">
-        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">
           תהליך ההתקנה
         </h2>
         <ol class="space-y-4">
           <li class="flex gap-4">
-            <div class="flex-shrink-0 w-10 h-10 bg-brand-900 text-white rounded-full flex items-center justify-center font-bold">1</div>
+            <div class="flex-shrink-0 w-10 h-10 bg-brand-500/20 border border-brand-500/40 text-brand-300 rounded-full flex items-center justify-center font-bold">1</div>
             <div>
-              <h3 class="font-bold text-gray-900 mb-1">ייעוץ ובחירת סוג וו</h3>
-              <p class="text-gray-700">מה גוררים? כמה פעמים בשנה? קרוון עם מקרר? בודקים את הרכב, ממליצים על הסוג המתאים ומחיר סופי. ייעוץ ללא עלות.</p>
+              <h3 class="font-bold text-white mb-1">ייעוץ ובחירת סוג וו</h3>
+              <p class="text-gray-300">מה גוררים? כמה פעמים בשנה? קרוון עם מקרר? בודקים את הרכב, ממליצים על הסוג המתאים ומחיר סופי. ייעוץ ללא עלות.</p>
             </div>
           </li>
           <li class="flex gap-4">
-            <div class="flex-shrink-0 w-10 h-10 bg-brand-900 text-white rounded-full flex items-center justify-center font-bold">2</div>
+            <div class="flex-shrink-0 w-10 h-10 bg-brand-500/20 border border-brand-500/40 text-brand-300 rounded-full flex items-center justify-center font-bold">2</div>
             <div>
-              <h3 class="font-bold text-gray-900 mb-1">הזמנת ערכת התקנה ייעודית</h3>
-              <p class="text-gray-700">לכל דגם רכב יש ערכת וו ייעודית עם הנקודות המדויקות. מזמינים לפי VIN הרכב, כדי שהכל ייכנס מדויק.</p>
+              <h3 class="font-bold text-white mb-1">הזמנת ערכת התקנה ייעודית</h3>
+              <p class="text-gray-300">לכל דגם רכב יש ערכת וו ייעודית עם הנקודות המדויקות. מזמינים לפי VIN הרכב, כדי שהכל ייכנס מדויק.</p>
             </div>
           </li>
           <li class="flex gap-4">
-            <div class="flex-shrink-0 w-10 h-10 bg-brand-900 text-white rounded-full flex items-center justify-center font-bold">3</div>
+            <div class="flex-shrink-0 w-10 h-10 bg-brand-500/20 border border-brand-500/40 text-brand-300 rounded-full flex items-center justify-center font-bold">3</div>
             <div>
-              <h3 class="font-bold text-gray-900 mb-1">התקנה מכנית וחיווט חשמל</h3>
-              <p class="text-gray-700">חיבור הוו לשילדה לפי מומנט הידוק מדויק, העברת חיווט מוסתר עד לחיבור 7/13 פינים, ובדיקת כל הפונקציות.</p>
+              <h3 class="font-bold text-white mb-1">התקנה מכנית וחיווט חשמל</h3>
+              <p class="text-gray-300">חיבור הוו לשילדה לפי מומנט הידוק מדויק, העברת חיווט מוסתר עד לחיבור 7/13 פינים, ובדיקת כל הפונקציות.</p>
             </div>
           </li>
           <li class="flex gap-4">
-            <div class="flex-shrink-0 w-10 h-10 bg-brand-900 text-white rounded-full flex items-center justify-center font-bold">4</div>
+            <div class="flex-shrink-0 w-10 h-10 bg-brand-500/20 border border-brand-500/40 text-brand-300 rounded-full flex items-center justify-center font-bold">4</div>
             <div>
-              <h3 class="font-bold text-gray-900 mb-1">מסמכי רישוי ואחריות</h3>
-              <p class="text-gray-700">מנפיקים את הניירת לרשיון הרכב. הסברה לגבי שימוש נכון (משקל גרירה, בדיקות תקופתיות של בורגים) ו-{business.stats.yearsOfExperience > 0 ? '3 שנות' : '3 שנות'} אחריות על ההתקנה.</p>
+              <h3 class="font-bold text-white mb-1">מסמכי רישוי ואחריות</h3>
+              <p class="text-gray-300">מנפיקים את הניירת לרשיון הרכב. הסברה לגבי שימוש נכון (משקל גרירה, בדיקות תקופתיות של בורגים) ו-{business.stats.yearsOfExperience > 0 ? '3 שנות' : '3 שנות'} אחריות על ההתקנה.</p>
             </div>
           </li>
         </ol>
@@ -207,16 +209,16 @@ const faqs = [
 
       <!-- Who needs it -->
       <section class="mb-12 p-6 bg-gray-50 rounded-xl">
-        <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-4">
+        <h2 class="text-xl md:text-2xl font-bold text-white mb-4">
           מי גורר באזור עפולה והגלבוע?
         </h2>
-        <p class="text-gray-700 leading-relaxed mb-4">
+        <p class="text-gray-300 leading-relaxed mb-4">
           אזור עמק יזרעאל, הגלבוע ועמק המעיינות מלא בסיבות לגרור: <strong>חקלאים ומשקי חצר</strong>
           עם ציוד וטרקטורים קטנים; <strong>אוהבי קרוונים</strong> שמתחברים לכינרת, הצפון וחרמון;
           <strong>אופנוענים</strong> שמובילים אופנועים לאירועים; ו<strong>בעלי בתים</strong> שגוררים
           נגרר בית לפינוי גזם ועוד.
         </p>
-        <p class="text-gray-700 leading-relaxed">
+        <p class="text-gray-300 leading-relaxed">
           בגלל האוכלוסייה הכפרית-חקלאית שאנחנו מכירים טוב, יש לנו ניסיון גדול בהתקנות
           על פיקאפים, SUV גדולים, רכבים מסחריים ורכבי שטח — לא רק מכוניות פרטיות. אם
           יש לכם דגם לא שגרתי — ספרו לנו ונברר מה אפשרי.
@@ -225,21 +227,21 @@ const faqs = [
 
       <!-- Internal links -->
       <section class="mb-12">
-        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">
           שירותים נלווים שאולי יעניינו אתכם
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <a href="/services/trailer-repair/" class="block p-5 bg-white border border-gray-200 rounded-lg hover:border-brand-500 hover:shadow transition">
-            <h3 class="font-bold text-gray-900 mb-2">🚛 תיקון נגררים</h3>
-            <p class="text-sm text-gray-600">יש לכם נגרר שצריך תיקון? חשמל, פנסים, בלמים — אנחנו עושים גם את זה.</p>
+          <a href="/services/trailer-repair/" class="block p-5 bg-white/[0.04] border border-white/[0.09] rounded-lg hover:border-brand-500/40 hover:bg-white/[0.07] transition-all backdrop-blur-sm">
+            <h3 class="font-bold text-white mb-2">🚛 תיקון נגררים</h3>
+            <p class="text-sm text-gray-400">יש לכם נגרר שצריך תיקון? חשמל, פנסים, בלמים — אנחנו עושים גם את זה.</p>
           </a>
-          <a href="/services/electrical/" class="block p-5 bg-white border border-gray-200 rounded-lg hover:border-brand-500 hover:shadow transition">
-            <h3 class="font-bold text-gray-900 mb-2">⚡ חשמלאי רכב</h3>
-            <p class="text-sm text-gray-600">בעיות חשמל ברכב? דיאגנוסטיקה ותיקון מקצועי.</p>
+          <a href="/services/electrical/" class="block p-5 bg-white/[0.04] border border-white/[0.09] rounded-lg hover:border-brand-500/40 hover:bg-white/[0.07] transition-all backdrop-blur-sm">
+            <h3 class="font-bold text-white mb-2">⚡ חשמלאי רכב</h3>
+            <p class="text-sm text-gray-400">בעיות חשמל ברכב? דיאגנוסטיקה ותיקון מקצועי.</p>
           </a>
-          <a href="/services/multimedia/android-screens/" class="block p-5 bg-white border border-gray-200 rounded-lg hover:border-brand-500 hover:shadow transition">
-            <h3 class="font-bold text-gray-900 mb-2">📱 מסכי אנדרואיד</h3>
-            <p class="text-sm text-gray-600">שדרוג המולטימדיה — עסקת חבילה מקורבת עם התקנת ווי גרירה.</p>
+          <a href="/services/multimedia/android-screens/" class="block p-5 bg-white/[0.04] border border-white/[0.09] rounded-lg hover:border-brand-500/40 hover:bg-white/[0.07] transition-all backdrop-blur-sm">
+            <h3 class="font-bold text-white mb-2">📱 מסכי אנדרואיד</h3>
+            <p class="text-sm text-gray-400">שדרוג המולטימדיה — עסקת חבילה מקורבת עם התקנת ווי גרירה.</p>
           </a>
         </div>
       </section>

@@ -43,16 +43,18 @@ const faqs = [
 ]
 ---
 <BaseLayout title={title} description={description} schema={schema}>
-  <nav class="bg-gray-50 border-b border-gray-200 py-3">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-600">
-      <a href="/" class="hover:text-brand-700">בית</a><span class="mx-2">›</span>
-      <a href="/services/" class="hover:text-brand-700">שירותים</a><span class="mx-2">›</span>
-      <span class="text-gray-900 font-medium">מיזוג אוויר לרכב</span>
+  <nav class="bg-[#040912] border-b border-white/[0.07] py-3">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-400">
+      <a href="/" class="hover:text-white">בית</a><span class="mx-2">›</span>
+      <a href="/services/" class="hover:text-white">שירותים</a><span class="mx-2">›</span>
+      <span class="text-white font-medium">מיזוג אוויר לרכב</span>
     </div>
   </nav>
 
-  <section class="bg-gradient-to-bl from-brand-900 to-brand-700 text-white py-16 md:py-20">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section class="relative bg-[#040912] text-white py-16 md:py-20 overflow-hidden">
+    <div class="absolute inset-0 tech-grid opacity-30 pointer-events-none" />
+    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(29,78,216,0.4) 0%, transparent 65%);" />
+    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-6">
         תיקון מיזוג אוויר לרכב<br/>
         <span class="text-accent-500">בעפולה והגלבוע</span>
@@ -64,17 +66,17 @@ const faqs = [
     </div>
   </section>
 
-  <article class="py-12 md:py-16">
+  <article class="py-12 md:py-16 bg-[#060d1e]">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 prose-content">
 
       <section class="mb-12">
-        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">מיזוג שלא מקרר — אל תחכו לאמצע הקיץ</h2>
-        <p class="text-gray-700 leading-relaxed text-lg mb-4">
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">מיזוג שלא מקרר — אל תחכו לאמצע הקיץ</h2>
+        <p class="text-gray-300 leading-relaxed text-lg mb-4">
           קיץ ישראלי בלי מיזוג עובד הוא סיוט — במיוחד באזורים כמו עמק יזרעאל, בית שאן והגלבוע
           שמוכרים בחום כבד. בעיות מיזוג מתפתחות לאט — קצת פחות קר מהשנה שעברה, ואחרי
           כמה שנים המיזוג כמעט לא מרגיש. האבחון בדרך כלל מגלה בעיה פשוטה שאפשר לתקן תוך שעות.
         </p>
-        <p class="text-gray-700 leading-relaxed text-lg">
+        <p class="text-gray-300 leading-relaxed text-lg">
           ב<strong>אמיר מערכות</strong>, אנחנו מאבחנים ומתקנים מיזוג רכב עם ציוד מקצועי —
           מכשיר רכיבה ייעודי לאיתור דליפות, מילוי גז בדיוק לפי מפרט, ובדיקה שהמערכת
           עובדת כראוי לפני שיוצאים. לא ממלאים גז ומשחררים מבלי לדעת שהבעיה נפתרה.
@@ -82,7 +84,7 @@ const faqs = [
       </section>
 
       <section class="mb-12">
-        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">שירותי מיזוג שאנחנו נותנים</h2>
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">שירותי מיזוג שאנחנו נותנים</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
             { icon: '❄️', t: 'מילוי גז קירור', d: 'R134a ו-R1234yf — מילוי מדויק לפי מפרט הרכב, כולל תוספת שמן קומפרסור.' },
@@ -92,42 +94,42 @@ const faqs = [
             { icon: '🔧', t: 'חגורת קומפרסור ומצמד', d: 'החלפת חגורת הינע ומצמד קומפרסור — בעיה נפוצה שחוסמת את המיזוג.' },
             { icon: '📊', t: 'בדיקת לחץ ואבחון', d: 'חיבור מד לחץ דו-צדדי לאבחון מדויק של מצב המערכת לפני כל עבודה.' },
           ].map(s => (
-            <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+            <div class="p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl backdrop-blur-sm">
               <div class="text-2xl mb-2">{s.icon}</div>
-              <h3 class="font-bold text-gray-900 mb-2">{s.t}</h3>
-              <p class="text-sm text-gray-600">{s.d}</p>
+              <h3 class="font-bold text-white mb-2">{s.t}</h3>
+              <p class="text-sm text-gray-400">{s.d}</p>
             </div>
           ))}
         </div>
       </section>
 
       <section class="mb-12 p-6 bg-gray-50 rounded-xl">
-        <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-4">חשוב: איתור דליפה לפני מילוי גז</h2>
-        <p class="text-gray-700 leading-relaxed mb-4">
+        <h2 class="text-xl md:text-2xl font-bold text-white mb-4">חשוב: איתור דליפה לפני מילוי גז</h2>
+        <p class="text-gray-300 leading-relaxed mb-4">
           מילוי גז בלי לאתר את הדליפה הוא פתרון זמני. הגז ייאזל שוב תוך שבועות עד חודשים,
           ואתם חוזרים לאותה נקודה עם כסף שנזרק. אנחנו <strong>לא ממלאים גז</strong> בלי לבדוק
           קודם שהמערכת אטומה — כי זה לא הגון ללקוח ולא מקצועי.
         </p>
-        <p class="text-gray-700 leading-relaxed">
+        <p class="text-gray-300 leading-relaxed">
           אם קיבלתם בעבר מילוי גז שלא החזיק — כנראה שהדליפה לא טופלה. אצלנו, אם מוצאים דליפה
           ניתנת לאיטום, מטפלים בה לפני המילוי ומוודאים שהמערכת מחזיקה לחץ לפני שמשחררים.
         </p>
       </section>
 
       <section class="mb-12">
-        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">שירותים נלווים</h2>
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">שירותים נלווים</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <a href="/services/electrical/" class="block p-5 bg-white border border-gray-200 rounded-lg hover:border-brand-500 hover:shadow transition">
-            <h3 class="font-bold text-gray-900 mb-2">⚡ חשמלאי רכב</h3>
-            <p class="text-sm text-gray-600">תקלות חשמל שלעתים קשורות למיזוג — חיישני לחץ, ממסרים, פיוזים.</p>
+          <a href="/services/electrical/" class="block p-5 bg-white/[0.04] border border-white/[0.09] rounded-lg hover:border-brand-500/40 hover:bg-white/[0.07] transition-all backdrop-blur-sm">
+            <h3 class="font-bold text-white mb-2">⚡ חשמלאי רכב</h3>
+            <p class="text-sm text-gray-400">תקלות חשמל שלעתים קשורות למיזוג — חיישני לחץ, ממסרים, פיוזים.</p>
           </a>
-          <a href="/services/general-mechanics/" class="block p-5 bg-white border border-gray-200 rounded-lg hover:border-brand-500 hover:shadow transition">
-            <h3 class="font-bold text-gray-900 mb-2">🛠️ מכונאות כללית</h3>
-            <p class="text-sm text-gray-600">טיפול שנתי כולל בדיקת מיזוג — מניעה עדיפה על תיקון.</p>
+          <a href="/services/general-mechanics/" class="block p-5 bg-white/[0.04] border border-white/[0.09] rounded-lg hover:border-brand-500/40 hover:bg-white/[0.07] transition-all backdrop-blur-sm">
+            <h3 class="font-bold text-white mb-2">🛠️ מכונאות כללית</h3>
+            <p class="text-sm text-gray-400">טיפול שנתי כולל בדיקת מיזוג — מניעה עדיפה על תיקון.</p>
           </a>
-          <a href="/services/ecu-reset/" class="block p-5 bg-white border border-gray-200 rounded-lg hover:border-brand-500 hover:shadow transition">
-            <h3 class="font-bold text-gray-900 mb-2">🔧 איפוס מחשב</h3>
-            <p class="text-sm text-gray-600">נורית תקלה שנשארת לאחר תיקון — מחיקה ואיפוס.</p>
+          <a href="/services/ecu-reset/" class="block p-5 bg-white/[0.04] border border-white/[0.09] rounded-lg hover:border-brand-500/40 hover:bg-white/[0.07] transition-all backdrop-blur-sm">
+            <h3 class="font-bold text-white mb-2">🔧 איפוס מחשב</h3>
+            <p class="text-sm text-gray-400">נורית תקלה שנשארת לאחר תיקון — מחיקה ואיפוס.</p>
           </a>
         </div>
       </section>
