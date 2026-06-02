@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro'
 import FAQ from '../../components/FAQ.astro'
 import CTABanner from '../../components/CTABanner.astro'
 import business from '../../data/business.js'
+import Icon from '../../components/Icon.astro'
 
 const title = 'אביזרים לרכב | מסכים, רמקולים, מצלמות וחיישנים'
 const description = 'מגוון אביזרים לרכב מתוצרת מותגים מובילים — מסכי מולטימדיה, רמקולים, מצלמות רוורס, חיישני חנייה, דאשקאם. מחירים הוגנים וייעוץ מקצועי. בעפולה והאזור.'
@@ -16,12 +17,12 @@ const schema = {
 }
 
 const categories = [
-  { icon: '📱', name: 'מסכי מולטימדיה', items: 'Atoto, Pumpkin, Pioneer, Alpine, Kenwood — 7 עד 10 אינץ׳, CarPlay אלחוטי, Android Auto.' },
-  { icon: '🔊', name: 'רמקולים ומגברים', items: 'Pioneer, JBL, Focal, Hertz, Alpine — קומפוננט, קואקסיאלי, סאבוופרים ומגברים.' },
-  { icon: '📹', name: 'מצלמות רוורס', items: 'מצלמות אחוריות, קדמיות ו-360° — ראייה לילית, IP67, עם ובלי קווי הנחיה.' },
-  { icon: '🔔', name: 'חיישני חנייה', items: 'סנסורים אחוריים וקדמיים — שחור, לבן, כסוף. עם אינדיקטור קולי וחזותי.' },
-  { icon: '🎥', name: 'דאשקאם', items: 'Viofo, 70mai, Nextbase — Full HD ו-4K, עם ובלי GPS, מצב חנייה.' },
-  { icon: '🔗', name: 'ציוד גרירה', items: 'מחברי 7/13 פינים, מתאמים, כבלי חשמל לנגרר.' },
+  { icon: 'smartphone', name: 'מסכי מולטימדיה', items: 'Atoto, Pumpkin, Pioneer, Alpine, Kenwood — 7 עד 10 אינץ׳, CarPlay אלחוטי, Android Auto.' },
+  { icon: 'volume-2', name: 'רמקולים ומגברים', items: 'Pioneer, JBL, Focal, Hertz, Alpine — קומפוננט, קואקסיאלי, סאבוופרים ומגברים.' },
+  { icon: 'camera', name: 'מצלמות רוורס', items: 'מצלמות אחוריות, קדמיות ו-360° — ראייה לילית, IP67, עם ובלי קווי הנחיה.' },
+  { icon: 'message-circle', name: 'חיישני חנייה', items: 'סנסורים אחוריים וקדמיים — שחור, לבן, כסוף. עם אינדיקטור קולי וחזותי.' },
+  { icon: 'video', name: 'דאשקאם', items: 'Viofo, 70mai, Nextbase — Full HD ו-4K, עם ובלי GPS, מצב חנייה.' },
+  { icon: 'link', name: 'ציוד גרירה', items: 'מחברי 7/13 פינים, מתאמים, כבלי חשמל לנגרר.' },
 ]
 
 const faqs = [
@@ -35,7 +36,7 @@ const faqs = [
   },
   {
     q: 'האם יש אחריות על האביזרים?',
-    a: 'כן — אחריות יצרן מלאה לפי המותג (רוב המוצרים 1-2 שנים). אנחנו גם נותנים אחריות 3 שנים על עבודת ההתקנה. אם משהו לא עובד — חוזרים אלינו והכל מטופל.',
+    a: 'כן — אחריות יצרן מלאה לפי המותג (רוב המוצרים 1-2 שנים). אנחנו גם נותנים אחריות מלאה על עבודת ההתקנה. אם משהו לא עובד — חוזרים אלינו והכל מטופל.',
   },
   {
     q: 'אני לא בטוח מה מתאים לרכב שלי — מה עושים?',
@@ -44,7 +45,7 @@ const faqs = [
 ]
 ---
 <BaseLayout title={title} description={description} schema={schema}>
-  <nav class="bg-[#040912] border-b border-white/[0.07] py-3">
+  <nav class="breadcrumb-dark">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-400">
       <a href="/" class="hover:text-white">בית</a><span class="mx-2">›</span>
       <a href="/services/" class="hover:text-white">שירותים</a><span class="mx-2">›</span>
@@ -54,7 +55,7 @@ const faqs = [
 
   <section class="relative bg-[#040912] text-white py-16 md:py-20 overflow-hidden">
     <div class="absolute inset-0 tech-grid opacity-30 pointer-events-none" />
-    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(29,78,216,0.4) 0%, transparent 65%);" />
+    <div class="absolute inset-0 pointer-events-none hero-radial" />
     <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-6">
         אביזרים לרכב<br/>
@@ -89,8 +90,8 @@ const faqs = [
         <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">קטגוריות המוצרים</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           {categories.map(c => (
-            <div class="p-5 bg-gray-50 rounded-xl border border-gray-200">
-              <div class="text-3xl mb-3">{c.icon}</div>
+            <div class="p-5 glass-card">
+              <div class="w-11 h-11 bg-brand-500/15 text-brand-400 rounded-xl flex items-center justify-center mb-3"><Icon name={c} class="w-5 h-5" /></div>
               <h3 class="font-bold text-white mb-2 text-lg">{c.name}</h3>
               <p class="text-sm text-gray-400">{c.items}</p>
             </div>
@@ -98,11 +99,11 @@ const faqs = [
         </div>
       </section>
 
-      <section class="mb-12 p-6 bg-gray-50 rounded-xl">
+      <section class="mb-12 p-6 glass-section">
         <h2 class="text-xl md:text-2xl font-bold text-white mb-4">הבדל בין קנייה אצלנו לקנייה אונליין</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h3 class="font-bold text-white mb-3">✅ קנייה אצלנו</h3>
+            <h3 class="font-bold text-white mb-3">קנייה אצלנו</h3>
             <ul class="space-y-2 text-sm text-gray-300">
               <li>• ייעוץ מה מתאים לרכב הספציפי</li>
               <li>• אחריות יצרן + שירות ישיר בארץ</li>

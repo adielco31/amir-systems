@@ -1,0 +1,18 @@
+---
+// items: [{label, href?}]  — first item is the parent section; last item is current page (no href)
+const { items } = Astro.props as { items: { label: string; href?: string }[] }
+---
+<nav class="breadcrumb-dark" aria-label="breadcrumb">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-400">
+    <a href="/" class="hover:text-white">בית</a>
+    {items.map((item) => (
+      <span>
+        <span class="mx-2">›</span>
+        {item.href
+          ? <a href={item.href} class="hover:text-white">{item.label}</a>
+          : <span class="text-white font-medium">{item.label}</span>
+        }
+      </span>
+    ))}
+  </div>
+</nav>

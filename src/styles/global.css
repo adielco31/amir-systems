@@ -125,3 +125,56 @@ section {
 .prose-content p { margin-bottom: 1rem; }
 .prose-content h2,
 .prose-content h3 { margin-top: 0.5rem; margin-bottom: 0.75rem; }
+
+/* ───────────────────────────────────────────────
+   COMPONENT CLASSES — dark glass design system
+─────────────────────────────────────────────── */
+
+/* Base glass card */
+.glass-card {
+  background-color: rgb(255 255 255 / 0.04);
+  border: 1px solid rgb(255 255 255 / 0.09);
+  border-radius: 0.75rem;      /* rounded-xl */
+  backdrop-filter: blur(4px);  /* backdrop-blur-sm */
+}
+
+/* Clickable glass card — hover lifts border to brand-500/40 */
+.glass-link-card {
+  background-color: rgb(255 255 255 / 0.04);
+  border: 1px solid rgb(255 255 255 / 0.09);
+  border-radius: 0.75rem;
+  backdrop-filter: blur(4px);
+  transition: all 0.15s ease;
+}
+.glass-link-card:hover {
+  background-color: rgb(255 255 255 / 0.07);
+  border-color: rgb(59 130 246 / 0.4);   /* brand-500/40 */
+}
+
+/* Larger rounded glass box for section content */
+.glass-section {
+  background-color: rgb(255 255 255 / 0.04);
+  border: 1px solid rgb(255 255 255 / 0.09);
+  border-radius: 1rem;         /* rounded-2xl */
+  backdrop-filter: blur(4px);
+}
+
+/* Stats number card */
+.glass-stats {
+  background-color: rgb(255 255 255 / 0.05);
+  border: 1px solid rgb(255 255 255 / 0.09);
+  border-radius: 0.75rem;
+}
+
+/* Hero radial gradient overlay (blue spotlight from top) */
+.hero-radial {
+  background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(29,78,216,0.4) 0%, transparent 65%);
+}
+
+/* Dark breadcrumb nav */
+.breadcrumb-dark {
+  background-color: #040912;
+  border-bottom: 1px solid rgb(255 255 255 / 0.07);
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}

@@ -30,7 +30,7 @@ const posts = [
 
 <BaseLayout title={title} description={description}>
 
-  <nav class="bg-[#040912] border-b border-white/[0.07] py-3" aria-label="breadcrumb">
+  <nav class="breadcrumb-dark" aria-label="breadcrumb">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-400">
       <a href="/" class="hover:text-white">בית</a>
       <span class="mx-2">›</span>
@@ -53,7 +53,7 @@ const posts = [
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="space-y-6">
         {posts.map(post => (
-          <a href={`/blog/${post.slug}/`} class="block bg-white border border-gray-200 rounded-xl p-6 hover:border-brand-500 hover:shadow-md transition">
+          <a href={`/blog/${post.slug}/`} class="block p-6 glass-link-card">
             <div class="flex items-start gap-4">
               <div class="text-4xl flex-shrink-0">{post.icon}</div>
               <div class="flex-1">
@@ -76,7 +76,7 @@ const posts = [
         ))}
       </div>
 
-      <div class="mt-12 p-6 bg-gray-50 rounded-xl text-center">
+      <div class="mt-12 p-6 glass-section text-center">
         <p class="text-gray-400 mb-2">אנחנו מפרסמים מדריכים חדשים באופן קבוע.</p>
         <p class="text-gray-400">יש שאלה שתרצו שנענה עליה? <a href="/contact/" class="text-brand-400 font-medium hover:underline">כתבו לנו</a>.</p>
       </div>

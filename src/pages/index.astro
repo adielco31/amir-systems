@@ -14,29 +14,25 @@ const description = 'התקנת מערכות מולטימדיה לרכב, חשמ
 const faqs = [
   { q: 'כמה זמן לוקחת התקנת מסך אנדרואיד לרכב?',
     a: 'התקנה סטנדרטית אורכת 2–4 שעות. אנחנו מקפידים על חיווט נקי ומוסתר לחלוטין — המסך נראה כאילו הוא חלק מקורי של הרכב.' },
-  { q: 'איזה אחריות אתם נותנים על התקנות?',
-    a: '3 שנות אחריות על העבודה + אחריות יצרן על המוצרים. תקלה בתקופת האחריות — שירות חינמי, ללא שאלות.' },
+ 
   { q: 'האם אתם מגיעים עד הבית?',
-    a: 'רוב ההתקנות מתבצעות במוסך שלנו — 15 דקות מעפולה, 20 ממגדל העמק. איסוף והחזרה עם סיכום מראש בעלות נוספת.' },
+    a: 'רוב ההתקנות מתבצעות בסדנה שלנו — 15 דקות מעפולה, 20 ממגדל העמק. איסוף והחזרה עם סיכום מראש בעלות נוספת.' },
   { q: 'אילו מותגי מסכים אתם מתקינים?',
     a: 'Atoto, Pumpkin, Pioneer, Alpine, Kenwood ו-Sony. הבחירה תלויה בתקציב ובדגם הרכב — CarPlay אלחוטי, Android Auto, ניווט וכו׳.' },
-  { q: 'האם אתם עושים שירות לרכבים ישנים?',
-    a: 'בהחלט — אנחנו מתמחים בשדרוג רכבים מ-2010 ומעלה. גם רכב ישן יכול לקבל מסך מודרני עם Apple CarPlay.' },
-  { q: 'כמה עולה מצלמת רוורס?',
-    a: '400–1,200 ₪ תלוי בסוג המצלמה (HD/360°) ובאם נדרש מסך נפרד. הצעת מחיר מדויקת לאחר בדיקת הרכב.' },
+ 
 ]
 
 const whyUs = [
-  { icon: 'target',  title: 'התמחות אמיתית',  body: 'מולטימדיה לרכב היא מה שאנחנו עושים כל יום — לא תוספת של מוסך כללי. עומק ידע שמתאים לרכב הספציפי שלכם.',  iconBg: 'bg-brand-500/15',   iconText: 'text-brand-400' },
+  { icon: 'target',  title: 'התמחות אמיתית',  body: 'מולטימדיה לרכב היא מה שאנחנו עושים כל יום . עומק ידע שמתאים לרכב הספציפי שלכם.',  iconBg: 'bg-brand-500/15',   iconText: 'text-brand-400' },
   { icon: 'wrench',  title: 'חיווט מקצועי',   body: 'חיווט מוסתר לחלוטין. ההתקנה נראית כאילו יצאה מהמפעל — לא שאריות של כבלים ופלסטיק.',                          iconBg: 'bg-amber-500/15',   iconText: 'text-amber-400' },
-  { icon: 'shield',  title: 'אחריות 3 שנים',  body: '3 שנות אחריות על עבודת ההתקנה + אחריות יצרן מלאה. תקלה? שירות מהיר ללא עלות.',                              iconBg: 'bg-emerald-500/15', iconText: 'text-emerald-400' },
+ 
   { icon: 'users',   title: 'ייעוץ אישי',     body: 'לא נמכור מה שלא צריך. ייעוץ ממוקד לרכב ולתקציב שלכם — לפני כל פרויקט, בחינם.',                              iconBg: 'bg-violet-500/15',  iconText: 'text-violet-400' },
 ]
 
 const processSteps = [
   { n: '1', title: 'ייעוץ חינמי', body: 'בשיחה קצרה בטלפון או וואטסאפ — מגדירים בדיוק מה מתאים לרכב ולתקציב שלכם.', icon: 'message-circle', color: 'text-brand-400', bg: 'bg-brand-500/15' },
   { n: '2', title: 'מגיעים לסדנה', body: 'ביום שנוח לכם. 15 דקות מעפולה, 20 ממגדל העמק, 25 מנצרת ויקנעם.', icon: 'map-pin', color: 'text-accent-400', bg: 'bg-accent-500/15' },
-  { n: '3', title: 'יוצאים מרוצים', body: 'עבודה מוכנה ביום אחד. אחריות 3 שנים — ושירות אם תצטרכו בעתיד.', icon: 'check-circle', color: 'text-emerald-400', bg: 'bg-emerald-500/15' },
+  { n: '3', title: 'יוצאים מרוצים', body: 'הרכב מוכן .', icon: 'check-circle', color: 'text-emerald-400', bg: 'bg-emerald-500/15' },
 ]
 ---
 
@@ -59,8 +55,8 @@ const processSteps = [
 
     <!-- Status badge -->
     <div class="inline-flex items-center gap-2.5 px-4 py-2 bg-white/[0.07] border border-white/[0.12] rounded-full text-sm font-medium mb-8 backdrop-blur-sm">
-      <span class="w-2 h-2 bg-green-400 rounded-full pulse-orange flex-shrink-0" style="animation: glow-pulse 2s ease-in-out infinite; box-shadow: 0 0 0 0 rgba(74,222,128,0.4)" />
-      שירות פעיל — עפולה, הגלבוע, עמק יזרעאל וכל הצפון
+    <!--  <span class="w-2 h-2 bg-green-400 rounded-full pulse-orange flex-shrink-0" style="animation: glow-pulse 2s ease-in-out infinite; box-shadow: 0 0 0 0 rgba(74,222,128,0.4)" /> -->
+    <!--  שירות פעיל — עפולה, הגלבוע, עמק יזרעאל וכל הצפון -->
     </div>
 
     <!-- Headline with gradient text -->
@@ -69,13 +65,13 @@ const processSteps = [
         מולטימדיה ושירותי רכב
       </span>
       <span class="block text-accent-400 mt-1">
-        בעפולה והגלבוע
+       <!-- בעפולה והגלבוע-->
       </span>
     </h1>
 
     <p class="text-lg md:text-xl text-gray-400 leading-relaxed mb-10 max-w-2xl">
-      התקנת מסכי אנדרואיד, Apple CarPlay, מצלמות רוורס, חשמלאות, ווי גרירה ועוד.
-      <strong class="text-gray-200">{business.stats.yearsOfExperience}+ שנות ניסיון</strong> — אחריות מלאה.
+      התקנת מסכי אנדרואיד, מצלמות רוורס, חשמלאות, ווי גרירה ועוד.
+      
     </p>
 
     <!-- CTA buttons -->
@@ -96,19 +92,7 @@ const processSteps = [
     </div>
 
     <!-- Trust pills -->
-    <div class="flex flex-wrap gap-2.5">
-      {[
-        { icon: 'star',         label: `${business.stats.rating} ★ Google` },
-        { icon: 'award',        label: `${business.stats.yearsOfExperience}+ שנות ניסיון` },
-        { icon: 'shield',       label: 'אחריות 3 שנים' },
-        { icon: 'check-circle', label: `${business.stats.installationsCount.toLocaleString()}+ התקנות` },
-      ].map(pill => (
-        <div class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/[0.06] border border-white/[0.1] rounded-full text-xs text-gray-300 backdrop-blur-sm hover:bg-white/[0.1] transition-colors cursor-default">
-          <Icon name={pill.icon} class="w-3.5 h-3.5 text-accent-400 flex-shrink-0" strokeWidth={2.5} />
-          {pill.label}
-        </div>
-      ))}
-    </div>
+  
 
   </div>
 </section>
@@ -117,12 +101,11 @@ const processSteps = [
 <section class="relative bg-[#060d1e] border-y border-white/[0.07]">
   <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-brand-500/40 to-transparent" />
   <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-12">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-center">
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 text-center">
       {[
         { value: `${business.stats.yearsOfExperience}+`, label: 'שנות ניסיון',          icon: 'award' },
         { value: `${business.stats.installationsCount.toLocaleString()}+`, label: 'התקנות מוצלחות', icon: 'check-circle' },
         { value: '8',                                    label: 'ערים באזור השירות',     icon: 'map-pin' },
-        { value: '3',                                    label: 'שנות אחריות',            icon: 'shield' },
       ].map(s => (
         <div class="group flex flex-col items-center gap-2">
           <Icon name={s.icon} class="w-5 h-5 text-gray-600 group-hover:text-accent-400 transition-colors duration-300" />
@@ -262,7 +245,7 @@ const processSteps = [
         מגיעים מכל הצפון
       </h2>
       <p class="text-gray-500 text-lg">
-        מושב מלאה, הגלבוע — במרכז כל ערי הצפון וכביש 65
+        מושב מלאה, משק 34
       </p>
     </div>
 
@@ -288,7 +271,7 @@ const processSteps = [
 <!-- ─── CTA ────────────────────────────────────────────────────────────────── -->
 <CTABanner
   title="מוכן לשדרג את הרכב שלך?"
-  subtitle="ייעוץ חינמי בטלפון או וואטסאפ — עונים תוך שעה"
+  subtitle="ייעוץ חינמי בטלפון או וואטסאפ "
 />
 
 </BaseLayout>

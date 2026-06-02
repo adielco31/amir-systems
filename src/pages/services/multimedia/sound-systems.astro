@@ -3,6 +3,8 @@ import BaseLayout from '../../../layouts/BaseLayout.astro'
 import FAQ from '../../../components/FAQ.astro'
 import CTABanner from '../../../components/CTABanner.astro'
 import business from '../../../data/business.js'
+import Breadcrumb from '../../../components/Breadcrumb.astro'
+import Icon from '../../../components/Icon.astro'
 
 const title = 'מערכת שמע לרכב | רמקולים, סאבוופר ומגברים'
 const description = 'שדרוג מערכת השמע ברכב — רמקולים איכותיים, סאבוופרים, מגברים וכיוונון מקצועי. התקנה בעפולה והאזור, צליל קונצרטי, אחריות מלאה.'
@@ -60,28 +62,19 @@ const faqs = [
   },
   {
     q: 'מה האחריות שאתם נותנים?',
-    a: 'אחריות 3 שנים על העבודה (התקנה וחיווט) ואחריות יצרן מלאה על הרכיבים (רמקולים, מגבר, סאב). אם משהו מזמזם, מתעוות או מפסיק לעבוד — חוזרים אלינו והכל מטופל ללא תשלום. אנחנו עומדים מאחורי כל מערכת שאנחנו בונים.',
+    a: 'אחריות מלאה על העבודה (התקנה וחיווט) ואחריות יצרן מלאה על הרכיבים (רמקולים, מגבר, סאב). אם משהו מזמזם, מתעוות או מפסיק לעבוד — חוזרים אלינו והכל מטופל ללא תשלום. אנחנו עומדים מאחורי כל מערכת שאנחנו בונים.',
   },
 ]
 ---
 
 <BaseLayout title={title} description={description} schema={schema}>
 
-  <!-- Breadcrumb -->
-  <nav class="bg-[#040912] border-b border-white/[0.07] py-3" aria-label="breadcrumb">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-400">
-      <a href="/" class="hover:text-white">בית</a>
-      <span class="mx-2">›</span>
-      <a href="/services/multimedia/" class="hover:text-white">מולטימדיה</a>
-      <span class="mx-2">›</span>
-      <span class="text-white font-medium">מערכות שמע</span>
-    </div>
-  </nav>
+  <Breadcrumb items={[{label: 'מולטימדיה', href: '/services/multimedia/'}, {label: 'מערכות שמע'}]} />
 
   <!-- Hero -->
   <section class="relative bg-[#040912] text-white py-16 md:py-20 overflow-hidden">
     <div class="absolute inset-0 tech-grid opacity-30 pointer-events-none" />
-    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(29,78,216,0.4) 0%, transparent 65%);" />
+    <div class="absolute inset-0 pointer-events-none hero-radial" />
     <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-6">
         מערכת שמע ורמקולים לרכב<br/>
@@ -123,43 +116,43 @@ const faqs = [
           מה כולל שדרוג מערכת שמע?
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div class="p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl backdrop-blur-sm">
-            <div class="text-2xl mb-2">🔊</div>
+          <div class="p-5 glass-card">
+            <div class="w-11 h-11 bg-brand-500/15 text-brand-400 rounded-xl flex items-center justify-center mb-3"><Icon name="volume-2" class="w-5 h-5" /></div>
             <h3 class="font-bold text-white mb-2">רמקולים איכותיים</h3>
             <p class="text-sm text-gray-400">
               קומפוננט או קואקסיאלי — הפרדת צלילים, בס נקי וגבהים פריכים בלי עיוותים.
             </p>
           </div>
-          <div class="p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl backdrop-blur-sm">
-            <div class="text-2xl mb-2">🎸</div>
+          <div class="p-5 glass-card">
+            <div class="w-11 h-11 bg-brand-500/15 text-brand-400 rounded-xl flex items-center justify-center mb-3"><Icon name="volume-2" class="w-5 h-5" /></div>
             <h3 class="font-bold text-white mb-2">סאבוופר לבס עמוק</h3>
             <p class="text-sm text-gray-400">
               בס עוצמתי ונקי שמרגישים בחזה — מושלם להיפ-הופ, אלקטרונית ורוק.
             </p>
           </div>
-          <div class="p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl backdrop-blur-sm">
-            <div class="text-2xl mb-2">⚡</div>
+          <div class="p-5 glass-card">
+            <div class="w-11 h-11 bg-brand-500/15 text-brand-400 rounded-xl flex items-center justify-center mb-3"><Icon name="zap" class="w-5 h-5" /></div>
             <h3 class="font-bold text-white mb-2">מגבר (אמפליפייר)</h3>
             <p class="text-sm text-gray-400">
               הספק נקי שמוציא את המקסימום מהרמקולים — בלי עיוותים גם בעוצמה גבוהה.
             </p>
           </div>
-          <div class="p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl backdrop-blur-sm">
-            <div class="text-2xl mb-2">🎚️</div>
+          <div class="p-5 glass-card">
+            <div class="w-11 h-11 bg-brand-500/15 text-brand-400 rounded-xl flex items-center justify-center mb-3"><Icon name="settings" class="w-5 h-5" /></div>
             <h3 class="font-bold text-white mb-2">כיוונון DSP מקצועי</h3>
             <p class="text-sm text-gray-400">
               איזון תדרים והשהיות לפי האקוסטיקה של הרכב — במה צלילית מדויקת.
             </p>
           </div>
-          <div class="p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl backdrop-blur-sm">
-            <div class="text-2xl mb-2">🔇</div>
+          <div class="p-5 glass-card">
+            <div class="w-11 h-11 bg-brand-500/15 text-brand-400 rounded-xl flex items-center justify-center mb-3"><Icon name="volume-2" class="w-5 h-5" /></div>
             <h3 class="font-bold text-white mb-2">בידוד אקוסטי (אופציונלי)</h3>
             <p class="text-sm text-gray-400">
               בידוד דלתות שמפחית רעשי דרך ומשפר משמעותית את איכות הבס.
             </p>
           </div>
-          <div class="p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl backdrop-blur-sm">
-            <div class="text-2xl mb-2">🧩</div>
+          <div class="p-5 glass-card">
+            <div class="w-11 h-11 bg-brand-500/15 text-brand-400 rounded-xl flex items-center justify-center mb-3"><Icon name="cpu" class="w-5 h-5" /></div>
             <h3 class="font-bold text-white mb-2">התקנה הפיכה ונקייה</h3>
             <p class="text-sm text-gray-400">
               מתאמים ייעודיים לכל דגם, בלי חיתוכים — אפשר להחזיר למקור בעת מכירה.
@@ -174,19 +167,19 @@ const faqs = [
           רמות שדרוג — מהבסיסי ועד הפרימיום
         </h2>
         <div class="space-y-4">
-          <div class="p-5 bg-white border border-gray-200 rounded-lg">
+          <div class="p-5 glass-card">
             <h3 class="font-bold text-white mb-1">שלב 1 — החלפת רמקולים קדמיים</h3>
             <p class="text-gray-300">השדרוג המשתלם ביותר. זוג רמקולים איכותיים במקום המקוריים — שיפור מיידי ומורגש, בלי שינויים נוספים ברכב.</p>
           </div>
-          <div class="p-5 bg-white border border-gray-200 rounded-lg">
+          <div class="p-5 glass-card">
             <h3 class="font-bold text-white mb-1">שלב 2 — מערכת רמקולים מלאה</h3>
             <p class="text-gray-300">החלפת כל הרמקולים (קדמיים ואחוריים), לרוב בליווי מגבר קטן. צליל מאוזן ומלא בכל תא הנוסעים.</p>
           </div>
-          <div class="p-5 bg-white border border-gray-200 rounded-lg">
+          <div class="p-5 glass-card">
             <h3 class="font-bold text-white mb-1">שלב 3 — תוספת סאבוופר ומגבר</h3>
             <p class="text-gray-300">סאבוופר ייעודי בתא המטען עם מגבר נפרד — בס עמוק ונקי שמשנה לגמרי את חוויית ההאזנה.</p>
           </div>
-          <div class="p-5 bg-white border border-gray-200 rounded-lg">
+          <div class="p-5 glass-card">
             <h3 class="font-bold text-white mb-1">שלב 4 — מערכת פרימיום עם DSP</h3>
             <p class="text-gray-300">רכיבים איכותיים, מגברים נפרדים, ומעבד DSP עם כיוונון מקצועי מלא. הרמה הגבוהה ביותר — צליל ברמת סטודיו.</p>
           </div>
@@ -231,14 +224,14 @@ const faqs = [
             <div class="flex-shrink-0 w-10 h-10 bg-brand-500/20 border border-brand-500/40 text-brand-300 rounded-full flex items-center justify-center font-bold">5</div>
             <div>
               <h3 class="font-bold text-white mb-1">האזנה משותפת ואחריות</h3>
-              <p class="text-gray-300">מאזינים יחד, מכווננים לפי ההעדפה שלכם, ומסבירים את השליטה במערכת. 3 שנות אחריות על העבודה.</p>
+              <p class="text-gray-300">מאזינים יחד, מכווננים לפי ההעדפה שלכם, ומסבירים את השליטה במערכת. אחריות מלאה על העבודה.</p>
             </div>
           </li>
         </ol>
       </section>
 
       <!-- Brands -->
-      <section class="mb-12 p-6 bg-gray-50 rounded-xl">
+      <section class="mb-12 p-6 glass-section">
         <h2 class="text-xl md:text-2xl font-bold text-white mb-4">
           המותגים שאנחנו עובדים איתם
         </h2>
@@ -262,15 +255,15 @@ const faqs = [
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <a href="/services/multimedia/android-screens/" class="block p-5 bg-white/[0.04] border border-white/[0.09] rounded-lg hover:border-brand-500/40 hover:bg-white/[0.07] transition-all backdrop-blur-sm">
-            <h3 class="font-bold text-white mb-2">📱 מסכי אנדרואיד</h3>
+            <h3 class="font-bold text-white mb-2">מסכי אנדרואיד</h3>
             <p class="text-sm text-gray-400">מסך מולטימדיה חדש — מקור צליל איכותי למערכת השמע.</p>
           </a>
           <a href="/services/multimedia/parking-cameras/" class="block p-5 bg-white/[0.04] border border-white/[0.09] rounded-lg hover:border-brand-500/40 hover:bg-white/[0.07] transition-all backdrop-blur-sm">
-            <h3 class="font-bold text-white mb-2">📹 מצלמות רוורס</h3>
+            <h3 class="font-bold text-white mb-2">מצלמות רוורס</h3>
             <p class="text-sm text-gray-400">חנייה בטוחה — תוספת מומלצת לחבילת המולטימדיה.</p>
           </a>
           <a href="/services/multimedia/dashcam/" class="block p-5 bg-white/[0.04] border border-white/[0.09] rounded-lg hover:border-brand-500/40 hover:bg-white/[0.07] transition-all backdrop-blur-sm">
-            <h3 class="font-bold text-white mb-2">🎥 דאשקאם</h3>
+            <h3 class="font-bold text-white mb-2">דאשקאם</h3>
             <p class="text-sm text-gray-400">מצלמת דרך שמתעדת נסיעה — הגנה משפטית בכל רגע.</p>
           </a>
         </div>

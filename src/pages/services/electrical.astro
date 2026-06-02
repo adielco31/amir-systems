@@ -3,6 +3,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro'
 import FAQ from '../../components/FAQ.astro'
 import CTABanner from '../../components/CTABanner.astro'
 import business from '../../data/business.js'
+import Breadcrumb from '../../components/Breadcrumb.astro'
+import Icon from '../../components/Icon.astro'
 
 const title = 'חשמלאי רכב בעפולה | דיאגנוסטיקה ותיקון חשמלי'
 const description = 'חשמלאי רכב מקצועי בעפולה והאזור — דיאגנוסטיקה ממוחשבת, תיקון תקלות חשמליות, החלפת מצבר, אלטרנטור ומתנע. אבחון מדויק, שירות אישי, אחריות מלאה.'
@@ -67,21 +69,12 @@ const faqs = [
 
 <BaseLayout title={title} description={description} schema={schema}>
 
-  <!-- Breadcrumb -->
-  <nav class="bg-[#040912] border-b border-white/[0.07] py-3" aria-label="breadcrumb">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-400">
-      <a href="/" class="hover:text-white">בית</a>
-      <span class="mx-2">›</span>
-      <a href="/services/" class="hover:text-white">שירותים</a>
-      <span class="mx-2">›</span>
-      <span class="text-white font-medium">חשמלאות ודיאגנוסטיקה</span>
-    </div>
-  </nav>
+  <Breadcrumb items={[{label: 'שירותים', href: '/services/'}, {label: 'חשמלאות ודיאגנוסטיקה'}]} />
 
   <!-- Hero -->
   <section class="relative bg-[#040912] text-white py-16 md:py-20 overflow-hidden">
     <div class="absolute inset-0 tech-grid opacity-30 pointer-events-none" />
-    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(29,78,216,0.4) 0%, transparent 65%);" />
+    <div class="absolute inset-0 pointer-events-none hero-radial" />
     <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-6">
         חשמלאי רכב בעפולה<br/>
@@ -122,47 +115,47 @@ const faqs = [
           השירותים החשמליים שאנחנו נותנים
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div class="p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl backdrop-blur-sm">
-            <div class="text-2xl mb-2">🔍</div>
+          <div class="p-5 glass-card">
+            <div class="w-11 h-11 bg-brand-500/15 text-brand-400 rounded-xl flex items-center justify-center mb-3"><Icon name="search" class="w-5 h-5" /></div>
             <h3 class="font-bold text-white mb-2">דיאגנוסטיקה ממוחשבת</h3>
             <p class="text-sm text-gray-400">
               קריאת קודי תקלה מכל מערכות הרכב — מנוע, ABS, שקיות אוויר, שידור ועוד.
               אבחון מדויק שחוסך זמן וכסף.
             </p>
           </div>
-          <div class="p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl backdrop-blur-sm">
-            <div class="text-2xl mb-2">⚡</div>
+          <div class="p-5 glass-card">
+            <div class="w-11 h-11 bg-brand-500/15 text-brand-400 rounded-xl flex items-center justify-center mb-3"><Icon name="zap" class="w-5 h-5" /></div>
             <h3 class="font-bold text-white mb-2">מצבר ומערכת הטעינה</h3>
             <p class="text-sm text-gray-400">
               בדיקת מצבר ואלטרנטור, החלפה מקצועית עם רישום ECU ברכבים חדשים.
               מניעת הפתעות בדרך.
             </p>
           </div>
-          <div class="p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl backdrop-blur-sm">
-            <div class="text-2xl mb-2">🔌</div>
+          <div class="p-5 glass-card">
+            <div class="w-11 h-11 bg-brand-500/15 text-brand-400 rounded-xl flex items-center justify-center mb-3"><Icon name="plug" class="w-5 h-5" /></div>
             <h3 class="font-bold text-white mb-2">תיקון חיווט ואיתור קצרים</h3>
             <p class="text-sm text-gray-400">
               איתור נזקי חיווט — כרסום, חיכוך, נזקי מים. תיקון נכון עם חוטים תואמים
               שמחזיק לאורך זמן.
             </p>
           </div>
-          <div class="p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl backdrop-blur-sm">
-            <div class="text-2xl mb-2">🔧</div>
+          <div class="p-5 glass-card">
+            <div class="w-11 h-11 bg-brand-500/15 text-brand-400 rounded-xl flex items-center justify-center mb-3"><Icon name="wrench" class="w-5 h-5" /></div>
             <h3 class="font-bold text-white mb-2">מתנע (סטרטר)</h3>
             <p class="text-sm text-gray-400">
               בדיקה, ניקוי או החלפת מתנע. רכב שלא מצליח לעלות לא תמיד צריך מצבר חדש.
             </p>
           </div>
-          <div class="p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl backdrop-blur-sm">
-            <div class="text-2xl mb-2">💡</div>
+          <div class="p-5 glass-card">
+            <div class="w-11 h-11 bg-brand-500/15 text-brand-400 rounded-xl flex items-center justify-center mb-3"><Icon name="lightbulb" class="w-5 h-5" /></div>
             <h3 class="font-bold text-white mb-2">תאורה ופנסים</h3>
             <p class="text-sm text-gray-400">
               תיקון פנסים לא-תקינים, החלפת נורות, תיקון מנורת לד ו-HID.
               כולל בדיקת חיישני פנסים אוטומטיים.
             </p>
           </div>
-          <div class="p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl backdrop-blur-sm">
-            <div class="text-2xl mb-2">🛡️</div>
+          <div class="p-5 glass-card">
+            <div class="w-11 h-11 bg-brand-500/15 text-brand-400 rounded-xl flex items-center justify-center mb-3"><Icon name="shield" class="w-5 h-5" /></div>
             <h3 class="font-bold text-white mb-2">מערכות בטיחות (ABS, שקיות)</h3>
             <p class="text-sm text-gray-400">
               קריאת קודי ABS ו-SRS, בדיקת חיישני תאוצה, ואיתור חיווט פגום במערכות
@@ -217,7 +210,7 @@ const faqs = [
       </section>
 
       <!-- Equipment section -->
-      <section class="mb-12 p-6 bg-gray-50 rounded-xl">
+      <section class="mb-12 p-6 glass-section">
         <h2 class="text-xl md:text-2xl font-bold text-white mb-4">
           ציוד מקצועי — ההבדל שנמדד בדיוק
         </h2>
@@ -242,15 +235,15 @@ const faqs = [
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <a href="/services/ecu-reset/" class="block p-5 bg-white/[0.04] border border-white/[0.09] rounded-lg hover:border-brand-500/40 hover:bg-white/[0.07] transition-all backdrop-blur-sm">
-            <h3 class="font-bold text-white mb-2">🔧 איפוס מחשב מנוע</h3>
+            <h3 class="font-bold text-white mb-2">איפוס מחשב מנוע</h3>
             <p class="text-sm text-gray-400">מחיקת קודי תקלה ואיפוס מלא של ECU.</p>
           </a>
           <a href="/services/scr-adblue-consulting/" class="block p-5 bg-white/[0.04] border border-white/[0.09] rounded-lg hover:border-brand-500/40 hover:bg-white/[0.07] transition-all backdrop-blur-sm">
-            <h3 class="font-bold text-white mb-2">⚙️ ייעוץ SCR / AdBlue</h3>
+            <h3 class="font-bold text-white mb-2">ייעוץ SCR / AdBlue</h3>
             <p class="text-sm text-gray-400">אבחון תקלות מערכת SCR ו-AdBlue ברכבי דיזל.</p>
           </a>
           <a href="/services/multimedia/android-screens/" class="block p-5 bg-white/[0.04] border border-white/[0.09] rounded-lg hover:border-brand-500/40 hover:bg-white/[0.07] transition-all backdrop-blur-sm">
-            <h3 class="font-bold text-white mb-2">📱 מסכי אנדרואיד</h3>
+            <h3 class="font-bold text-white mb-2">מסכי אנדרואיד</h3>
             <p class="text-sm text-gray-400">שדרוג המולטימדיה — לעיתים קרובות נעשה יחד עם חיווט כללי.</p>
           </a>
         </div>

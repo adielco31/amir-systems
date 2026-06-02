@@ -2,6 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro'
 import CTABanner from '../components/CTABanner.astro'
 import business from '../data/business.js'
+import Breadcrumb from '../components/Breadcrumb.astro'
+import Icon from '../components/Icon.astro'
 
 const title = 'אודות | אמיר מערכות — מולטימדיה ושירותי רכב בגלבוע'
 const description = `אמיר כהן — ${business.stats.yearsOfExperience}+ שנות ניסיון במולטימדיה, חשמלאות ושירותי רכב. מושב מלאה, הגלבוע. שקיפות, אחריות, ומחירים ישרים.`
@@ -17,22 +19,30 @@ const schema = {
 
 const values = [
   {
-    icon: '🔍',
+    icon: 'search',
+    iconBg: 'bg-brand-500/15',
+    iconColor: 'text-brand-400',
     title: 'שקיפות מחירים',
     body: 'לפני כל עבודה — הצעת מחיר מפורטת. אין הפתעות בסוף. אם המחיר השתנה תוך כדי, אנחנו מסבירים למה.',
   },
   {
-    icon: '🛡️',
+    icon: 'shield',
+    iconBg: 'bg-emerald-500/15',
+    iconColor: 'text-emerald-400',
     title: 'אחריות מלאה',
-    body: 'כל התקנת מולטימדיה — 3 שנות אחריות. כל עבודת חשמל ומכניקה — 12 חודשים. אחריות שאפשר לסמוך עליה.',
+    body: 'כל התקנת מולטימדיה — אחריות מלאה על העבודה. כל עבודת חשמל ומכניקה — 12 חודשים. אחריות שאפשר לסמוך עליה.',
   },
   {
-    icon: '⚡',
+    icon: 'zap',
+    iconBg: 'bg-amber-500/15',
+    iconColor: 'text-amber-400',
     title: 'עבודה מהירה',
     body: 'רוב ההתקנות מתבצעות ביום אחד. מביאים בבוקר, לוקחים אחר הצהריים. אם צריך יותר זמן — אומרים מראש.',
   },
   {
-    icon: '🤝',
+    icon: 'users',
+    iconBg: 'bg-violet-500/15',
+    iconColor: 'text-violet-400',
     title: 'שירות אישי',
     body: 'מדברים ישירות עם אמיר — לא עם קבלן שקיבל את המפתחות שלכם. כל לקוח מקבל ייעוץ ממוקד לרכב הספציפי שלו.',
   },
@@ -42,20 +52,14 @@ const stats = [
   { value: `${business.stats.yearsOfExperience}+`, label: 'שנות ניסיון בתחום' },
   { value: `${business.stats.installationsCount.toLocaleString()}+`, label: 'התקנות שבוצעו' },
   { value: `${business.stats.rating}`, label: 'דירוג Google' },
-  { value: '3 שנים', label: 'אחריות על מולטימדיה' },
 ]
 ---
 <BaseLayout title={title} description={description} schema={schema}>
-  <nav class="bg-[#040912] border-b border-white/[0.07] py-3">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-400">
-      <a href="/" class="hover:text-white">בית</a><span class="mx-2">›</span>
-      <span class="text-white font-medium">אודות</span>
-    </div>
-  </nav>
+  <Breadcrumb items={[{label: 'אודות'}]} />
 
   <section class="relative bg-[#040912] text-white py-16 md:py-20 overflow-hidden">
     <div class="absolute inset-0 tech-grid opacity-30 pointer-events-none" />
-    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(29,78,216,0.4) 0%, transparent 65%);" />
+    <div class="absolute inset-0 pointer-events-none hero-radial" />
     <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-6">
         אמיר מערכות —<br/><span class="text-accent-500">הסיפור שלנו</span>
@@ -70,21 +74,19 @@ const stats = [
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 
       <section class="mb-14">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12">
           {stats.map(s => (
-            <div class="p-5 bg-white/[0.05] border border-white/[0.09] rounded-xl text-center">
+            <div class="p-5 glass-stats text-center">
               <div class="text-3xl font-bold text-accent-500 mb-1">{s.value}</div>
               <div class="text-sm text-blue-200">{s.label}</div>
             </div>
           ))}
         </div>
 
-        <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">הסיפור של אמיר כהן</h2>
+       
         <div class="prose-content space-y-4">
           <p class="text-gray-300 leading-relaxed text-lg">
-            אמיר כהן התחיל בעולם הרכב בגיל צעיר — קודם מסקרנות, אחר כך כמקצוע. עם השנים
-            הפך להיות אחד המומחים המוכרים בגליל התחתון בכל הנוגע למולטימדיה לרכב
-            וחשמלאות רכב.
+           
           </p>
           <p class="text-gray-300 leading-relaxed text-lg">
             הסדנה הוקמה במושב מלאה שבגלבוע — מקום שמאפשר להגיע מעפולה, מגדל העמק,
@@ -103,8 +105,10 @@ const stats = [
         <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">הערכים שלנו</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           {values.map(v => (
-            <div class="p-6 bg-white/[0.04] border border-white/[0.09] rounded-2xl backdrop-blur-sm">
-              <div class="text-3xl mb-3">{v.icon}</div>
+            <div class="p-6 glass-section">
+              <div class={`w-14 h-14 ${v.iconBg} ${v.iconColor} rounded-xl flex items-center justify-center mb-4`}>
+                <Icon name={v.icon} class="w-7 h-7" />
+              </div>
               <h3 class="text-lg font-bold text-white mb-2">{v.title}</h3>
               <p class="text-gray-400 leading-relaxed">{v.body}</p>
             </div>
@@ -116,12 +120,14 @@ const stats = [
         <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">מה אנחנו עושים</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           {[
-            { icon: '📱', title: 'מולטימדיה', href: '/services/', desc: 'מסכי אנדרואיד, מצלמות, דאשקאם, מערכות שמע' },
-            { icon: '⚡', title: 'חשמל ודיאגנוסטיקה', href: '/services/electrical/', desc: 'תיקון תקלות, קודי מנוע, מצבר ואלטרנטור' },
-            { icon: '🔗', title: 'שירותי שטח', href: '/services/towing-hitch/', desc: 'ווי גרירה, תיקון נגררים, מיזוג ומכונאות' },
+            { icon: 'smartphone', iconBg: 'bg-brand-500/15',  iconColor: 'text-brand-400',  title: 'מולטימדיה',          href: '/services/',             desc: 'מסכי אנדרואיד, מצלמות, דאשקאם, מערכות שמע' },
+            { icon: 'zap',        iconBg: 'bg-amber-500/15',  iconColor: 'text-amber-400',  title: 'חשמל ודיאגנוסטיקה', href: '/services/electrical/',  desc: 'תיקון תקלות, קודי מנוע, מצבר ואלטרנטור' },
+            { icon: 'link',       iconBg: 'bg-violet-500/15', iconColor: 'text-violet-400', title: 'שירותי שטח',          href: '/services/towing-hitch/', desc: 'ווי גרירה, תיקון נגררים, מיזוג ומכונאות' },
           ].map(s => (
-            <a href={s.href} class="block p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl hover:border-brand-500/40 hover:bg-white/[0.07] transition-all backdrop-blur-sm text-center">
-              <div class="text-3xl mb-2">{s.icon}</div>
+            <a href={s.href} class="block p-5 glass-link-card text-center">
+              <div class={`w-12 h-12 ${s.iconBg} ${s.iconColor} rounded-xl flex items-center justify-center mx-auto mb-3`}>
+                <Icon name={s.icon} class="w-6 h-6" />
+              </div>
               <h3 class="font-bold text-white mb-1">{s.title}</h3>
               <p class="text-sm text-gray-400">{s.desc}</p>
             </a>
@@ -131,7 +137,7 @@ const stats = [
 
       <section class="mb-14">
         <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">איפה אנחנו</h2>
-        <div class="p-6 bg-white/[0.04] border border-white/[0.09] rounded-2xl backdrop-blur-sm">
+        <div class="p-6 glass-section">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <h3 class="font-bold text-white mb-3">כתובת</h3>

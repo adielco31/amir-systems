@@ -3,9 +3,11 @@ import BaseLayout from '../../../layouts/BaseLayout.astro'
 import FAQ from '../../../components/FAQ.astro'
 import CTABanner from '../../../components/CTABanner.astro'
 import business from '../../../data/business.js'
+import Breadcrumb from '../../../components/Breadcrumb.astro'
+import Icon from '../../../components/Icon.astro'
 
 const title = 'התקנת מסך אנדרואיד לרכב | Apple CarPlay & Android Auto'
-const description = 'מסכי אנדרואיד לרכב 7-10 אינץ\' עם Apple CarPlay ו-Android Auto. התקנה מקצועית בעפולה והאזור, חיווט מוסתר, אחריות 3 שנים. צרו קשר לייעוץ.'
+const description = 'מסכי אנדרואיד לרכב 7-10 אינץ\' עם Apple CarPlay ו-Android Auto. התקנה מקצועית בעפולה והאזור, חיווט מוסתר, אחריות מלאה. צרו קשר לייעוץ.'
 
 const schema = {
   '@context': 'https://schema.org',
@@ -60,28 +62,19 @@ const faqs = [
   },
   {
     q: 'מה האחריות שאתם נותנים?',
-    a: 'אחריות 3 שנים על העבודה (חיווט, התקנה) ואחריות יצרן מלאה על המוצר (תלוי במותג, בדרך כלל 1-2 שנים). אם משהו לא עובד או נראה לא תקין — מחזירים אותו אלינו והכל מתוקן ללא תשלום. אנחנו לוקחים את האחריות ברצינות — זה ההבדל בין מתקין מקצועי לבין מתקין שמהר.',
+    a: 'אחריות מלאה על העבודה (חיווט, התקנה) ואחריות יצרן מלאה על המוצר (תלוי במותג, בדרך כלל 1-2 שנים). אם משהו לא עובד או נראה לא תקין — מחזירים אותו אלינו והכל מתוקן ללא תשלום. אנחנו לוקחים את האחריות ברצינות — זה ההבדל בין מתקין מקצועי לבין מתקין שמהר.',
   },
 ]
 ---
 
 <BaseLayout title={title} description={description} schema={schema}>
 
-  <!-- Breadcrumb -->
-  <nav class="bg-[#040912] border-b border-white/[0.07] py-3" aria-label="breadcrumb">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-400">
-      <a href="/" class="hover:text-white">בית</a>
-      <span class="mx-2">›</span>
-      <a href="/services/multimedia/" class="hover:text-white">מולטימדיה</a>
-      <span class="mx-2">›</span>
-      <span class="text-white font-medium">מסכי אנדרואיד</span>
-    </div>
-  </nav>
+  <Breadcrumb items={[{label: 'מולטימדיה', href: '/services/multimedia/'}, {label: 'מסכי אנדרואיד'}]} />
 
   <!-- Hero -->
   <section class="relative bg-[#040912] text-white py-16 md:py-20 overflow-hidden">
     <div class="absolute inset-0 tech-grid opacity-30 pointer-events-none" />
-    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(29,78,216,0.4) 0%, transparent 65%);" />
+    <div class="absolute inset-0 pointer-events-none hero-radial" />
     <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-6">
         התקנת מסך אנדרואיד לרכב<br/>
@@ -89,7 +82,7 @@ const faqs = [
       </h1>
       <p class="text-lg md:text-xl text-blue-100 leading-relaxed">
         מסכי מולטימדיה אנדרואיד 7-10 אינץ׳, עם Apple CarPlay ו-Android Auto.
-        התקנה מקצועית עם חיווט מוסתר, אחריות 3 שנים, ושירות אישי לכל לקוח.
+        התקנה מקצועית עם חיווט מוסתר, אחריות מלאה, ושירות אישי לכל לקוח.
       </p>
     </div>
   </section>
@@ -123,43 +116,43 @@ const faqs = [
           מה תקבלו ממסך אנדרואיד חדש?
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div class="p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl backdrop-blur-sm">
-            <div class="text-2xl mb-2">🗺️</div>
+          <div class="p-5 glass-card">
+            <div class="w-11 h-11 bg-brand-500/15 text-brand-400 rounded-xl flex items-center justify-center mb-3"><Icon name="map-pin" class="w-5 h-5" /></div>
             <h3 class="font-bold text-white mb-2">ניווט Waze / Google Maps על מסך גדול</h3>
             <p class="text-sm text-gray-400">
               בלי לסכן את הראייה בטלפון. ניווט מלא במסך 9-10 אינץ׳ בקטע ראייה ישיר של הנהג.
             </p>
           </div>
-          <div class="p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl backdrop-blur-sm">
-            <div class="text-2xl mb-2">📞</div>
+          <div class="p-5 glass-card">
+            <div class="w-11 h-11 bg-brand-500/15 text-brand-400 rounded-xl flex items-center justify-center mb-3"><Icon name="phone" class="w-5 h-5" /></div>
             <h3 class="font-bold text-white mb-2">שיחות הנדס-פרי איכותיות</h3>
             <p class="text-sm text-gray-400">
               חיבור Bluetooth אוטומטי. שיחות נשמעות דרך הרמקולים, מיקרופון מובנה, ללא תקלות.
             </p>
           </div>
-          <div class="p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl backdrop-blur-sm">
-            <div class="text-2xl mb-2">🎵</div>
+          <div class="p-5 glass-card">
+            <div class="w-11 h-11 bg-brand-500/15 text-brand-400 rounded-xl flex items-center justify-center mb-3"><Icon name="volume-2" class="w-5 h-5" /></div>
             <h3 class="font-bold text-white mb-2">מוזיקה מ-Spotify ו-Apple Music</h3>
             <p class="text-sm text-gray-400">
               שליטה מלאה על המוזיקה דרך המסך, או דרך הטלפון, או דרך כפתורי ההגה.
             </p>
           </div>
-          <div class="p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl backdrop-blur-sm">
-            <div class="text-2xl mb-2">📹</div>
+          <div class="p-5 glass-card">
+            <div class="w-11 h-11 bg-brand-500/15 text-brand-400 rounded-xl flex items-center justify-center mb-3"><Icon name="camera" class="w-5 h-5" /></div>
             <h3 class="font-bold text-white mb-2">מצלמת רוורס משולבת</h3>
             <p class="text-sm text-gray-400">
               חיבור למצלמת רוורס מותקנת (קיימת או חדשה). תמונה אוטומטית בעת הילוך אחורי.
             </p>
           </div>
-          <div class="p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl backdrop-blur-sm">
-            <div class="text-2xl mb-2">🎮</div>
+          <div class="p-5 glass-card">
+            <div class="w-11 h-11 bg-brand-500/15 text-brand-400 rounded-xl flex items-center justify-center mb-3"><Icon name="smartphone" class="w-5 h-5" /></div>
             <h3 class="font-bold text-white mb-2">כפתורי ההגה ממשיכים לעבוד</h3>
             <p class="text-sm text-gray-400">
               במהלך ההתקנה אנחנו מתאימים את כפתורי ההגה המקוריים לעבוד עם המסך החדש.
             </p>
           </div>
-          <div class="p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl backdrop-blur-sm">
-            <div class="text-2xl mb-2">📺</div>
+          <div class="p-5 glass-card">
+            <div class="w-11 h-11 bg-brand-500/15 text-brand-400 rounded-xl flex items-center justify-center mb-3"><Icon name="smartphone" class="w-5 h-5" /></div>
             <h3 class="font-bold text-white mb-2">סטרימינג של YouTube ו-Netflix</h3>
             <p class="text-sm text-gray-400">
               בעצירות בלבד. במהלך נסיעה, השמע ממשיך אבל המסך אוטומטית כבה לבטיחות.
@@ -206,14 +199,14 @@ const faqs = [
             <div class="flex-shrink-0 w-10 h-10 bg-brand-500/20 border border-brand-500/40 text-brand-300 rounded-full flex items-center justify-center font-bold">5</div>
             <div>
               <h3 class="font-bold text-white mb-1">אחריות + שירות לטווח ארוך</h3>
-              <p class="text-gray-300">3 שנות אחריות על העבודה. כל בעיה — חוזרים אלינו, פותרים בלי תשלום. וגם תמיכה טלפונית לכל שאלה.</p>
+              <p class="text-gray-300">אחריות מלאה על העבודה. כל בעיה — חוזרים אלינו, פותרים בלי תשלום. וגם תמיכה טלפונית לכל שאלה.</p>
             </div>
           </li>
         </ol>
       </section>
 
       <!-- Brands -->
-      <section class="mb-12 p-6 bg-gray-50 rounded-xl">
+      <section class="mb-12 p-6 glass-section">
         <h2 class="text-xl md:text-2xl font-bold text-white mb-4">
           המותגים שאנחנו מתקינים
         </h2>
@@ -238,15 +231,15 @@ const faqs = [
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <a href="/services/multimedia/parking-cameras/" class="block p-5 bg-white/[0.04] border border-white/[0.09] rounded-lg hover:border-brand-500/40 hover:bg-white/[0.07] transition-all backdrop-blur-sm">
-            <h3 class="font-bold text-white mb-2">📹 מצלמות רוורס</h3>
+            <h3 class="font-bold text-white mb-2">מצלמות רוורס</h3>
             <p class="text-sm text-gray-400">חיבור מצלמת רוורס למסך החדש — תוספת מומלצת.</p>
           </a>
           <a href="/services/multimedia/sound-systems/" class="block p-5 bg-white/[0.04] border border-white/[0.09] rounded-lg hover:border-brand-500/40 hover:bg-white/[0.07] transition-all backdrop-blur-sm">
-            <h3 class="font-bold text-white mb-2">🔊 מערכות שמע</h3>
+            <h3 class="font-bold text-white mb-2">מערכות שמע</h3>
             <p class="text-sm text-gray-400">שדרוג הרמקולים והגברה — שלימות צליל מלאה.</p>
           </a>
           <a href="/services/multimedia/dashcam/" class="block p-5 bg-white/[0.04] border border-white/[0.09] rounded-lg hover:border-brand-500/40 hover:bg-white/[0.07] transition-all backdrop-blur-sm">
-            <h3 class="font-bold text-white mb-2">🎥 דאשקאם</h3>
+            <h3 class="font-bold text-white mb-2">דאשקאם</h3>
             <p class="text-sm text-gray-400">מצלמת רכב עם הקלטה — שילוב מצוין עם המסך.</p>
           </a>
         </div>

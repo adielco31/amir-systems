@@ -50,7 +50,7 @@ const faqs = [
 ]
 ---
 <BaseLayout title={title} description={description} schema={schema}>
-  <nav class="bg-[#040912] border-b border-white/[0.07] py-3">
+  <nav class="breadcrumb-dark">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-400">
       <a href="/" class="hover:text-white">בית</a><span class="mx-2">›</span>
       <a href="/blog/" class="hover:text-white">בלוג</a><span class="mx-2">›</span>
@@ -113,9 +113,9 @@ const faqs = [
             <table class="w-full border-collapse text-sm">
               <thead>
                 <tr class="bg-gray-100">
-                  <th class="text-right p-3 border border-gray-200 font-bold text-white">קריטריון</th>
-                  <th class="text-center p-3 border border-gray-200 font-bold text-white">Apple CarPlay</th>
-                  <th class="text-center p-3 border border-gray-200 font-bold text-white">Android Auto</th>
+                  <th class="text-right p-3 border border-white/[0.1] font-bold text-white">קריטריון</th>
+                  <th class="text-center p-3 border border-white/[0.1] font-bold text-white">Apple CarPlay</th>
+                  <th class="text-center p-3 border border-white/[0.1] font-bold text-white">Android Auto</th>
                 </tr>
               </thead>
               <tbody>
@@ -131,9 +131,9 @@ const faqs = [
                   ['מחיר מסך התומך', 'זהה — כמעט כולם תומכים בשניהם', ''],
                 ].map((row, i) => (
                   <tr class={i % 2 === 0 ? 'bg-transparent' : 'bg-white/[0.03]'}>
-                    <td class="p-3 border border-gray-200 font-medium text-white">{row[0]}</td>
-                    <td class="p-3 border border-gray-200 text-center text-gray-300">{row[1]}</td>
-                    <td class="p-3 border border-gray-200 text-center text-gray-300">{row[2] || row[1]}</td>
+                    <td class="p-3 border border-white/[0.1] font-medium text-white">{row[0]}</td>
+                    <td class="p-3 border border-white/[0.1] text-center text-gray-300">{row[1]}</td>
+                    <td class="p-3 border border-white/[0.1] text-center text-gray-300">{row[2] || row[1]}</td>
                   </tr>
                 ))}
               </tbody>
@@ -171,7 +171,7 @@ const faqs = [
               { icon: '⚠️', title: 'דרישה', body: 'CarPlay אלחוטי דורש iPhone עם iOS 9+ (כמעט כל אייפון). Android Auto אלחוטי — אנדרואיד 11+.' },
               { icon: '💰', title: 'עלות', body: 'מסכים עם אלחוטי עולים 200-400 ₪ יותר. אחרי שבוע — רוב הלקוחות אומרים שהיה שווה.' },
             ].map(item => (
-              <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+              <div class="p-4 glass-card">
                 <div class="text-2xl mb-2">{item.icon}</div>
                 <h3 class="font-bold text-white mb-1">{item.title}</h3>
                 <p class="text-sm text-gray-400">{item.body}</p>
@@ -227,7 +227,7 @@ const faqs = [
       </div>
 
       <!-- Author -->
-      <div class="mt-12 p-5 bg-gray-50 rounded-xl border border-gray-200 flex items-start gap-4">
+      <div class="mt-12 p-5 glass-card flex items-start gap-4">
         <div class="w-12 h-12 bg-brand-700 rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">א</div>
         <div>
           <div class="font-bold text-white">{business.ownerName}</div>
@@ -241,7 +241,7 @@ const faqs = [
       <!-- Related posts -->
       <div class="mt-10">
         <h2 class="text-xl font-bold text-white mb-4">מאמרים קשורים</h2>
-        <a href="/blog/android-screen-cost/" class="block p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl hover:border-brand-500/40 hover:bg-white/[0.07] transition-all backdrop-blur-sm">
+        <a href="/blog/android-screen-cost/" class="block p-5 glass-link-card">
           <div class="text-2xl mb-2">📱</div>
           <h3 class="font-bold text-white mb-1">כמה עולה התקנת מסך אנדרואיד לרכב ב-2026?</h3>
           <p class="text-sm text-gray-400">טווחי מחירים מפורטים, מה משפיע על המחיר, ואיך לא לשלם יותר מדי.</p>

@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro'
 import FAQ from '../../components/FAQ.astro'
 import CTABanner from '../../components/CTABanner.astro'
 import business from '../../data/business.js'
+import Breadcrumb from '../../components/Breadcrumb.astro'
 
 const title = 'כמה עולה התקנת מסך אנדרואיד לרכב ב-2026? המדריך המלא למחירים'
 const description = 'טווחי מחירים מפורטים לפי גודל מסך ומותג, מה משפיע על העלות, ואיך לא לשלם יותר מדי — המדריך של אמיר מערכות לפני שמתקינים מסך אנדרואיד לרכב.'
@@ -66,16 +67,7 @@ const priceTable = [
 
 <BaseLayout title={title} description={description} schema={schema}>
 
-  <!-- Breadcrumb -->
-  <nav class="bg-[#040912] border-b border-white/[0.07] py-3" aria-label="breadcrumb">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-400">
-      <a href="/" class="hover:text-white">בית</a>
-      <span class="mx-2">›</span>
-      <a href="/blog/" class="hover:text-white">בלוג</a>
-      <span class="mx-2">›</span>
-      <span class="text-white font-medium">כמה עולה מסך אנדרואיד לרכב</span>
-    </div>
-  </nav>
+  <Breadcrumb items={[{label: 'בלוג', href: '/blog/'}, {label: 'כמה עולה מסך אנדרואיד לרכב'}]} />
 
   <!-- Article hero -->
   <section class="py-10 md:py-14 border-b border-white/[0.07] bg-[#040912]">
@@ -289,7 +281,7 @@ const priceTable = [
           לרכב משפחתי — לא נמכור לו מסך פרימיום שלא יגיד לו יותר. כשלקוח רוצה את הכי
           טוב — נסביר לו בדיוק מה ההבדל ששווה את ההשקעה.
         </p>
-        <div class="bg-gray-50 rounded-xl p-5 border border-gray-200">
+        <div class="glass-card p-5">
           <h3 class="font-bold text-white mb-3">הצעת מחיר ב-3 שלבים פשוטים:</h3>
           <ol class="space-y-2 text-gray-300">
             <li class="flex gap-3"><span class="font-bold text-brand-400">1.</span> <span>שלחו וואטסאפ עם שם הרכב, שנה, ומה אתם צריכים (CarPlay בלבד? עם מצלמה? עם שמע?)</span></li>
@@ -300,7 +292,7 @@ const priceTable = [
       </section>
 
       <!-- Author bio -->
-      <div class="mt-12 p-5 bg-gray-50 rounded-xl border border-gray-200 flex gap-4 items-start">
+      <div class="mt-12 p-5 glass-card flex gap-4 items-start">
         <div class="text-4xl flex-shrink-0">🔧</div>
         <div>
           <p class="font-bold text-white">{business.ownerName} — אמיר מערכות</p>

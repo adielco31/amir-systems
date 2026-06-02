@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro'
 import FAQ from '../../components/FAQ.astro'
 import CTABanner from '../../components/CTABanner.astro'
 import business from '../../data/business.js'
+import Icon from '../../components/Icon.astro'
 import { areas } from '../../data/areas.js'
 
 const area = areas.find(a => a.slug === 'migdal-haemek')
@@ -19,14 +20,14 @@ const schema = {
 }
 
 const services = [
-  { title: 'מסכי אנדרואיד ומולטימדיה', icon: '📱', href: '/services/multimedia/android-screens/', desc: 'Apple CarPlay ו-Android Auto על מסך 7-10 אינץ׳. ההתקנה הפופולרית ביותר.' },
-  { title: 'מצלמות רוורס', icon: '📹', href: '/services/multimedia/parking-cameras/', desc: 'מצלמה אחורית, חיישני חנייה ומערכת 360°. בטיחות בחנייה.' },
-  { title: 'דאשקאם', icon: '🎥', href: '/services/multimedia/dashcam/', desc: 'מצלמת דרך עם מצב חנייה. ראיה לביטוח בכל תאונה.' },
-  { title: 'מערכות שמע', icon: '🔊', href: '/services/multimedia/sound-systems/', desc: 'רמקולים, סאבוופר ומגבר עם כיוונון מקצועי.' },
-  { title: 'חשמלאי רכב ודיאגנוסטיקה', icon: '⚡', href: '/services/electrical/', desc: 'דיאגנוסטיקה ממוחשבת, תיקון תקלות חשמל, מצבר ואלטרנטור.' },
-  { title: 'התקנת ווי גרירה', icon: '🔗', href: '/services/towing-hitch/', desc: 'קבוע, נשלף או חשמלי. תקנים לרישוי, חיבור 7/13 פינים.' },
-  { title: 'מיזוג אוויר לרכב', icon: '❄️', href: '/services/ac-repair/', desc: 'מילוי גז, תיקון קומפרסור ואיתור דליפות.' },
-  { title: 'מכונאות כללית', icon: '🛠️', href: '/services/general-mechanics/', desc: 'טיפולים תקופתיים, בלמים, מתלים — פתרון מקיף.' },
+  { title: 'מסכי אנדרואיד ומולטימדיה', icon: 'smartphone', href: '/services/multimedia/android-screens/', desc: 'Apple CarPlay ו-Android Auto על מסך 7-10 אינץ׳. ההתקנה הפופולרית ביותר.' },
+  { title: 'מצלמות רוורס', icon: 'camera', href: '/services/multimedia/parking-cameras/', desc: 'מצלמה אחורית, חיישני חנייה ומערכת 360°. בטיחות בחנייה.' },
+  { title: 'דאשקאם', icon: 'video', href: '/services/multimedia/dashcam/', desc: 'מצלמת דרך עם מצב חנייה. ראיה לביטוח בכל תאונה.' },
+  { title: 'מערכות שמע', icon: 'volume-2', href: '/services/multimedia/sound-systems/', desc: 'רמקולים, סאבוופר ומגבר עם כיוונון מקצועי.' },
+  { title: 'חשמלאי רכב ודיאגנוסטיקה', icon: 'zap', href: '/services/electrical/', desc: 'דיאגנוסטיקה ממוחשבת, תיקון תקלות חשמל, מצבר ואלטרנטור.' },
+  { title: 'התקנת ווי גרירה', icon: 'link', href: '/services/towing-hitch/', desc: 'קבוע, נשלף או חשמלי. תקנים לרישוי, חיבור 7/13 פינים.' },
+  { title: 'מיזוג אוויר לרכב', icon: 'snowflake', href: '/services/ac-repair/', desc: 'מילוי גז, תיקון קומפרסור ואיתור דליפות.' },
+  { title: 'מכונאות כללית', icon: 'settings', href: '/services/general-mechanics/', desc: 'טיפולים תקופתיים, בלמים, מתלים — פתרון מקיף.' },
 ]
 
 const faqs = [
@@ -55,7 +56,7 @@ const faqs = [
 
 <BaseLayout title={title} description={description} schema={schema}>
 
-  <nav class="bg-[#040912] border-b border-white/[0.07] py-3" aria-label="breadcrumb">
+  <nav class="breadcrumb-dark" aria-label="breadcrumb">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-400">
       <a href="/" class="hover:text-white">בית</a>
       <span class="mx-2">›</span>
@@ -67,7 +68,7 @@ const faqs = [
 
   <section class="relative bg-[#040912] text-white py-16 md:py-20 overflow-hidden">
     <div class="absolute inset-0 tech-grid opacity-30 pointer-events-none" />
-    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(29,78,216,0.4) 0%, transparent 65%);" />
+    <div class="absolute inset-0 pointer-events-none hero-radial" />
     <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="inline-block bg-white/10 rounded-full px-4 py-1 text-sm font-medium mb-4">
         {area.distance} ק"מ ממגדל העמק — כ-20 דקות נסיעה
@@ -113,8 +114,8 @@ const faqs = [
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           {services.map(svc => (
-            <a href={svc.href} class="block p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl hover:border-brand-500/40 hover:bg-white/[0.07] transition-all backdrop-blur-sm">
-              <div class="text-2xl mb-2">{svc.icon}</div>
+            <a href={svc.href} class="block p-5 glass-link-card">
+              <div class="w-11 h-11 bg-brand-500/15 text-brand-400 rounded-xl flex items-center justify-center mb-3"><Icon name={svc} class="w-5 h-5" /></div>
               <h3 class="font-bold text-white mb-2">{svc.title}</h3>
               <p class="text-sm text-gray-400">{svc.desc}</p>
             </a>
@@ -127,40 +128,36 @@ const faqs = [
           למה לקוחות מגדל העמק בוחרים בנו?
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          <div class="p-5 bg-white/[0.05] border border-white/[0.09] rounded-xl text-center">
+          <div class="p-5 glass-stats text-center">
             <div class="text-3xl font-bold text-accent-500 mb-1">{business.stats.yearsOfExperience}+</div>
             <div class="text-sm text-blue-200">שנות ניסיון</div>
           </div>
-          <div class="p-5 bg-white/[0.05] border border-white/[0.09] rounded-xl text-center">
+          <div class="p-5 glass-stats text-center">
             <div class="text-3xl font-bold text-accent-500 mb-1">{business.stats.installationsCount.toLocaleString()}+</div>
             <div class="text-sm text-blue-200">התקנות בוצעו</div>
           </div>
-          <div class="p-5 bg-white/[0.05] border border-white/[0.09] rounded-xl text-center">
+          <div class="p-5 glass-stats text-center">
             <div class="text-3xl font-bold text-accent-500 mb-1">{area.distance} ק"מ</div>
             <div class="text-sm text-blue-200">ממגדל העמק</div>
           </div>
         </div>
         <ul class="space-y-3">
           <li class="flex items-start gap-3">
-            <span class="text-green-500 font-bold text-lg mt-0.5">✓</span>
+            <span class="text-green-400 mt-0.5 flex-shrink-0"><Icon name="check-circle" class="w-5 h-5" /></span>
             <p class="text-gray-300"><strong>שקיפות לפני כל עבודה</strong> — הצעת מחיר מלאה לפני שמתחילים.</p>
           </li>
           <li class="flex items-start gap-3">
-            <span class="text-green-500 font-bold text-lg mt-0.5">✓</span>
-            <p class="text-gray-300"><strong>אחריות 3 שנים על עבודת ההתקנה</strong> — כל בעיה, חוזרים ומתקנים.</p>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-green-500 font-bold text-lg mt-0.5">✓</span>
+            <span class="text-green-400 mt-0.5 flex-shrink-0"><Icon name="check-circle" class="w-5 h-5" /></span>
             <p class="text-gray-300"><strong>שירות אישי</strong> — אותה יד, אותה אחריות בכל ביקור.</p>
           </li>
           <li class="flex items-start gap-3">
-            <span class="text-green-500 font-bold text-lg mt-0.5">✓</span>
+            <span class="text-green-400 mt-0.5 flex-shrink-0"><Icon name="check-circle" class="w-5 h-5" /></span>
             <p class="text-gray-300"><strong>תיאום תור גמיש</strong> — בדרך כלל תוך 2-5 ימים.</p>
           </li>
         </ul>
       </section>
 
-      <section class="mb-12 p-6 bg-gray-50 rounded-xl">
+      <section class="mb-12 p-6 glass-section">
         <h2 class="text-xl md:text-2xl font-bold text-white mb-4">
           איך מגיעים אלינו ממגדל העמק?
         </h2>

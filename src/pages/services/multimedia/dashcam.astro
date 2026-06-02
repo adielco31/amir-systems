@@ -3,6 +3,8 @@ import BaseLayout from '../../../layouts/BaseLayout.astro'
 import FAQ from '../../../components/FAQ.astro'
 import CTABanner from '../../../components/CTABanner.astro'
 import business from '../../../data/business.js'
+import Breadcrumb from '../../../components/Breadcrumb.astro'
+import Icon from '../../../components/Icon.astro'
 
 const title = 'התקנת דאשקאם לרכב | מצלמות דרך עם מצב חנייה'
 const description = 'התקנת דאשקאם מקצועית — מצלמת דרך חזיתית או דו-כיוונית, מצב חנייה, ראייה לילית. חיווט מוסתר, התקנה נקייה בעפולה והאזור, אחריות מלאה.'
@@ -60,28 +62,19 @@ const faqs = [
   },
   {
     q: 'מה האחריות שאתם נותנים?',
-    a: 'אחריות 3 שנים על העבודה (חיווט והתקנה) ואחריות יצרן מלאה על הדאשקאם עצמו. אם מתגלה בעיה בחיווט, במצב החנייה או בהתקנה — מחזירים אלינו והכל מתוקן ללא תשלום. אנחנו עומדים מאחורי כל התקנה.',
+    a: 'אחריות מלאה על העבודה (חיווט והתקנה) ואחריות יצרן מלאה על הדאשקאם עצמו. אם מתגלה בעיה בחיווט, במצב החנייה או בהתקנה — מחזירים אלינו והכל מתוקן ללא תשלום. אנחנו עומדים מאחורי כל התקנה.',
   },
 ]
 ---
 
 <BaseLayout title={title} description={description} schema={schema}>
 
-  <!-- Breadcrumb -->
-  <nav class="bg-[#040912] border-b border-white/[0.07] py-3" aria-label="breadcrumb">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-400">
-      <a href="/" class="hover:text-white">בית</a>
-      <span class="mx-2">›</span>
-      <a href="/services/multimedia/" class="hover:text-white">מולטימדיה</a>
-      <span class="mx-2">›</span>
-      <span class="text-white font-medium">דאשקאם</span>
-    </div>
-  </nav>
+  <Breadcrumb items={[{label: 'מולטימדיה', href: '/services/multimedia/'}, {label: 'דאשקאם'}]} />
 
   <!-- Hero -->
   <section class="relative bg-[#040912] text-white py-16 md:py-20 overflow-hidden">
     <div class="absolute inset-0 tech-grid opacity-30 pointer-events-none" />
-    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(29,78,216,0.4) 0%, transparent 65%);" />
+    <div class="absolute inset-0 pointer-events-none hero-radial" />
     <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-6">
         התקנת דאשקאם לרכב<br/>
@@ -123,43 +116,43 @@ const faqs = [
           מה תקבלו מדאשקאם מותקן מקצועית?
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div class="p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl backdrop-blur-sm">
-            <div class="text-2xl mb-2">⚖️</div>
+          <div class="p-5 glass-card">
+            <div class="w-11 h-11 bg-brand-500/15 text-brand-400 rounded-xl flex items-center justify-center mb-3"><Icon name="shield" class="w-5 h-5" /></div>
             <h3 class="font-bold text-white mb-2">ראיה לביטוח ולמשטרה</h3>
             <p class="text-sm text-gray-400">
               תיעוד חד עם חותמת זמן ומיקום — קביל בתביעות ביטוח ובדיווח למשטרה.
             </p>
           </div>
-          <div class="p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl backdrop-blur-sm">
+          <div class="p-5 glass-card">
             <div class="text-2xl mb-2">🅿️</div>
             <h3 class="font-bold text-white mb-2">מצב חנייה 24/7</h3>
             <p class="text-sm text-gray-400">
               מתעד פגיעות "פגע וברח" גם כשהרכב חונה ומכובה, עם זיהוי זעזוע.
             </p>
           </div>
-          <div class="p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl backdrop-blur-sm">
-            <div class="text-2xl mb-2">🌙</div>
+          <div class="p-5 glass-card">
+            <div class="w-11 h-11 bg-brand-500/15 text-brand-400 rounded-xl flex items-center justify-center mb-3"><Icon name="star" class="w-5 h-5" /></div>
             <h3 class="font-bold text-white mb-2">ראייה לילית חדה</h3>
             <p class="text-sm text-gray-400">
               חיישן Sony STARVIS או מקביל — קולט לוחיות רישוי גם בתאורה נמוכה.
             </p>
           </div>
-          <div class="p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl backdrop-blur-sm">
-            <div class="text-2xl mb-2">🔋</div>
+          <div class="p-5 glass-card">
+            <div class="w-11 h-11 bg-brand-500/15 text-brand-400 rounded-xl flex items-center justify-center mb-3"><Icon name="zap" class="w-5 h-5" /></div>
             <h3 class="font-bold text-white mb-2">הגנת מצבר חכמה</h3>
             <p class="text-sm text-gray-400">
               יחידת cut-off מנתקת לפני שהמצבר יורד — בלי לחשוש להישאר תקועים.
             </p>
           </div>
-          <div class="p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl backdrop-blur-sm">
-            <div class="text-2xl mb-2">🎥</div>
+          <div class="p-5 glass-card">
+            <div class="w-11 h-11 bg-brand-500/15 text-brand-400 rounded-xl flex items-center justify-center mb-3"><Icon name="video" class="w-5 h-5" /></div>
             <h3 class="font-bold text-white mb-2">תיעוד דו-כיווני</h3>
             <p class="text-sm text-gray-400">
               חזית + אחור — מכסה גם רכב שנכנס בכם מאחור או עוקב תוקפני.
             </p>
           </div>
-          <div class="p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl backdrop-blur-sm">
-            <div class="text-2xl mb-2">🪛</div>
+          <div class="p-5 glass-card">
+            <div class="w-11 h-11 bg-brand-500/15 text-brand-400 rounded-xl flex items-center justify-center mb-3"><Icon name="wrench" class="w-5 h-5" /></div>
             <h3 class="font-bold text-white mb-2">התקנה נקייה ומוסתרת</h3>
             <p class="text-sm text-gray-400">
               מאחורי המראה, חיווט מוסתר לגמרי — בלי כבלים תלויים על השמשה.
@@ -174,19 +167,19 @@ const faqs = [
           סוגי דאשקאם שאנחנו מתקינים
         </h2>
         <div class="space-y-4">
-          <div class="p-5 bg-white border border-gray-200 rounded-lg">
+          <div class="p-5 glass-card">
             <h3 class="font-bold text-white mb-1">דאשקאם חזיתי Full HD / 4K</h3>
             <p class="text-gray-300">מצלמה יחידה שמתעדת את החזית. הפתרון המשתלם והנפוץ ביותר, מספיק לרוב הנהגים. דגמי 4K נותנים חדות גבוהה במיוחד לזיהוי פרטים.</p>
           </div>
-          <div class="p-5 bg-white border border-gray-200 rounded-lg">
+          <div class="p-5 glass-card">
             <h3 class="font-bold text-white mb-1">דאשקאם דו-כיווני (חזית + אחור)</h3>
             <p class="text-gray-300">שתי מצלמות שמתעדות גם קדימה וגם אחורה בו-זמנית. ההמלצה שלנו לרוב הלקוחות — כיסוי מלא והגנה משפטית מקסימלית.</p>
           </div>
-          <div class="p-5 bg-white border border-gray-200 rounded-lg">
+          <div class="p-5 glass-card">
             <h3 class="font-bold text-white mb-1">דאשקאם עם GPS</h3>
             <p class="text-gray-300">מוסיף נתוני מהירות ומיקום מדויקים על גבי ההקלטה — מחזק את קבילות הראיה ומתעד את מסלול הנסיעה.</p>
           </div>
-          <div class="p-5 bg-white border border-gray-200 rounded-lg">
+          <div class="p-5 glass-card">
             <h3 class="font-bold text-white mb-1">חיבור קבוע (Hardwire) למצב חנייה</h3>
             <p class="text-gray-300">תוספת חיווט מקופסת הנתיכים שמאפשרת תיעוד גם בחנייה, עם יחידת הגנה מפני התרוקנות מצבר.</p>
           </div>
@@ -231,14 +224,14 @@ const faqs = [
             <div class="flex-shrink-0 w-10 h-10 bg-brand-500/20 border border-brand-500/40 text-brand-300 rounded-full flex items-center justify-center font-bold">5</div>
             <div>
               <h3 class="font-bold text-white mb-1">בדיקות, הדגמה ואחריות</h3>
-              <p class="text-gray-300">בדיקת איכות ההקלטה ביום ובלילה, הדגמה של גישה לסרטונים מהאפליקציה/כרטיס, ו-3 שנות אחריות על העבודה.</p>
+              <p class="text-gray-300">בדיקת איכות ההקלטה ביום ובלילה, הדגמה של גישה לסרטונים מהאפליקציה/כרטיס, ואחריות מלאה על העבודה.</p>
             </div>
           </li>
         </ol>
       </section>
 
       <!-- Why us -->
-      <section class="mb-12 p-6 bg-gray-50 rounded-xl">
+      <section class="mb-12 p-6 glass-section">
         <h2 class="text-xl md:text-2xl font-bold text-white mb-4">
           למה התקנה מקצועית של דאשקאם חשובה
         </h2>
@@ -262,15 +255,15 @@ const faqs = [
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <a href="/services/multimedia/parking-cameras/" class="block p-5 bg-white/[0.04] border border-white/[0.09] rounded-lg hover:border-brand-500/40 hover:bg-white/[0.07] transition-all backdrop-blur-sm">
-            <h3 class="font-bold text-white mb-2">📹 מצלמות רוורס</h3>
+            <h3 class="font-bold text-white mb-2">מצלמות רוורס</h3>
             <p class="text-sm text-gray-400">מצלמת חנייה אחורית — משלימה את הדאשקאם לבטיחות מלאה.</p>
           </a>
           <a href="/services/multimedia/android-screens/" class="block p-5 bg-white/[0.04] border border-white/[0.09] rounded-lg hover:border-brand-500/40 hover:bg-white/[0.07] transition-all backdrop-blur-sm">
-            <h3 class="font-bold text-white mb-2">📱 מסכי אנדרואיד</h3>
+            <h3 class="font-bold text-white mb-2">מסכי אנדרואיד</h3>
             <p class="text-sm text-gray-400">מסך מולטימדיה חדש — חלק מהדאשקאמים מתחברים אליו ישירות.</p>
           </a>
           <a href="/services/multimedia/sound-systems/" class="block p-5 bg-white/[0.04] border border-white/[0.09] rounded-lg hover:border-brand-500/40 hover:bg-white/[0.07] transition-all backdrop-blur-sm">
-            <h3 class="font-bold text-white mb-2">🔊 מערכות שמע</h3>
+            <h3 class="font-bold text-white mb-2">מערכות שמע</h3>
             <p class="text-sm text-gray-400">שדרוג הרמקולים וההגברה — חבילת מולטימדיה מלאה.</p>
           </a>
         </div>

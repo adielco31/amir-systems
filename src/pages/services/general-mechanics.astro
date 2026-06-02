@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro'
 import FAQ from '../../components/FAQ.astro'
 import CTABanner from '../../components/CTABanner.astro'
 import business from '../../data/business.js'
+import Icon from '../../components/Icon.astro'
 
 const title = 'מכונאות רכב בעפולה | טיפולים, בלמים ומתלים'
 const description = 'שירותי מכונאות כללית לרכב — טיפולים תקופתיים, בלמים, מתלים, החלפת שמן ורצועות. שירות משולב עם חשמלאות לפתרון מקיף. בעפולה והאזור.'
@@ -39,7 +40,7 @@ const faqs = [
 ]
 ---
 <BaseLayout title={title} description={description} schema={schema}>
-  <nav class="bg-[#040912] border-b border-white/[0.07] py-3">
+  <nav class="breadcrumb-dark">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-400">
       <a href="/" class="hover:text-white">בית</a><span class="mx-2">›</span>
       <a href="/services/" class="hover:text-white">שירותים</a><span class="mx-2">›</span>
@@ -49,7 +50,7 @@ const faqs = [
 
   <section class="relative bg-[#040912] text-white py-16 md:py-20 overflow-hidden">
     <div class="absolute inset-0 tech-grid opacity-30 pointer-events-none" />
-    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(29,78,216,0.4) 0%, transparent 65%);" />
+    <div class="absolute inset-0 pointer-events-none hero-radial" />
     <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-6">
         מכונאות רכב בעפולה<br/>
@@ -85,15 +86,15 @@ const faqs = [
         <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">השירותים המכניים שלנו</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
-            { icon: '🛢️', t: 'החלפת שמן ופילטרים', d: 'שמן מנוע, פילטר שמן, פילטר אוויר, פילטר מזגן — טיפול שנתי בסיסי.' },
-            { icon: '🛑', t: 'מערכת בלמים', d: 'רפידות, דיסקיות, בודקים גם בלמי חניה וצינורות בלמים.' },
-            { icon: '🔩', t: 'מתלים ופסים', d: 'בולמי זעזועים, קפיצים, בני כדור, מרצלות הגה — בדיקה ותיקון.' },
-            { icon: '⚙️', t: 'רצועות ושרשראות', d: 'רצועת תזמון/שרשרת, רצועה סרפנטינית, גלגלות מתח.' },
-            { icon: '💧', t: 'דליפות ונוזלים', d: 'איתור דליפות שמן, קירור, הגה הידראולי, גיר — לפני שמחמירים.' },
-            { icon: '🔍', t: 'בדיקה לפני קנייה', d: 'קונים רכב יד שנייה? בדיקה מכנית + דיאגנוסטיקה מלאה לפני הסגירה.' },
+            { icon: 'droplets', t: 'החלפת שמן ופילטרים', d: 'שמן מנוע, פילטר שמן, פילטר אוויר, פילטר מזגן — טיפול שנתי בסיסי.' },
+            { icon: 'shield', t: 'מערכת בלמים', d: 'רפידות, דיסקיות, בודקים גם בלמי חניה וצינורות בלמים.' },
+            { icon: 'wrench', t: 'מתלים ופסים', d: 'בולמי זעזועים, קפיצים, בני כדור, מרצלות הגה — בדיקה ותיקון.' },
+            { icon: 'settings', t: 'רצועות ושרשראות', d: 'רצועת תזמון/שרשרת, רצועה סרפנטינית, גלגלות מתח.' },
+            { icon: 'droplets', t: 'דליפות ונוזלים', d: 'איתור דליפות שמן, קירור, הגה הידראולי, גיר — לפני שמחמירים.' },
+            { icon: 'search', t: 'בדיקה לפני קנייה', d: 'קונים רכב יד שנייה? בדיקה מכנית + דיאגנוסטיקה מלאה לפני הסגירה.' },
           ].map(s => (
-            <div class="p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl backdrop-blur-sm">
-              <div class="text-2xl mb-2">{s.icon}</div>
+            <div class="p-5 glass-card">
+              <div class="w-11 h-11 bg-brand-500/15 text-brand-400 rounded-xl flex items-center justify-center mb-3"><Icon name={s} class="w-5 h-5" /></div>
               <h3 class="font-bold text-white mb-2">{s.t}</h3>
               <p class="text-sm text-gray-400">{s.d}</p>
             </div>
@@ -105,15 +106,15 @@ const faqs = [
         <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">שירותים קשורים</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <a href="/services/electrical/" class="block p-5 bg-white/[0.04] border border-white/[0.09] rounded-lg hover:border-brand-500/40 hover:bg-white/[0.07] transition-all backdrop-blur-sm">
-            <h3 class="font-bold text-white mb-2">⚡ חשמלאי רכב</h3>
+            <h3 class="font-bold text-white mb-2">חשמלאי רכב</h3>
             <p class="text-sm text-gray-400">בשילוב עם מכונאות — פתרון מלא.</p>
           </a>
           <a href="/services/ecu-reset/" class="block p-5 bg-white/[0.04] border border-white/[0.09] rounded-lg hover:border-brand-500/40 hover:bg-white/[0.07] transition-all backdrop-blur-sm">
-            <h3 class="font-bold text-white mb-2">🔧 איפוס מחשב</h3>
+            <h3 class="font-bold text-white mb-2">איפוס מחשב</h3>
             <p class="text-sm text-gray-400">לאחר כל תיקון — מחיקת קודים ואיפוס.</p>
           </a>
           <a href="/services/ac-repair/" class="block p-5 bg-white/[0.04] border border-white/[0.09] rounded-lg hover:border-brand-500/40 hover:bg-white/[0.07] transition-all backdrop-blur-sm">
-            <h3 class="font-bold text-white mb-2">❄️ מיזוג רכב</h3>
+            <h3 class="font-bold text-white mb-2">מיזוג רכב</h3>
             <p class="text-sm text-gray-400">כולל חגורת קומפרסור ומצמד — עבודה מכנית.</p>
           </a>
         </div>

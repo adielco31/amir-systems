@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro'
 import FAQ from '../../components/FAQ.astro'
 import CTABanner from '../../components/CTABanner.astro'
 import business from '../../data/business.js'
+import Icon from '../../components/Icon.astro'
 import { areas } from '../../data/areas.js'
 
 const area = areas.find(a => a.slug === 'megiddo')
@@ -18,11 +19,11 @@ const schema = {
 }
 
 const services = [
-  { icon: '📱', t: 'מסכי אנדרואיד', href: '/services/multimedia/android-screens/', d: 'CarPlay ו-Android Auto — גם לרכבי שטח.' },
-  { icon: '📹', t: 'מצלמות רוורס', href: '/services/multimedia/parking-cameras/', d: 'לרכבים גדולים — 360° מומלצת.' },
-  { icon: '🔗', t: 'ווי גרירה', href: '/services/towing-hitch/', d: 'לחקלאים — קבוע, נשלף, 7/13 פינים.' },
-  { icon: '⚡', t: 'חשמלאי רכב', href: '/services/electrical/', d: 'דיאגנוסטיקה ותיקון לרכבי שטח וחקלאי.' },
-  { icon: '🛠️', t: 'מכונאות', href: '/services/general-mechanics/', d: 'טיפולים, בלמים ומתלים.' },
+  { icon: 'smartphone', t: 'מסכי אנדרואיד', href: '/services/multimedia/android-screens/', d: 'CarPlay ו-Android Auto — גם לרכבי שטח.' },
+  { icon: 'camera', t: 'מצלמות רוורס', href: '/services/multimedia/parking-cameras/', d: 'לרכבים גדולים — 360° מומלצת.' },
+  { icon: 'link', t: 'ווי גרירה', href: '/services/towing-hitch/', d: 'לחקלאים — קבוע, נשלף, 7/13 פינים.' },
+  { icon: 'zap', t: 'חשמלאי רכב', href: '/services/electrical/', d: 'דיאגנוסטיקה ותיקון לרכבי שטח וחקלאי.' },
+  { icon: 'settings', t: 'מכונאות', href: '/services/general-mechanics/', d: 'טיפולים, בלמים ומתלים.' },
   { icon: '🚛', t: 'תיקון נגררים', href: '/services/trailer-repair/', d: 'נגרר חקלאי — פנסים, חשמל, בלמים.' },
 ]
 
@@ -35,7 +36,7 @@ const faqs = [
 ]
 ---
 <BaseLayout title={title} description={description} schema={schema}>
-  <nav class="bg-[#040912] border-b border-white/[0.07] py-3">
+  <nav class="breadcrumb-dark">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-400">
       <a href="/" class="hover:text-white">בית</a><span class="mx-2">›</span>
       <a href="/areas/" class="hover:text-white">אזורי שירות</a><span class="mx-2">›</span>
@@ -45,7 +46,7 @@ const faqs = [
 
   <section class="relative bg-[#040912] text-white py-16 md:py-20 overflow-hidden">
     <div class="absolute inset-0 tech-grid opacity-30 pointer-events-none" />
-    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(29,78,216,0.4) 0%, transparent 65%);" />
+    <div class="absolute inset-0 pointer-events-none hero-radial" />
     <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="inline-block bg-white/10 rounded-full px-4 py-1 text-sm font-medium mb-4">{area.distance} ק"מ ממרכז המועצה</div>
       <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-6">
@@ -78,8 +79,8 @@ const faqs = [
         <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">השירותים ליישובי מגידו</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           {services.map(s => (
-            <a href={s.href} class="block p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl hover:border-brand-500/40 hover:bg-white/[0.07] transition-all backdrop-blur-sm">
-              <div class="text-2xl mb-2">{s.icon}</div>
+            <a href={s.href} class="block p-5 glass-link-card">
+              <div class="w-11 h-11 bg-brand-500/15 text-brand-400 rounded-xl flex items-center justify-center mb-3"><Icon name={s} class="w-5 h-5" /></div>
               <h3 class="font-bold text-white mb-1">{s.t}</h3>
               <p class="text-sm text-gray-400">{s.d}</p>
             </a>
@@ -87,13 +88,13 @@ const faqs = [
         </div>
       </section>
 
-      <section class="mb-12 p-6 bg-gray-50 rounded-xl">
+      <section class="mb-12 p-6 glass-section">
         <h2 class="text-xl md:text-2xl font-bold text-white mb-4">יישובים שאנחנו משרתים</h2>
         <div class="flex flex-wrap gap-2">
           {settlements.map(s => (
-            <span class="bg-white border border-gray-200 rounded-full px-3 py-1 text-sm text-gray-300">{s}</span>
+            <span class="bg-white/[0.06] border border-white/[0.12] rounded-full px-3 py-1 text-sm text-gray-300">{s}</span>
           ))}
-          <span class="bg-white border border-gray-200 rounded-full px-3 py-1 text-sm text-gray-500">ועוד יישובים רבים...</span>
+          <span class="bg-white/[0.06] border border-white/[0.12] rounded-full px-3 py-1 text-sm text-gray-500">ועוד יישובים רבים...</span>
         </div>
       </section>
     </div>

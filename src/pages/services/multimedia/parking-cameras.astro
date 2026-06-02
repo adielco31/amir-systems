@@ -3,6 +3,8 @@ import BaseLayout from '../../../layouts/BaseLayout.astro'
 import FAQ from '../../../components/FAQ.astro'
 import CTABanner from '../../../components/CTABanner.astro'
 import business from '../../../data/business.js'
+import Breadcrumb from '../../../components/Breadcrumb.astro'
+import Icon from '../../../components/Icon.astro'
 
 const title = 'התקנת מצלמת רוורס לרכב | מצלמות חנייה ו-360°'
 const description = 'התקנת מצלמות רוורס וחנייה לכל סוגי הרכבים — מצלמה אחורית, קדמית, 360°, חיישני חנייה. התקנה ביום אחד בעפולה והאזור, חיווט מוסתר, אחריות מלאה.'
@@ -60,28 +62,19 @@ const faqs = [
   },
   {
     q: 'מה האחריות שאתם נותנים?',
-    a: `אחריות ${business.stats.yearsOfExperience > 0 ? '3 שנים' : '3 שנים'} על העבודה (חיווט והתקנה) ואחריות יצרן מלאה על המצלמה עצמה. אם התמונה מתעמעמת, נכנסת לחות, או החיווט מפסיק לעבוד — מחזירים אלינו והכל מתוקן ללא תשלום. אנחנו לוקחים אחריות מלאה על כל מה שאנחנו מתקינים.`,
+    a: 'אחריות מלאה על העבודה (חיווט והתקנה) ואחריות יצרן מלאה על המצלמה עצמה. אם התמונה מתעמעמת, נכנסת לחות, או החיווט מפסיק לעבוד — מחזירים אלינו והכל מתוקן ללא תשלום. אנחנו לוקחים אחריות מלאה על כל מה שאנחנו מתקינים.',
   },
 ]
 ---
 
 <BaseLayout title={title} description={description} schema={schema}>
 
-  <!-- Breadcrumb -->
-  <nav class="bg-[#040912] border-b border-white/[0.07] py-3" aria-label="breadcrumb">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-400">
-      <a href="/" class="hover:text-white">בית</a>
-      <span class="mx-2">›</span>
-      <a href="/services/multimedia/" class="hover:text-white">מולטימדיה</a>
-      <span class="mx-2">›</span>
-      <span class="text-white font-medium">מצלמות רוורס</span>
-    </div>
-  </nav>
+  <Breadcrumb items={[{label: 'מולטימדיה', href: '/services/multimedia/'}, {label: 'מצלמות רוורס'}]} />
 
   <!-- Hero -->
   <section class="relative bg-[#040912] text-white py-16 md:py-20 overflow-hidden">
     <div class="absolute inset-0 tech-grid opacity-30 pointer-events-none" />
-    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(29,78,216,0.4) 0%, transparent 65%);" />
+    <div class="absolute inset-0 pointer-events-none hero-radial" />
     <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-6">
         התקנת מצלמת רוורס לרכב<br/>
@@ -123,43 +116,43 @@ const faqs = [
           מה תקבלו ממצלמת רוורס מקצועית?
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div class="p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl backdrop-blur-sm">
-            <div class="text-2xl mb-2">👁️</div>
+          <div class="p-5 glass-card">
+            <div class="w-11 h-11 bg-brand-500/15 text-brand-400 rounded-xl flex items-center justify-center mb-3"><Icon name="eye" class="w-5 h-5" /></div>
             <h3 class="font-bold text-white mb-2">ביטול השטח המת מאחורי הרכב</h3>
             <p class="text-sm text-gray-400">
               תמונה מלאה של מה שמאחור — כולל אבני שפה נמוכות, מכשולים וילדים.
             </p>
           </div>
-          <div class="p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl backdrop-blur-sm">
-            <div class="text-2xl mb-2">📐</div>
+          <div class="p-5 glass-card">
+            <div class="w-11 h-11 bg-brand-500/15 text-brand-400 rounded-xl flex items-center justify-center mb-3"><Icon name="settings" class="w-5 h-5" /></div>
             <h3 class="font-bold text-white mb-2">קווי הנחיה דינמיים</h3>
             <p class="text-sm text-gray-400">
               קווים שזזים יחד עם ההגה ומראים בדיוק לאן הרכב יגיע — חנייה מדויקת.
             </p>
           </div>
-          <div class="p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl backdrop-blur-sm">
-            <div class="text-2xl mb-2">🌙</div>
+          <div class="p-5 glass-card">
+            <div class="w-11 h-11 bg-brand-500/15 text-brand-400 rounded-xl flex items-center justify-center mb-3"><Icon name="star" class="w-5 h-5" /></div>
             <h3 class="font-bold text-white mb-2">ראייה לילית ברורה</h3>
             <p class="text-sm text-gray-400">
               חיישן רגיש לאור נמוך — תמונה חדה גם בחנייה חשוכה לגמרי או בגשם.
             </p>
           </div>
-          <div class="p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl backdrop-blur-sm">
-            <div class="text-2xl mb-2">🔔</div>
+          <div class="p-5 glass-card">
+            <div class="w-11 h-11 bg-brand-500/15 text-brand-400 rounded-xl flex items-center justify-center mb-3"><Icon name="message-circle" class="w-5 h-5" /></div>
             <h3 class="font-bold text-white mb-2">שילוב עם חיישני חנייה</h3>
             <p class="text-sm text-gray-400">
               תמונה + התרעה קולית = הפתרון הבטוח ביותר לחנייה צפופה בעיר.
             </p>
           </div>
-          <div class="p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl backdrop-blur-sm">
-            <div class="text-2xl mb-2">🚙</div>
+          <div class="p-5 glass-card">
+            <div class="w-11 h-11 bg-brand-500/15 text-brand-400 rounded-xl flex items-center justify-center mb-3"><Icon name="truck" class="w-5 h-5" /></div>
             <h3 class="font-bold text-white mb-2">מערכת 360° לרכבים גדולים</h3>
             <p class="text-sm text-gray-400">
               תצוגת על מלמעלה — מושלמת ל-SUV, רכב מסחרי וחנייה במקומות צרים.
             </p>
           </div>
-          <div class="p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl backdrop-blur-sm">
-            <div class="text-2xl mb-2">🔧</div>
+          <div class="p-5 glass-card">
+            <div class="w-11 h-11 bg-brand-500/15 text-brand-400 rounded-xl flex items-center justify-center mb-3"><Icon name="wrench" class="w-5 h-5" /></div>
             <h3 class="font-bold text-white mb-2">התקנה אסתטית ומוסתרת</h3>
             <p class="text-sm text-gray-400">
               חיווט נקי לחלוטין, גימור שנראה כאילו הגיע מהיצרן — בלי שריטות.
@@ -174,19 +167,19 @@ const faqs = [
           סוגי מצלמות חנייה שאנחנו מתקינים
         </h2>
         <div class="space-y-4">
-          <div class="p-5 bg-white border border-gray-200 rounded-lg">
+          <div class="p-5 glass-card">
             <h3 class="font-bold text-white mb-1">מצלמת רוורס אחורית</h3>
             <p class="text-gray-300">הפתרון הנפוץ והמשתלם ביותר. מצלמה קומפקטית במקום ידית התא המטען או במסגרת הלוחית, שמופעלת אוטומטית בהילוך אחורי. מתאימה כמעט לכל רכב.</p>
           </div>
-          <div class="p-5 bg-white border border-gray-200 rounded-lg">
+          <div class="p-5 glass-card">
             <h3 class="font-bold text-white mb-1">חיישני חנייה (סנסורים)</h3>
             <p class="text-gray-300">התרעה קולית מדורגת ככל שמתקרבים למכשול. ניתן להתקין אחורי, קדמי או משולב. מומלץ בשילוב מצלמה לכיסוי מלא.</p>
           </div>
-          <div class="p-5 bg-white border border-gray-200 rounded-lg">
+          <div class="p-5 glass-card">
             <h3 class="font-bold text-white mb-1">מצלמה קדמית</h3>
             <p class="text-gray-300">עוזרת בחנייה לכיוון מכשול קדמי נמוך ובנהיגה ברכבים גדולים. נפוצה ברכבי שטח ומסחריים.</p>
           </div>
-          <div class="p-5 bg-white border border-gray-200 rounded-lg">
+          <div class="p-5 glass-card">
             <h3 class="font-bold text-white mb-1">מערכת 360° (תצוגת על)</h3>
             <p class="text-gray-300">ארבע מצלמות שמרכיבות תמונה מלמעלה של הרכב והסביבה. השדרוג המתקדם ביותר — דורש כיול מדויק של כל מצלמה.</p>
           </div>
@@ -231,14 +224,14 @@ const faqs = [
             <div class="flex-shrink-0 w-10 h-10 bg-brand-500/20 border border-brand-500/40 text-brand-300 rounded-full flex items-center justify-center font-bold">5</div>
             <div>
               <h3 class="font-bold text-white mb-1">אחריות + שירות לטווח ארוך</h3>
-              <p class="text-gray-300">3 שנות אחריות על העבודה. כל בעיה — חוזרים אלינו, פותרים בלי תשלום. וגם תמיכה טלפונית לכל שאלה.</p>
+              <p class="text-gray-300">אחריות מלאה על העבודה. כל בעיה — חוזרים אלינו, פותרים בלי תשלום. וגם תמיכה טלפונית לכל שאלה.</p>
             </div>
           </li>
         </ol>
       </section>
 
       <!-- Why us -->
-      <section class="mb-12 p-6 bg-gray-50 rounded-xl">
+      <section class="mb-12 p-6 glass-section">
         <h2 class="text-xl md:text-2xl font-bold text-white mb-4">
           למה דווקא איכות המצלמה חשובה
         </h2>
@@ -262,15 +255,15 @@ const faqs = [
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <a href="/services/multimedia/android-screens/" class="block p-5 bg-white/[0.04] border border-white/[0.09] rounded-lg hover:border-brand-500/40 hover:bg-white/[0.07] transition-all backdrop-blur-sm">
-            <h3 class="font-bold text-white mb-2">📱 מסכי אנדרואיד</h3>
+            <h3 class="font-bold text-white mb-2">מסכי אנדרואיד</h3>
             <p class="text-sm text-gray-400">מסך מולטימדיה חדש שמגיע מוכן לחיבור מצלמה.</p>
           </a>
           <a href="/services/multimedia/dashcam/" class="block p-5 bg-white/[0.04] border border-white/[0.09] rounded-lg hover:border-brand-500/40 hover:bg-white/[0.07] transition-all backdrop-blur-sm">
-            <h3 class="font-bold text-white mb-2">🎥 דאשקאם</h3>
+            <h3 class="font-bold text-white mb-2">דאשקאם</h3>
             <p class="text-sm text-gray-400">מצלמת דרך שמתעדת נסיעה — משלימה את מצלמת הרוורס.</p>
           </a>
           <a href="/services/multimedia/sound-systems/" class="block p-5 bg-white/[0.04] border border-white/[0.09] rounded-lg hover:border-brand-500/40 hover:bg-white/[0.07] transition-all backdrop-blur-sm">
-            <h3 class="font-bold text-white mb-2">🔊 מערכות שמע</h3>
+            <h3 class="font-bold text-white mb-2">מערכות שמע</h3>
             <p class="text-sm text-gray-400">שדרוג הרמקולים וההגברה — חבילת מולטימדיה מלאה.</p>
           </a>
         </div>

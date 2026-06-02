@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro'
 import FAQ from '../../components/FAQ.astro'
 import CTABanner from '../../components/CTABanner.astro'
 import business from '../../data/business.js'
+import Icon from '../../components/Icon.astro'
 
 const title = 'תיקון מיזוג אוויר לרכב | מילוי גז ואיתור דליפות'
 const description = 'תיקון מיזוג אוויר לרכב — מילוי גז, החלפת קומפרסור, איתור דליפות, ניקוי מערכת. שירות מהיר ומקצועי בעפולה והאזור, אחריות מלאה.'
@@ -43,7 +44,7 @@ const faqs = [
 ]
 ---
 <BaseLayout title={title} description={description} schema={schema}>
-  <nav class="bg-[#040912] border-b border-white/[0.07] py-3">
+  <nav class="breadcrumb-dark">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-400">
       <a href="/" class="hover:text-white">בית</a><span class="mx-2">›</span>
       <a href="/services/" class="hover:text-white">שירותים</a><span class="mx-2">›</span>
@@ -53,7 +54,7 @@ const faqs = [
 
   <section class="relative bg-[#040912] text-white py-16 md:py-20 overflow-hidden">
     <div class="absolute inset-0 tech-grid opacity-30 pointer-events-none" />
-    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(29,78,216,0.4) 0%, transparent 65%);" />
+    <div class="absolute inset-0 pointer-events-none hero-radial" />
     <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-6">
         תיקון מיזוג אוויר לרכב<br/>
@@ -87,15 +88,15 @@ const faqs = [
         <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">שירותי מיזוג שאנחנו נותנים</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
-            { icon: '❄️', t: 'מילוי גז קירור', d: 'R134a ו-R1234yf — מילוי מדויק לפי מפרט הרכב, כולל תוספת שמן קומפרסור.' },
-            { icon: '🔍', t: 'איתור ותיקון דליפות', d: 'זיהוי נקודת הדליפה בציוד UV ואיטום — הדרך היחידה שמחזיקה לאורך זמן.' },
-            { icon: '⚙️', t: 'החלפת קומפרסור', d: 'קומפרסור שנכשל — פירוק, החלפה, שטיפת מעגל, ומילוי מחדש.' },
-            { icon: '🌬️', t: 'ניקוי מערכת אידוי', d: 'ריח רע מהאוורור? ניקוי מקצועי של האידוי ועובש שנאגר עם הזמן.' },
-            { icon: '🔧', t: 'חגורת קומפרסור ומצמד', d: 'החלפת חגורת הינע ומצמד קומפרסור — בעיה נפוצה שחוסמת את המיזוג.' },
-            { icon: '📊', t: 'בדיקת לחץ ואבחון', d: 'חיבור מד לחץ דו-צדדי לאבחון מדויק של מצב המערכת לפני כל עבודה.' },
+            { icon: 'snowflake', t: 'מילוי גז קירור', d: 'R134a ו-R1234yf — מילוי מדויק לפי מפרט הרכב, כולל תוספת שמן קומפרסור.' },
+            { icon: 'search', t: 'איתור ותיקון דליפות', d: 'זיהוי נקודת הדליפה בציוד UV ואיטום — הדרך היחידה שמחזיקה לאורך זמן.' },
+            { icon: 'settings', t: 'החלפת קומפרסור', d: 'קומפרסור שנכשל — פירוק, החלפה, שטיפת מעגל, ומילוי מחדש.' },
+            { icon: 'snowflake', t: 'ניקוי מערכת אידוי', d: 'ריח רע מהאוורור? ניקוי מקצועי של האידוי ועובש שנאגר עם הזמן.' },
+            { icon: 'wrench', t: 'חגורת קומפרסור ומצמד', d: 'החלפת חגורת הינע ומצמד קומפרסור — בעיה נפוצה שחוסמת את המיזוג.' },
+            { icon: 'target', t: 'בדיקת לחץ ואבחון', d: 'חיבור מד לחץ דו-צדדי לאבחון מדויק של מצב המערכת לפני כל עבודה.' },
           ].map(s => (
-            <div class="p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl backdrop-blur-sm">
-              <div class="text-2xl mb-2">{s.icon}</div>
+            <div class="p-5 glass-card">
+              <div class="w-11 h-11 bg-brand-500/15 text-brand-400 rounded-xl flex items-center justify-center mb-3"><Icon name={s} class="w-5 h-5" /></div>
               <h3 class="font-bold text-white mb-2">{s.t}</h3>
               <p class="text-sm text-gray-400">{s.d}</p>
             </div>
@@ -103,7 +104,7 @@ const faqs = [
         </div>
       </section>
 
-      <section class="mb-12 p-6 bg-gray-50 rounded-xl">
+      <section class="mb-12 p-6 glass-section">
         <h2 class="text-xl md:text-2xl font-bold text-white mb-4">חשוב: איתור דליפה לפני מילוי גז</h2>
         <p class="text-gray-300 leading-relaxed mb-4">
           מילוי גז בלי לאתר את הדליפה הוא פתרון זמני. הגז ייאזל שוב תוך שבועות עד חודשים,
@@ -120,15 +121,15 @@ const faqs = [
         <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">שירותים נלווים</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <a href="/services/electrical/" class="block p-5 bg-white/[0.04] border border-white/[0.09] rounded-lg hover:border-brand-500/40 hover:bg-white/[0.07] transition-all backdrop-blur-sm">
-            <h3 class="font-bold text-white mb-2">⚡ חשמלאי רכב</h3>
+            <h3 class="font-bold text-white mb-2">חשמלאי רכב</h3>
             <p class="text-sm text-gray-400">תקלות חשמל שלעתים קשורות למיזוג — חיישני לחץ, ממסרים, פיוזים.</p>
           </a>
           <a href="/services/general-mechanics/" class="block p-5 bg-white/[0.04] border border-white/[0.09] rounded-lg hover:border-brand-500/40 hover:bg-white/[0.07] transition-all backdrop-blur-sm">
-            <h3 class="font-bold text-white mb-2">🛠️ מכונאות כללית</h3>
+            <h3 class="font-bold text-white mb-2">מכונאות כללית</h3>
             <p class="text-sm text-gray-400">טיפול שנתי כולל בדיקת מיזוג — מניעה עדיפה על תיקון.</p>
           </a>
           <a href="/services/ecu-reset/" class="block p-5 bg-white/[0.04] border border-white/[0.09] rounded-lg hover:border-brand-500/40 hover:bg-white/[0.07] transition-all backdrop-blur-sm">
-            <h3 class="font-bold text-white mb-2">🔧 איפוס מחשב</h3>
+            <h3 class="font-bold text-white mb-2">איפוס מחשב</h3>
             <p class="text-sm text-gray-400">נורית תקלה שנשארת לאחר תיקון — מחיקה ואיפוס.</p>
           </a>
         </div>

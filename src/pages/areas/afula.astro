@@ -4,6 +4,8 @@ import FAQ from '../../components/FAQ.astro'
 import CTABanner from '../../components/CTABanner.astro'
 import business from '../../data/business.js'
 import { areas } from '../../data/areas.js'
+import Breadcrumb from '../../components/Breadcrumb.astro'
+import Icon from '../../components/Icon.astro'
 
 const area = areas.find(a => a.slug === 'afula')
 
@@ -39,49 +41,49 @@ const schema = {
 const services = [
   {
     title: 'מסכי אנדרואיד ומולטימדיה',
-    icon: '📱',
+    icon: 'smartphone',
     href: '/services/multimedia/android-screens/',
     desc: 'מסכי 7-10 אינץ׳ עם Apple CarPlay ו-Android Auto. ההתקנה הפופולרית ביותר בקרב לקוחות עפולה.',
   },
   {
     title: 'מצלמות רוורס',
-    icon: '📹',
+    icon: 'camera',
     href: '/services/multimedia/parking-cameras/',
     desc: 'מצלמת רוורס אחורית, חיישני חנייה ומערכת 360°. שדרוג הבטיחות הנגיש ביותר.',
   },
   {
     title: 'דאשקאם',
-    icon: '🎥',
+    icon: 'video',
     href: '/services/multimedia/dashcam/',
     desc: 'מצלמת דרך עם מצב חנייה ותיעוד 24/7. ראיה ביטוחית בכל נסיעה.',
   },
   {
     title: 'מערכות שמע',
-    icon: '🔊',
+    icon: 'volume-2',
     href: '/services/multimedia/sound-systems/',
     desc: 'רמקולים איכותיים, סאבוופרים ומגברים עם כיוונון מקצועי.',
   },
   {
     title: 'חשמלאי רכב ודיאגנוסטיקה',
-    icon: '⚡',
+    icon: 'zap',
     href: '/services/electrical/',
     desc: 'אבחון ממוחשב, תיקון תקלות חשמל, מצבר ואלטרנטור. ניסיון {business.stats.yearsOfExperience}+ שנים.',
   },
   {
     title: 'התקנת ווי גרירה',
-    icon: '🔗',
+    icon: 'link',
     href: '/services/towing-hitch/',
     desc: 'ווי גרירה קבועים, נשלפים וחשמליים לכל סוגי הרכבים. עם אישור מבחן רישוי.',
   },
   {
     title: 'מיזוג אוויר לרכב',
-    icon: '❄️',
+    icon: 'snowflake',
     href: '/services/ac-repair/',
     desc: 'מילוי גז, תיקון קומפרסור ואיתור דליפות. שירות מהיר לקיץ הישראלי.',
   },
   {
     title: 'מכונאות כללית',
-    icon: '🛠️',
+    icon: 'settings',
     href: '/services/general-mechanics/',
     desc: 'טיפולים תקופתיים, בלמים, מתלים — בשילוב חשמלאות לפתרון מקיף.',
   },
@@ -117,21 +119,12 @@ const faqs = [
 
 <BaseLayout title={title} description={description} schema={schema}>
 
-  <!-- Breadcrumb -->
-  <nav class="bg-[#040912] border-b border-white/[0.07] py-3" aria-label="breadcrumb">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-400">
-      <a href="/" class="hover:text-white">בית</a>
-      <span class="mx-2">›</span>
-      <a href="/areas/" class="hover:text-white">אזורי שירות</a>
-      <span class="mx-2">›</span>
-      <span class="text-white font-medium">עפולה</span>
-    </div>
-  </nav>
+  <Breadcrumb items={[{label: 'אזורי שירות', href: '/areas/'}, {label: 'עפולה'}]} />
 
   <!-- Hero -->
   <section class="relative bg-[#040912] text-white py-16 md:py-20 overflow-hidden">
     <div class="absolute inset-0 tech-grid opacity-30 pointer-events-none" />
-    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(29,78,216,0.4) 0%, transparent 65%);" />
+    <div class="absolute inset-0 pointer-events-none hero-radial" />
     <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="inline-block bg-white/10 rounded-full px-4 py-1 text-sm font-medium mb-4">
         {area.distance} ק"מ מעפולה — כ-15 דקות נסיעה
@@ -180,8 +173,8 @@ const faqs = [
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           {services.map(svc => (
-            <a href={svc.href} class="block p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl hover:border-brand-500/40 hover:bg-white/[0.07] transition-all backdrop-blur-sm">
-              <div class="text-2xl mb-2">{svc.icon}</div>
+            <a href={svc.href} class="block p-5 glass-link-card">
+              <div class="w-11 h-11 bg-brand-500/15 text-brand-400 rounded-xl flex items-center justify-center mb-3"><Icon name={svc} class="w-5 h-5" /></div>
               <h3 class="font-bold text-white mb-2">{svc.title}</h3>
               <p class="text-sm text-gray-400">{svc.desc}</p>
             </a>
@@ -195,45 +188,41 @@ const faqs = [
           למה לקוחות עפולה בוחרים בנו?
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          <div class="p-5 bg-white/[0.05] border border-white/[0.09] rounded-xl text-center">
+          <div class="p-5 glass-stats text-center">
             <div class="text-3xl font-bold text-accent-500 mb-1">{business.stats.yearsOfExperience}+</div>
             <div class="text-sm text-blue-200">שנות ניסיון</div>
           </div>
-          <div class="p-5 bg-white/[0.05] border border-white/[0.09] rounded-xl text-center">
+          <div class="p-5 glass-stats text-center">
             <div class="text-3xl font-bold text-accent-500 mb-1">{business.stats.installationsCount.toLocaleString()}+</div>
             <div class="text-sm text-blue-200">התקנות בוצעו</div>
           </div>
-          <div class="p-5 bg-white/[0.05] border border-white/[0.09] rounded-xl text-center">
+          <div class="p-5 glass-stats text-center">
             <div class="text-3xl font-bold text-accent-500 mb-1">{area.distance} ק"מ</div>
             <div class="text-sm text-blue-200">ממרכז עפולה</div>
           </div>
         </div>
         <ul class="space-y-3">
           <li class="flex items-start gap-3">
-            <span class="text-green-500 font-bold text-lg mt-0.5">✓</span>
+            <span class="text-green-400 mt-0.5 flex-shrink-0"><Icon name="check-circle" class="w-5 h-5" /></span>
             <p class="text-gray-300"><strong>שקיפות לפני כל עבודה</strong> — מסבירים מה נמצא ומה עלות התיקון לפני שמתחילים.</p>
           </li>
           <li class="flex items-start gap-3">
-            <span class="text-green-500 font-bold text-lg mt-0.5">✓</span>
-            <p class="text-gray-300"><strong>אחריות 3 שנים על עבודת ההתקנה</strong> — כל בעיה, מחזירים ומתקנים ללא תשלום.</p>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-green-500 font-bold text-lg mt-0.5">✓</span>
+            <span class="text-green-400 mt-0.5 flex-shrink-0"><Icon name="check-circle" class="w-5 h-5" /></span>
             <p class="text-gray-300"><strong>שירות אישי מאמיר עצמו</strong> — לא עובד חדש בכל פעם. אותה יד, אותה אחריות.</p>
           </li>
           <li class="flex items-start gap-3">
-            <span class="text-green-500 font-bold text-lg mt-0.5">✓</span>
+            <span class="text-green-400 mt-0.5 flex-shrink-0"><Icon name="check-circle" class="w-5 h-5" /></span>
             <p class="text-gray-300"><strong>תיאום תור גמיש</strong> — בדרך כלל תוך 2-5 ימים, לתקלות דחופות נעשה מאמץ מיוחד.</p>
           </li>
           <li class="flex items-start gap-3">
-            <span class="text-green-500 font-bold text-lg mt-0.5">✓</span>
+            <span class="text-green-400 mt-0.5 flex-shrink-0"><Icon name="check-circle" class="w-5 h-5" /></span>
             <p class="text-gray-300"><strong>מחירים הוגנים</strong> — בלי תוספות מפתיעות, בלי לחץ לשדרג כשלא צריך.</p>
           </li>
         </ul>
       </section>
 
       <!-- Location / how to get here -->
-      <section class="mb-12 p-6 bg-gray-50 rounded-xl">
+      <section class="mb-12 p-6 glass-section">
         <h2 class="text-xl md:text-2xl font-bold text-white mb-4">
           איך מגיעים אלינו מעפולה?
         </h2>
@@ -244,7 +233,7 @@ const faqs = [
           מעפולה: צאו מזרחה על <strong>כביש 71</strong> לכיוון בית שאן, ופנו שמאלה לכיוון מושב מלאה.
           לחלופין דרך <strong>כביש 65</strong> צפונה לכיוון הגלבוע. הניווט ב-Waze לחיפוש "אמיר מערכות, מושב מלאה" יוביל אתכם ישירות.
         </p>
-        <p class="text-gray-300 leading-relaxed text-sm text-gray-500">
+        <p class="text-gray-500 leading-relaxed text-sm">
           ניתן לקבוע תור בטלפון / וואטסאפ לפני ההגעה.
         </p>
       </section>

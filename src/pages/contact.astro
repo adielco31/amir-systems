@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
 import business from '../data/business.js'
+import Breadcrumb from '../components/Breadcrumb.astro'
+import Icon from '../components/Icon.astro'
 
 const title = 'יצירת קשר | אמיר מערכות'
 const description = 'צרו קשר עם אמיר מערכות — וואטסאפ, טלפון או טופס. מושב מלאה, הגלבוע. שעות פעילות: א׳–ה׳ 08:00–18:00, שישי עד 13:00.'
@@ -14,16 +16,11 @@ const schema = {
 }
 ---
 <BaseLayout title={title} description={description} schema={schema}>
-  <nav class="bg-[#040912] border-b border-white/[0.07] py-3">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-gray-400">
-      <a href="/" class="hover:text-white">בית</a><span class="mx-2">›</span>
-      <span class="text-white font-medium">יצירת קשר</span>
-    </div>
-  </nav>
+  <Breadcrumb items={[{label: 'יצירת קשר'}]} />
 
   <section class="relative bg-[#040912] text-white py-16 md:py-20 overflow-hidden">
     <div class="absolute inset-0 tech-grid opacity-30 pointer-events-none" />
-    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(29,78,216,0.4) 0%, transparent 65%);" />
+    <div class="absolute inset-0 pointer-events-none hero-radial" />
     <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-6">
         יצירת קשר
@@ -47,7 +44,7 @@ const schema = {
               href={`https://wa.me/${business.whatsapp}?text=${encodeURIComponent('שלום, אני מעוניין בייעוץ ושאלה על שירות.')}`}
               class="flex items-center gap-4 p-5 bg-green-500/10 border border-green-500/20 rounded-xl hover:bg-green-500/15 transition-all"
             >
-              <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white text-2xl flex-shrink-0">💬</div>
+              <div class="w-12 h-12 bg-green-500/15 text-green-400 rounded-xl flex items-center justify-center flex-shrink-0"><Icon name="message-circle" class="w-6 h-6" /></div>
               <div>
                 <div class="font-bold text-white">וואטסאפ</div>
                 <div class="text-gray-400 text-sm">הדרך הכי מהירה — תשובה תוך שעות</div>
@@ -59,7 +56,7 @@ const schema = {
               href={`tel:${business.phoneClean}`}
               class="flex items-center gap-4 p-5 bg-brand-500/10 border border-brand-500/20 rounded-xl hover:bg-brand-500/15 transition-all"
             >
-              <div class="w-12 h-12 bg-brand-700 rounded-full flex items-center justify-center text-white text-2xl flex-shrink-0">📞</div>
+              <div class="w-12 h-12 bg-brand-500/15 text-brand-400 rounded-xl flex items-center justify-center flex-shrink-0"><Icon name="phone" class="w-6 h-6" /></div>
               <div>
                 <div class="font-bold text-white">טלפון</div>
                 <div class="text-gray-400 text-sm">א׳–ה׳ 08:00–18:00 | שישי 08:00–13:00</div>
@@ -71,7 +68,7 @@ const schema = {
               href={`mailto:${business.email}`}
               class="flex items-center gap-4 p-5 bg-white/[0.04] border border-white/[0.09] rounded-xl hover:bg-white/[0.07] transition-all"
             >
-              <div class="w-12 h-12 bg-gray-600 rounded-full flex items-center justify-center text-white text-2xl flex-shrink-0">✉️</div>
+              <div class="w-12 h-12 bg-white/[0.08] text-gray-300 rounded-xl flex items-center justify-center flex-shrink-0"><Icon name="mail" class="w-6 h-6" /></div>
               <div>
                 <div class="font-bold text-white">אימייל</div>
                 <div class="text-gray-400 text-sm">לפניות שאינן דחופות</div>
@@ -80,7 +77,7 @@ const schema = {
             </a>
           </div>
 
-          <div class="mt-8 p-5 bg-gray-50 rounded-xl border border-gray-200">
+          <div class="mt-8 p-5 glass-card">
             <h3 class="font-bold text-white mb-3">שעות פעילות</h3>
             <div class="space-y-1 text-gray-300">
               <div class="flex justify-between">
@@ -140,7 +137,7 @@ const schema = {
               <select
                 id="service"
                 name="service"
-                class="w-full bg-white/[0.05] border border-white/[0.15] rounded-lg px-4 py-2.5 text-white focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent bg-white"
+                class="w-full bg-white/[0.05] border border-white/[0.15] rounded-lg px-4 py-2.5 text-white focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"
               >
                 <option value="">בחרו שירות (אופציונלי)</option>
                 <option>מסך אנדרואיד / CarPlay</option>
@@ -185,16 +182,16 @@ const schema = {
       <div class="mt-12">
         <h2 class="text-2xl font-bold text-white mb-6">איפה אנחנו</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="p-6 bg-white/[0.04] border border-white/[0.09] rounded-2xl backdrop-blur-sm">
+          <div class="p-6 glass-section">
             <h3 class="font-bold text-white mb-2">כתובת הסדנה</h3>
             <p class="text-gray-300">{business.address.street}</p>
             <p class="text-gray-300">{business.address.region}</p>
             <p class="text-gray-500 text-sm mt-2">
-              סמוך לצומת גלבוע — כביש 667.<br/>
-              כניסה לפי תיאום מראש בלבד.
+             <br/>
+              
             </p>
           </div>
-          <div class="p-6 bg-white/[0.04] border border-white/[0.09] rounded-2xl backdrop-blur-sm">
+          <div class="p-6 glass-section">
             <h3 class="font-bold text-white mb-3">הדרך אלינו</h3>
             <ul class="space-y-1 text-sm text-gray-300">
               <li>מעפולה: ~15 דקות (כביש 60 ← 667)</li>
